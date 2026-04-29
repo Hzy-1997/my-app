@@ -1,0 +1,177 @@
+/* subpackages/ticketOrder/ticketOrder.wxss */
+
+.container {
+  background: #F8F8F8;
+}
+
+
+.carousel {
+  height: 350rpx;
+  padding-bottom: 10rpx;
+}
+
+
+.information-registration {
+  width: 100%;
+  position: absolute;
+  top: calc(350rpx - 5rpx);
+}
+
+
+.purchase-date {
+  background: #ffff;
+  padding: 10rpx;
+  border-radius: 15rpx;
+}
+
+
+
+
+.date-title {
+  font-size: 36rpx;
+  font-weight: 900;
+}
+
+.play-choice {
+  display: flex;
+  margin-top: 10rpx;
+  align-items: center;
+  /* border-bottom: 1px solid; */
+}
+
+.play-data {
+  font-size: 36rpx;
+  font-weight: 900;
+  margin: 0rpx 230rpx 0rpx 150rpx;
+  padding: 30rpx 0rpx;
+}
+
+.divider {
+  border-bottom: 1px solid #F4F6F8;
+}
+
+
+.purchase-number {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15rpx 0rpx;
+}
+
+.purchase-title {
+  font-size: 36rpx;
+  font-weight: 900;
+  margin-left: 20rpx;
+}
+
+.purchase-price {
+  display: flex;
+  align-items: center;
+  margin-right: 20rpx;
+}
+
+.van-stepper .input-class {
+  color: #000;
+}
+
+
+.information-entry {
+  margin-top: 20rpx;
+  padding: 10rpx;
+  background: #ffff;
+  border-radius: 15rpx;
+  padding: 18rpx;
+}
+
+
+.information-title {
+  font-weight: 900;
+  font-size: 32rpx;
+}
+
+.information-name {
+  width: 130rpx;
+  height: 80rpx;
+  margin: 20rpx 0rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background: #F1F7F4;
+  border-radius: 15rpx;
+}
+
+.information-name .active {
+  border: 1px solid #1dcf58;
+}
+
+.coupon {
+  height: 100rpx;
+  padding: 0rpx 70rpx;
+  margin: 25rpx 0rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.coupon-icon {
+  width: 150rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+
+
+
+
+
+
+
+
+.instructions {
+  height: 600rpx;
+  border: 1px solid;
+}
+
+.payment-body {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #fff;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.payment-price {
+  margin-left: 50rpx;
+  text-align: center;
+}
+
+.payment-discount {
+  height: 30rpx;
+  text-align: center;
+  line-height: 30rpx;
+  font-size: 22rpx;
+  background: #C99255;
+  border-radius: 10rpx;
+  padding: 5rpx;
+}
+
+
+.payment {
+  margin-right: 50rpx;
+  height: 80rpx;
+  width: 180rpx;
+  border-radius: 30rpx;
+  text-align: center;
+  line-height: 80rpx;
+  background-color: #07c160;
+
+}

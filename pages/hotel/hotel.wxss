@@ -1,0 +1,71 @@
+/* hotel/hotel.wxss */
+
+.container {
+  padding-top: 20rpx;
+  background: #EFEDED;
+}
+
+.hotel-body {
+  /* height: 560rpx; */
+  padding: 0rpx 30rpx 30rpx;
+}
+
+.hotel {
+  height: 100%;
+  border-radius: 10rpx;
+  background: #ffff;
+  border-radius: 15rpx;
+}
+
+.hotel-infor {
+  padding: 15rpx;
+}
+
+.hotel-img {
+  height: 350rpx;
+  width: 100%;
+  border-radius: 15rpx;
+}
+
+.hotel-title {
+  width: 100%;
+  height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 35rpx;
+  font-weight: 900;
+}
+
+.level {
+  height: 40rpx;
+  font-size: 25rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffd21e;
+
+}
+
+.price {
+  font-size: 35rpx;
+  font-weight: 900;
+  color: red;
+}
+
+.intro {
+  font-size: 24rpx;
+  margin: 5rpx 0rpx;
+}
+
+.star-rating {
+  background-color: #FFF9EB;
+  color: #ffd21e;
+  font-size: 24rpx;
+  padding: 5rpx;
+  border-radius: 10rpx;
+  margin-left: 10rpx;
+}

@@ -1,0 +1,88 @@
+<view class="member-center">
+  <view class="member-header">
+    <view class="member-header_bx">
+      <view class="member-avatar">
+        <image src="{{userInformation.avatar}}" mode="" />
+      </view>
+      <view class="member-info">
+        <view class="member-info_name">
+          <!-- {{userInformation.nickName}} -->
+          你好
+        </view>
+        <view class="member-info_card">
+          会员ID:{{userInformation.memberCardNo}}</view>
+      </view>
+
+      <view class="qrCode">123</view>
+    </view>
+  </view>
+  <view class="assets-grid">
+    <view class="assets-grid_item">123</view>
+    <view class="assets-grid_item">123</view>
+    <view class="assets-grid_item">123</view>
+    <view class="assets-grid_item">123</view>
+  </view>
+
+
+  <view class="order-grid">
+    <view class="order-grid_item">
+      <view class="order-grid_item_icon">123</view>
+      <view class="order-grid_item_text">活动订单</view>
+    </view>
+    <view class="order-grid_item">
+      <view class="order-grid_item_icon">123</view>
+      <view class="order-grid_item_text">活动订单</view>
+    </view>
+    <view class="order-grid_item">
+      <view class="order-grid_item_icon">123</view>
+      <view class="order-grid_item_text">活动订单</view>
+    </view>
+    <view class="order-grid_item">
+      <view class="order-grid_item_icon">123</view>
+      <view class="order-grid_item_text">活动订单</view>
+    </view>
+    <view class="order-grid_item">
+      <view class="order-grid_item_icon">123</view>
+      <view class="order-grid_item_text">活动订单</view>
+    </view>
+    <view class="order-grid_item">
+      <view class="order-grid_item_icon">123</view>
+      <view class="order-grid_item_text">活动订单</view>
+    </view>
+    <view class="order-grid_item">
+      <view class="order-grid_item_icon">123</view>
+      <view class="order-grid_item_text">活动订单</view>
+    </view>
+    <view class="order-grid_item">
+      <view class="order-grid_item_icon">123</view>
+      <view class="order-grid_item_text">活动订单</view>
+    </view>
+  </view>
+
+  <view class="service">
+    <view class="service_left">
+      <view>&&</view>
+      <view>客户服务</view>
+    </view>
+    <view>》</view>
+  </view>
+
+  <view class="settings">
+    <view class="settings_box" bind:tap="changeInformation" data-id="{{userInformation.id}}">
+      <view class="settings_box_left">
+        <view>&&</view>
+        <view>账号设置</view>
+      </view>
+      <view> 》 </view>
+    </view>
+    <view class="settings_box">
+      <view class="settings_box_left">
+        <view>&& </view>
+        <view> 关于我们</view>
+      </view>
+      <view> 》 </view>
+    </view>
+  </view>
+  <!-- <view>678</view> -->
+
+</view>

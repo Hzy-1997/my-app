@@ -1,0 +1,19 @@
+<view class="login">登录页1</view>
+
+
+<view class="container">
+  <!-- 手机号一键登录按钮 -->
+  <button class="phone-login-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber" type="primary" size="large">
+    微信手机号一键登录
+  </button>
+
+  <!-- 可选的原有登录方式（作为降级方案） -->
+  <button bind:tap="userAuthorization">确认授权登录</button>
+</view>
+
+
+
+
+
+
+<button bind:tap="cunchu">查看存储</button>

@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="hotel-body" wx:for="{{hotelList}}" wx:key="item" bind:tap="goRoomType" data-id="{{item.id}}">
+    <view class="hotel">
+      <view class="hotel-img"></view>
+      <view class="hotel-infor">
+        <view class="hotel-title">
+          <view class="title-body">
+            <view class="title">{{item.title}}</view>
+            <view class="level">
+              <van-rate value="{{ item.star_rating }}" size="{{ 15 }}" count="{{item.star_rating}}" color="#ffd21e" void-icon="star" /> <text style=" margin-left: 8rpx;">{{item.level}}</text>
+            </view>
+          </view>
+          <view class="price">
+            <text style="font-size: 22rpx; margin-right: 5rpx;">￥</text>
+            <text>{{item.minPrice}}</text>
+            <text style="font-size: 22rpx; margin-left: 5rpx;">起</text>
+          </view>
+        </view>
+        <view>
+          <view class="intro">{{item.intro}}</view>
+          <view>
+            <text class="star-rating" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">{{tag}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

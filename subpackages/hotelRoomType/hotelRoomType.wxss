@@ -1,0 +1,283 @@
+/* subpackages/theater/theater.wxss */
+
+.carousel {
+  width: 100%;
+  height: 350rpx;
+  border: 1px solid;
+}
+
+.container .Content-area {
+  width: 100%;
+  height: calc(100% - 350rpx);
+  position: absolute;
+  top: 330rpx;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+  padding-top: 10rpx;
+  /* background-color: #ffffff; */
+}
+
+.information {
+  width: 100%;
+  height: 200rpx;
+  background: #fff;
+  padding: 10rpx 10rpx 0rpx 10rpx;
+}
+
+.location-box {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rpx 20rpx;
+}
+
+.location-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.location-time {
+  font-size: 25rpx;
+  color: #808080;
+}
+
+.location-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 100rpx; */
+  font-size: 26rpx;
+  color: #808080;
+}
+
+.navigation {
+  height: 80rpx;
+  padding: 0rpx 20rpx;
+  line-height: 80rpx;
+}
+
+.van-rate__item {
+  padding: 0rpx !important;
+}
+
+
+.room-body {
+  width: 100%;
+  border: 1px solid;
+  /* height: 1600rpx; */
+  background: #F4F4F5;
+}
+
+.check-in-date {
+  width: 100%;
+  height: 80rpx;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background: #21774A;
+  color: #ffff;
+  font-size: 28rpx;
+}
+
+.check-in-date view:nth-child(3) {
+  border: 1px solid;
+  width: 60rpx;
+  font-size: 20rpx;
+  border-radius: 20rpx;
+  text-align: center;
+  line-height: 30rpx;
+}
+
+.room-category {
+  height: 100%;
+  border: 1px solid;
+  padding: 20rpx;
+}
+
+.room-infor {
+  width: 100%;
+  height: 100%;
+  border: 1px solid;
+}
+
+
+.room-infor {
+  border: 1px solid;
+  height: 200rpx;
+}
+
+
+/* index.wxss */
+.container1 {
+  padding: 20rpx;
+  background: #F3F4F5;
+}
+
+.panel {
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.panel-header {
+  height: 180rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  background-color: aquamarine;
+  background-color: #ffff;
+  font-size: 32rpx;
+  font-weight: 500;
+  box-shadow: 0 7rpx 10rpx rgba(0, 0, 0, 0.1);
+  border-radius: 15rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.roomType {
+  width: 600rpx;
+  height: 100%;
+  display: flex;
+}
+
+.roomType-img {
+  width: 180rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.roomType-infro {
+  display: flex;
+  flex-direction: column;
+}
+
+.roomType-title {
+  font-size: 33rpx;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+}
+
+.roomType-require {
+  margin: 10rpx 0rpx;
+  font-size: 27rpx;
+}
+
+.roomType-confirm {
+  font-size: 24rpx;
+  width: 110rpx;
+  padding: 5rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid green;
+  border-radius: 8rpx;
+  color: green;
+}
+
+
+
+.arrow {
+  color: #666;
+  font-size: 28rpx;
+}
+
+
+
+.panel-content {
+  margin-top: -5rpx;
+  overflow: hidden;
+  transition: height 0.5s ease;
+}
+
+.content-inner {
+  padding: 15rpx;
+  font-size: 28rpx;
+  height: 180rpx;
+  background: #ffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.combo {
+  height: 170rpx;
+  width: 460rpx;
+}
+
+.combo-title {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.combo-content {
+  font-size: 24rpx;
+  display: flex;
+  margin: 10rpx 0rpx;
+}
+
+.combo-content .include {
+  width: 550rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.total {
+  width: 100rpx;
+  margin-left: 10rpx;
+}
+
+
+.purchase {
+  height: 170rpx;
+
+  /* border: 1px solid; */
+  /* width: 150rpx; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  color: red;
+  font-weight: 600;
+}
+
+.price text {
+  font-size: 34rpx;
+}
+
+.confirm {
+  width: 80rpx;
+  height: 100rpx;
+  border: 1px solid #21774A;
+  margin-left: 8rpx;
+  border-radius: 15rpx;
+}
+
+.confirm view:nth-child(1) {
+  background: #21774A;
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15rpx 15rpx 0rpx 0rpx;
+  color: #fff;
+  font-size: 35rpx;
+}
+
+.confirm view:nth-child(2) {
+  /* background: #21774A; */
+  height: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20rpx;
+}
+

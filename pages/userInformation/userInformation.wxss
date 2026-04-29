@@ -1,0 +1,145 @@
+/* pages/userInformation/userInformation.wxss */
+
+
+.member-center {
+  /* border: 1px solid; */
+  padding: 10rpx 20rpx 0rpx;
+  background: #EFF0F0;
+  height: 100vh;
+}
+
+.member-header {
+  height: 150rpx;
+  /* border: 1px solid; */
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+  padding: 30rpx;
+  background: #DAE8EE;
+
+}
+
+.member-header_bx {
+  /* border: 1px solid; */
+  height: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+
+.member-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+
+.member-avatar image {
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10rpx;
+}
+
+.member-info_card {
+  margin-top: 15rpx;
+  font-size: 25rpx;
+}
+
+.qrCode {
+  position: absolute;
+  right: 30rpx;
+}
+
+.assets-grid {
+  /* border: 1px solid; */
+  height: 170rpx;
+  border-radius: 0rpx 0rpx 20rpx 20rpx;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  align-content: center;
+  background: #fff;
+}
+
+.assets-grid_item {
+  height: 100rpx;
+  width: 150rpx;
+  /* border: 1px solid; */
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.order-grid {
+  margin-top: 30rpx;
+  padding: 5rpx;
+  /* border: 1px solid; */
+  height: 300rpx;
+  border-radius: 20rpx;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  background: #fff;
+}
+
+.order-grid_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid; */
+}
+
+.order-grid_item_icon {
+  width: 60rpx;
+  height: 60rpx;
+  border: 1px solid;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.order-grid_item_text {
+  font-size: 27rpx;
+}
+
+
+.service {
+  margin: 30rpx 0rpx;
+  height: 100rpx;
+  border: 1px solid;
+  border-radius: 10rpx;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rpx 30rpx;
+}
+
+.service_left {
+  display: flex;
+  font-weight: bold;
+}
+
+
+
+.settings {
+  height: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+  background: #fff;
+}
+
+.settings_box {
+  display: flex;
+  align-items: center;
+  height: 95rpx;
+  padding: 10rpx 30rpx;
+  justify-content: space-between;
+}
+
+.settings_box_left {
+  display: flex;
+}

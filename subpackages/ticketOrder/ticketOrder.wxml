@@ -1,0 +1,73 @@
+<view class="container">
+  <van-toast id="van-toast" />
+  <view class="container-box">
+
+    <view class="carousel">
+
+    </view>
+    <view class="information-registration">
+      <!-- 日期 -->
+      <view class="purchase-date">
+        <view class="purchase-box">
+          <view class="date-title">游玩日期</view>
+          <view class="play-choice">
+            <view class="play-data">{{purchaseDate}}</view>
+            <view class="choice-date" bind:tap="moreDates">更多日期 > </view>
+          </view>
+          <view class="divider"></view>
+          <view class="purchase-number">
+            <view class="purchase-title">选择数量</view>
+            <view class="purchase-price">
+              <text style="text-decoration: line-through; font-size: 30rpx; margin-right: 10rpx;">￥{{originalPrice}}</text>
+              <text style="color: red; margin-right: 20rpx; font-weight: 900; font-size: 32rpx;"> <text style="font-size: 22rpx;">￥</text>{{totalPrice}}</text>
+              <van-stepper disable-input value="{{ 1 }}" integer input-class="input-class" bind:change="onChange" />
+            </view>
+          </view>
+        </view>
+      </view>
+      <!-- 信息填写 -->
+      <view class="information-entry">
+
+        <view class="information-title">需填写一位出行人员信息</view>
+        <view class="information-name active">新增</view>
+        <view>
+          <van-cell-group>
+            <van-field value="{{ userName }}" bind:input="inforNameState" label="用户名" placeholder="请输入用户名" error-message="{{ error.username ? '此项必填' : '' }}" />
+            <van-field value="{{ phone }}" bind:input="inforPhoneState" label="手机号" placeholder="请输入手机号" error-message="{{ error.phone ? '此项必填' : '' }}" />
+          </van-cell-group>
+        </view>
+
+
+      </view>
+      <!-- 有优惠券 -->
+      <view class="coupon">
+
+        <view class="coupon-icon">
+          <icon class="icon-small" type="success" size="23"></icon>
+          <text>优惠券</text>
+        </view>
+        <view class="coupon-icon">
+          <text>无可用</text>
+          <icon class="icon-small" type="success" size="23"></icon>
+        </view>
+
+      </view>
+      <view class="instructions">123
+        <rich-text nodes="{{ticketDetails.showIntro}}"></rich-text>
+      </view>
+    </view>
+  </view>
+
+  <view class="payment-body">
+    <view class="payment-price">
+      <view> <text style="color: red; margin-right: 20rpx; font-weight: 900; font-size: 50rpx;"> <text style="font-size: 30rpx;">￥</text>{{totalPrice}}</text></view>
+      <view class="payment-discount">已优惠￥{{totalDiscount}}</view>
+    </view>
+    <view class="payment" bind:tap="validateForm">立即付款</view>
+  </view>
+
+  <!-- 价格日期弹窗 -->
+  <!-- <van-calendar show="{{ show }}"  min-date="{{minDate}}" max-date="{{maxDate}}" bind:close="onClose" bind:confirm="onConfirm" /> -->
+
+  <van-calendar show="{{ show }}" formatter="{{ formatter }}" color="#21774A"  min-date="{{minDate}}" max-date="{{maxDate}}" bind:close="onClose" bind:confirm="onConfirm" />
+</view>

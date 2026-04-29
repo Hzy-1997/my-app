@@ -1,0 +1,14 @@
+<view style=" background: #ffffff;">
+  <view class="strategy">
+    <view class="strategy-title">{{info.title}}</view>
+    <view class="strategy-time"> <text>我的大景区</text><text>{{info.time}}</text></view>
+  </view>
+
+  <view class="rich-text-container">
+    <view class="container-text">
+      <mp-html content="{{html}}" />
+    </view>
+  </view>
+
+
+</view>

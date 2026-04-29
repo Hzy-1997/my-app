@@ -1,0 +1,123 @@
+<view class="page">
+  <view class="page_header">
+    <view class="page_box">
+      <view class="page_content">
+        <view class="order-card">
+          <view class="order-card_header">
+            <view><text>{{content.hotelTitle}}</text> 订单信息</view>
+            <view>请填写您的预订信息</view>
+          </view>
+          <view class="order-card_notice" bind:tap="notice">预定须知 ></view>
+        </view>
+        <view class="order-card_section">
+          <view class="order-card_section-title">入离时间</view>
+          <view class="time-range">
+            <view class="time-range_text"><text>{{content.selectDateObj.date.today.date}}</text> {{content.selectDateObj.date.today.weekChinese}} - {{content.selectDateObj.date.tomorrow.date}} {{content.selectDateObj.date.tomorrow.weekChinese}} | {{content.selectDateObj.night}}晚</view>
+            <view>
+              <van-stepper class="green-stepper" value="{{ roomsNumber }}" max="5" bind:change="onChange" theme="round" button-size="35rpx" />
+            </view>
+          </view>
+
+          <view class="room-type">
+            <view class="room-type_box">
+              <view class="room-type_name">{{content.superclassTitle}}</view>
+              <view class="room-type_detail-link">房间详情</view>
+            </view>
+            <view class="room-type_desc"><text style="color: #23774B;">立即确认</text> {{content.exitRule}}</view>
+          </view>
+
+          <view class="member-price">
+            <view class="member-price_title">{{content.subclassTitle}}</view>
+            <view class="member-price_benefit">
+              <view class="member-price-left">
+                <view class="member-price_tag">享</view>
+                <view class="member-price_shuxian"></view>
+              </view>
+              <view class="member-price_benefit-list">
+                <view class="member-price_benefit-item" wx:for="{{content.includes}}" wx:key="item">{{item}}</view>
+              </view>
+            </view>
+          </view>
+
+          <view class="traveler">
+            <view class="traveler_title">需填写1位出行人</view>
+            <view class="traveler_selector">
+              <view class="traveler__btn {{activeIndex === index ? 'active' : ''}}" wx:for="{{userInformation}}" wx:key="item" data-index="{{index}}" data-item="{{item}}" bind:tap="increaseUsers">{{item.username}}</view>
+            </view>
+            <van-cell-group>
+              <van-field value="{{ userInfor.username }}" label="用户名" placeholder="请输入用户名" bind:blur="contentName" error-message="{{nameNotFilled}}" />
+              <van-field value="{{ userInfor.phone }}" label="手机号" placeholder="请输入手机号" bind:blur="contentPhone" error-message="{{phoneNotFilled}}" />
+            </van-cell-group>
+            <view class="coupon">
+              <view>￥优惠券</view>
+              <view>无可用></view>
+            </view>
+          </view>
+        </view>
+        <view class="agreement">请您在提交订单前仔细阅读 <text style="color:#21774A;">《太舞滑雪小镇用户服务协议》</text> 。如有任何问题,请致电 <text style="color:#21774A;">400客服</text> 了解详情。</view>
+      </view>
+
+    </view>
+
+  </view>
+  <view class="action-bar">
+    <view class="action-box">
+      <view class="action-bar_left">
+        <view class="action-bar_price-amount"> <text style="font-size: 30rpx; ">¥</text>{{pricePerRoom}}</view>
+        <view class="action-bar_price-desc">已优惠¥{{discountedPrice}}</view>
+      </view>
+      <view class="action-bar_right">
+        <view class="action-bar_detail-link" bind:tap="details">费用明细</view>
+        <view class="action-bar_btn" bind:tap="submit">立即付款</view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<van-popup show="{{ show }}" round position="bottom" custom-style="height: 70%" bind:close="onClose">
+  <view class="paymentInformation">
+
+    <view class="paymentInformation-top">
+      <view>在线支付</view>
+      <view>{{roomsNumber}}间{{content.dailyStock.length}}晚 共 <text style="color:red">¥{{pricePerRoom}}</text></view>
+    </view>
+
+    <view class="paymentInformation-bottom">
+      <view class="paymentInformation-datePrice">
+        <view>房费</view>
+        <view>¥{{pricePerRoom}}</view>
+      </view>
+      <view class="datePrice" wx:for="{{content.dailyStock}}" wx:key="item">
+        <view>{{item.date}}</view>
+        <view>{{roomsNumber}}x ¥{{item.price}}</view>
+      </view>
+    </view>
+
+  </view>
+</van-popup>
+
+<van-popup show="{{ noticeShow }}" closeable round position="bottom" custom-style="height: 70%" bind:close="onClose">
+  <scroll-view scroll-y="true" style="height: 800rpx;">
+    <view class="notice-container">
+      <view class="notice-title">预定须知</view>
+      <view class="notice-subtitle">入住须知</view>
+      <view class="notice-text">住店客人请准备好有效身份证件，中国公民的有效证件:居民身份证、户口本。外籍客人需持有效签证护照。</view>
+      <view class="notice-subtitle">入住退房时间</view>
+      <view class="notice-text">入住时间为当日入住下午15:00后:离店时间为离店当日正午12:00前，如果您推迟离店时间，酒店将视出租率情况予以协助安排。</view>
+      <view class="notice-subtitle">酒店取消及退款政策</view>
+      <view class="notice-list-item">一、满足以下条件可全额退款</view>
+      <view class="notice-list-subitem">1、下单后15分钟内取消</view>
+      <view class="notice-list-subitem">2、预订平日入住提前5天</view>
+      <view class="notice-list-subitem">3、预订周末(周五、周六)提前10天</view>
+      <view class="notice-list-subitem">4、预订国家法定节假日提前15天</view>
+      <view class="notice-list-item">二、不满足全额退款条件，扣款原则如下。</view>
+      <view class="notice-list-subitem">1、预抵前4天提出取消申请，扣除本订单30%房费</view>
+      <view class="notice-list-subitem">2、预抵前3天提出取消申请，扣除本订单50%房费</view>
+      <view class="notice-list-subitem">3、预抵前2天提出取消申请，扣除本订单80%房费</view>
+      <view class="notice-list-subitem">4、预抵前1天提出取消申请不予接受，扣除本订单所有房费</view>
+      <view class="notice-list-item">三、酒店套餐、预售套餐产品不支持取消</view>
+      <view class="notice-subtitle">其他政策</view>
+      <view class="notice-text">我酒店地处一级防火区，在酒店范围内严禁使用一切明火。</view>
+    </view>
+  </scroll-view>
+</van-popup>

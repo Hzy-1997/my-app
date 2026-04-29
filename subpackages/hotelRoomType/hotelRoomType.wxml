@@ -1,0 +1,78 @@
+<view class="container">
+  <van-toast id="van-toast" />
+  <view class="carousel">轮播图</view>
+  <view class="Content-area">
+    <view class="information">
+      <view class="location-box">
+        <view class="location-infor">
+          <view class="location-title">{{hotelData.hotel.title}}</view>
+          <view class="location-time">
+            <van-rate value="{{ hotelData.hotel.star_rating }}" size="{{ 15 }}" count="{{hotelData.hotel.star_rating}}" color="#ffd21e" void-icon="star" /> <text style=" margin-left: 8rpx;"><text>{{hotelData.hotel.level}}</text>/<text>高档</text> </text>
+          </view>
+        </view>
+        <view class="location-details"> 酒店详情> </view>
+      </view>
+      <view class="navigation">
+        <view>{{hotelData.hotel.address}}</view>
+      </view>
+    </view>
+    <view class="room-body">
+      <van-sticky>
+        <van-button type="primary">
+          <view class="check-in-date" bind:tap="selectDate">
+            <view>图</view>
+            <view>{{selectDateObj.date.today.date}} {{selectDateObj.date.today.weekChinese}}</view>
+            <view> {{selectDateObj.night}} 晚</view>
+            <view>{{selectDateObj.date.tomorrow.date}} {{selectDateObj.date.tomorrow.weekChinese}}</view>
+            <view>|</view>
+            <view>1间房</view>
+          </view>
+        </van-button>
+      </van-sticky>
+
+
+      <!-- <view class="room-category">
+        <view class="room-infor">
+        </view>
+      </view> -->
+
+      <view class="container1">
+        <view class="panel" wx:for="{{panels}}" wx:key="id">
+          <view class="panel-header" bindtap="togglePanel" data-id="{{item.id}}">
+            <view class="roomType">
+              <view class="roomType-img">图片</view>
+              <view class="roomType-infro">
+                <view class="roomType-title">{{item.title}}</view>
+                <view class="roomType-require">1张床大床*126m2可住2人</view>
+                <view class="roomType-confirm">立即确认</view>
+              </view>
+            </view>
+            <view style="display: flex; align-items: center;">
+              <text class="arrow">{{activeId === item.id ? '▼' : '▶'}}</text>
+            </view>
+          </view>
+          <view class="panel-content" style="height: {{activeId === item.id ? item.contentHeight + 'px' : '0'}}">
+            <view class="content-inner" wx:for="{{item.roomData.packages}}" wx:for-item="tag" wx:key="index">
+              <view class="combo">
+                <view class="combo-title">{{tag.name}}</view>
+                <view class="combo-content">
+                  <view class="include">{{tag.includes}}</view>
+                  <view class="total">共<text>7</text>项</view>
+                </view>
+                <view style="  font-size: 24rpx;">{{tag.exitRule}}</view>
+              </view>
+              <view class="purchase" bind:tap="order" data-superclass="{{item}}" data-subclass="{{tag}}">
+                <view class="price">￥<text>{{tag.totalPrice}}</text> </view>
+                <view class="confirm">
+                  <view>订</view>
+                  <view>在线订</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <van-calendar show="{{ show }}" formatter="{{ formatter }}" type="range" show-mark close-on-click-overlay="false" confirm-text="完成" color="#21774A" confirm-disabled-text="请选择结束时间" bind:close="onClose" bind:confirm="onConfirm" />
+</view>

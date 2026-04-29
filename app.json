@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/strategy/strategy",
+    "pages/hotel/hotel",
+    "pages/theater/theater",
+    "pages/userInformation/userInformation"
+  ],
+  "subpackages": [
+    {
+      "root": "subpackages",
+      "pages": [
+        "abcv/abcv",
+        "ticketOrder/ticketOrder",
+        "guideDetails/guideDetails",
+        "hotelRoomType/hotelRoomType",
+        "bookRoom/bookRoom",
+        "personalInformation/personalInformation"
+      ]
+    }
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/userInformation/userInformation",
+        "text": "登录"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

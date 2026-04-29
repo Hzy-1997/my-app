@@ -1,0 +1,366 @@
+/* editInfo.wxss */
+/* 可编辑资料页面样式 */
+
+.page {
+  background-color: #f5f5f9;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+}
+
+/* 导航栏（含保存按钮） */
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 88rpx 30rpx 20rpx 30rpx;
+  background-color: #ffffff;
+  border-bottom: 2rpx solid #f0f0f0;
+  position: relative;
+}
+
+.nav-back {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back-icon {
+  font-size: 48rpx;
+  color: #333;
+  line-height: 1;
+}
+
+.nav-title {
+  font-size: 36rpx;
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.nav-save {
+  padding: 12rpx 20rpx;
+}
+
+.save-text {
+  font-size: 32rpx;
+  color: #07c160;
+  font-weight: 500;
+}
+
+/* 头像区域 */
+.avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0 30rpx 0;
+  background-color: #ffffff;
+  margin-bottom: 16rpx;
+}
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  border: 4rpx solid #ffffff;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.avatar-edit {
+  margin-top: 16rpx;
+}
+
+.edit-text {
+  font-size: 26rpx;
+  color: #21774A;
+}
+
+/* 表单卡片 */
+.form-list {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  margin: 0 30rpx;
+  overflow: hidden;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  min-height: 100rpx;
+  padding: 20rpx 30rpx;
+  border-bottom: 2rpx solid #f5f5f5;
+  position: relative;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.form-label {
+  font-size: 30rpx;
+  color: #333;
+  width: 170rpx;
+  flex-shrink: 0;
+}
+
+.form-input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1a1a1a;
+  padding: 10rpx 0;
+  min-height: 60rpx;
+}
+
+.form-input-placeholder {
+  color: #999;
+  font-size: 30rpx;
+}
+
+.form-value {
+  flex: 1;
+  font-size: 30rpx;
+  color: #1a1a1a;
+}
+
+.form-value.readonly {
+  color: #666;
+}
+
+/* 操作入口样式（实名、车牌） */
+.form-action {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.form-action-car {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.action-text {
+  font-size: 30rpx;
+  color: #21774A;
+  margin-right: 16rpx;
+}
+
+/* 下拉选择框样式 */
+.form-select {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.select-text {
+  font-size: 30rpx;
+  color: #1a1a1a;
+  margin-right: 16rpx;
+}
+
+.select-text.placeholder {
+  color: #999;
+}
+
+.item-arrow {
+  font-size: 36rpx;
+  color: #ccc;
+  line-height: 1;
+}
+
+/* 输入框提示小字 */
+.input-note {
+  position: absolute;
+  right: 30rpx;
+  bottom: -10rpx;
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 底部安全区域 */
+.bottom-safe {
+  height: 100rpx;
+  background-color: transparent;
+}
+
+/* 性别选择弹窗 */
+.gender-picker-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+.picker-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.picker-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-top-left-radius: 24rpx;
+  border-top-right-radius: 24rpx;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.picker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+
+.picker-cancel,
+.picker-confirm {
+  font-size: 32rpx;
+  color: #21774A;
+}
+
+.picker-title {
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.picker-options {
+  padding: 20rpx 0;
+}
+
+.picker-option {
+  text-align: center;
+  padding: 30rpx;
+  font-size: 32rpx;
+  color: #333;
+  border-bottom: 2rpx solid #f5f5f5;
+}
+
+.picker-option:last-child {
+  border-bottom: none;
+}
+
+.picker-option.selected {
+  color: #21774A;
+  font-weight: 500;
+}
+
+/* 车牌号码键盘 */
+.keyBox {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 6rpx 80rpx;
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 99;
+
+}
+
+.keyBox .close {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0rpx 20rpx 15rpx 0rpx;
+}
+
+.keyboard-box {
+  /* position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 13rpx;
+  padding: 6rpx 7rpx;
+  background: #CED4DB;
+}
+
+/* 普通按钮的样式 */
+.keyboard {
+  background-color: #ffffff;
+  height: 80rpx;
+  width: 63rpx;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  padding: 7rpx;
+  box-shadow: 0 2rpx 5rpx rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* 禁用按钮的样式 */
+.banKeyboard {
+  background-color: #d3d3d3;
+  /* 灰色表示禁用 */
+  color: #888;
+  cursor: not-allowed;
+}
+
+.banKeyboard:hover {
+  background-color: #d3d3d3;
+}
+
+.delete-key {
+  border: none;
+  border-radius: 6rpx;
+  font-size: 28rpx;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-key-logo {
+  width: 50rpx;
+  height: 30rpx;
+}
+
+.keyboard-hover {
+  transform: scale(1.1);
+}
+
+.picker {
+  width: 400rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+
+.submit_btn {
+  height: 200rpx;
+  padding: 0rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.submit_btn view {
+  height: 80rpx;
+  border-radius: 40rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #ffffff;
+  background: #21774A;
+}

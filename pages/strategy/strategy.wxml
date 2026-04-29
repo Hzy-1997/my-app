@@ -1,0 +1,22 @@
+<view class="waterfall-wrapper">
+
+  <view id="left" class="left">
+    <view class="waterfall-item" wx:for="{{columns[0]}}" wx:key="index" bind:tap="goDetails" data-id="{{item.id}}">
+      <image src="{{gImgUrl}}{{item.cover}}" mode="widthFix" bindload="onImageLoad" data-index="{{item.index}}" />
+      <view class="image-name">
+        <view class="image-title">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view id="right" class="right">
+    <view class="waterfall-item" wx:for="{{columns[1]}}" wx:key="index" bind:tap="goDetails" data-id="{{item.id}}">
+      <image src="{{gImgUrl}}{{item.cover}}" mode="widthFix" bindload="onImageLoad" data-index="{{item.index}}" />
+      <view class="image-name">
+        <view class="image-title">{{item.title}}</view>
+      </view>
+    </view>
+  </view>
+  
+</view>
+<van-toast id="van-toast" />

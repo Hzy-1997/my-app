@@ -1,0 +1,124 @@
+<!-- editInfo.wxml -->
+<!-- 可编辑的个人资料页面：输入框 + 下拉选择 + 只读会员信息 -->
+<view class="page">
+  <!-- 头像区域（可点击更换） -->
+  <!-- <view class="avatar-section" bindtap="changeAvatar">
+    <image class="avatar" src="/images/default-avatar.png" mode="aspectFill"></image>
+    <view class="avatar-edit">
+      <text class="edit-text">点击更换头像</text>
+    </view>
+  </view> -->
+  <button class="avatar-section" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar" src="{{userInformation.avatar}}"></image>
+    <view class="avatar-edit">
+      <text class="edit-text">点击更换头像</text>
+    </view>
+  </button>
+
+  <!-- 资料表单卡片 -->
+  <view class="form-list">
+    <!-- 昵称（可编辑输入框） -->
+    <view class="form-item">
+      <text class="form-label">昵称</text>
+      <input class="form-input" type="text" value="{{userInformation.nickName}}" placeholder="请输入昵称" bindinput="onNicknameInput" />
+    </view>
+
+    <!-- 会员卡类型（只读，不可编辑） -->
+    <view class="form-item">
+      <text class="form-label">会员卡类型</text>
+      <text class="form-value readonly">{{userInformation.memberCardType}}</text>
+    </view>
+
+    <!-- 会员等级（只读，不可编辑） -->
+    <view class="form-item">
+      <text class="form-label">会员等级</text>
+      <text class="form-value readonly">恰恰级会员</text>
+    </view>
+
+    <!-- 会员卡号（只读，不可编辑） -->
+    <view class="form-item">
+      <text class="form-label">会员卡号</text>
+      <text class="form-value readonly">{{userInformation.memberCardNo}}</text>
+    </view>
+
+
+
+    <!-- 车牌号（操作入口，不可编辑值） -->
+    <view class="form-item" bindtap="goLicensePlate">
+      <text class="form-label">车牌号</text>
+      <view>{{userInformation.licensePlate}}</view>
+      <view class="form-action">
+        <text class="action-text"> {{userInformation.licensePlate?"更改绑定":"进行绑定"}}</text>
+        <text class="item-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 电话号（可编辑输入框） -->
+    <view class="form-item">
+      <text class="form-label">电话号</text>
+      <input class="form-input" type="text" value="{{userInformation.phone}}" placeholder="请输入电话号" bindinput="onPhoneInput" />
+    </view>
+
+    <!-- 邮箱（可编辑输入框） -->
+    <view class="form-item">
+      <text class="form-label">邮箱</text>
+      <input class="form-input" type="text" value="{{userInformation.email}}" placeholder="请输入邮箱" bindinput="onEmailInput" />
+    </view>
+
+
+
+    <!-- 性别（下拉选择框） -->
+    <view class="form-item">
+      <text class="form-label">性别</text>
+      <picker bindchange="bindPickerChange" value="{{userInformation.sex}}" range="{{genderArray}}">
+        <view class="picker">
+          {{genderArray[userInformation.sex]}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 实名认证（操作入口，不可编辑值） -->
+    <view class="form-item" bindtap="goRealName">
+      <text class="form-label">实名认证</text>
+      <view class="form-action">
+        <text class="action-text">去实名</text>
+        <text class="item-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 证件类型（可编辑输入框） -->
+    <view class="form-item">
+      <text class="form-label">证件类型</text>
+      <picker bindchange="binddocumentChange" value="{{userInformation.idCardType}}" range="{{documentType}}">
+        <view class="picker">
+          {{documentType[userInformation.idCardType]}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 所在地区（可编辑输入框，也可改为选择器，先用输入框） -->
+    <view class="form-item">
+      <text class="form-label">所在地区</text>
+      <input class="form-input" type="text" value="{{userInformation.region}}" placeholder="请输入所在地区" bindinput="onRegionInput" />
+    </view>
+
+    <view class="form-item">
+      <text class="form-label">姓名</text>
+      <input class="form-input" type="text" value="{{userInformation.userName}}" placeholder="请输入姓名" bindinput="onNameInput" />
+    </view>
+
+    <!-- 证件号码（可编辑输入框） -->
+    <view class="form-item">
+      <text class="form-label">证件号码</text>
+      <input class="form-input" type="text" value="{{userInformation.idCard}}" placeholder="请输入证件号码" bindinput="onIdNumberInput" />
+    </view>
+
+
+  </view>
+  <view class="submit_btn">
+    <view bind:tap="submit">提交</view>
+  </view>
+  <!-- 底部安全区域 -->
+  <view class="bottom-safe">
+  </view>
+</view>

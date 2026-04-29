@@ -1,0 +1,143 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #F3F3F3;
+}
+
+/* .scrollarea {
+  flex: 1;
+  overflow-y: hidden;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #aaa;
+  width: 80%;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.avatar-wrapper {
+  padding: 0;
+  width: 56px !important;
+  border-radius: 8px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.avatar {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
+.nickname-wrapper {
+  display: flex;
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  border-top: .5px solid rgba(0, 0, 0, 0.1);
+  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
+  color: black;
+}
+
+.nickname-label {
+  width: 105px;
+}
+
+.nickname-input {
+  flex: 1;
+} */
+
+.top-bar {
+  position: fixed;
+  top: 0rpx;
+}
+
+.page-header {
+  width: 100%;
+  height: 500rpx;
+  border: 1px solid;
+}
+
+.top-bar {
+  width: 100%;
+  height: 180rpx;
+  border: 1px solid;
+}
+
+.nav-tabs {
+  /* width: 100%; */
+  height: 200rpx;
+  /* border: 1px solid; */
+  padding: 0rpx 20rpx;
+  background: #ffff;
+}
+
+.grid-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-column-gap: 20px;
+  /* border: 1px solid; */
+
+}
+
+.nav-tabs_item {
+  background: #ffff;
+  width: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-icon {
+  width: 100%;
+  height: 100rpx;
+  font-size: 70rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-name {
+  font-size: 25rpx;
+}
+
+.func-grid {
+  height: 350rpx;
+  background: #ffff;
+  margin: 20rpx 0rpx 20rpx;
+  padding: 20rpx 20rpx;
+}
+
+.grid-item {
+  width: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.bottom-display {
+  background: #ffff;
+  width: 100%;
+  min-height: 700rpx;
+  border: 1px solid;
+}

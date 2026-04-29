@@ -1,0 +1,61 @@
+<view class="container">
+  <van-toast id="van-toast" />
+  <view class="carousel">轮播图</view>
+  <view class="Content-area">
+    <view class="information">
+      <view class="location-box">
+        <view class="location-infor">
+          <view class="location-title">西岭雪山滑雪</view>
+          <view class="location-time">
+          
+          </view>
+        </view>
+        <view class="location-details"> > </view>
+      </view>
+      <view class="navigation">
+        <view>河北省张家口市崇礼区小镇</view>
+      </view>
+    </view>
+    <view class="ticketing">
+      <view class="sidebar-panel">
+        <!-- 侧边选择 -->
+        <view wx:for="{{sidebarItems}}" wx:key="index" bindtap="selectItem" data-index="{{index}}" class="sidebar-panel-item {{selectedIndex === index ? 'active' : ''}}">
+          {{item}}
+        </view>
+      </view>
+      <view class="exhibition-area">
+        <view wx:if="{{true}}">
+          <van-empty wx:if="{{ticketingList.length==0}}" class="custom-image" image="https://img.yzcdn.cn/vant/custom-empty-image.png" description="暂无票型" />
+        </view>
+        <view else>
+          <scroll-view scroll-y="true" style="height: 100%;" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+            <view class="ticket-box" wx:for="{{ticketingList}}" wx:key="item">
+              <view class="ticket-card">
+                <view class="ticket-title">{{item.title}}</view>
+                <view class="ticket-information">
+                  <view>
+                    <view class="ticket-instructions">
+                      <view class="ticket-rule " wx:for="{{item.typeDescription}}" wx:key="item">
+                        {{item}}
+                      </view>
+                    </view>
+                    <view class="ticket-sell">已售 {{item.soldCount}} +</view>
+                  </view>
+                  <view class="ticket-select">
+
+                    <view style="font-size: 20rpx;">￥</view>
+                    <view class="ticket-price">{{item.discountPrice}}</view>
+                    <view style="font-size: 20rpx; margin-right: 10rpx;">起</view>
+                    <view class="ticket-purchase" bind:tap="purchase" data-index="{{item.id}}">选购</view>
+                  </view>
+                </view>
+              </view>
+              <view style="height: 20rpx;"></view>
+            </view>
+          </scroll-view>
+        </view>
+
+      </view>
+    </view>
+  </view>
+</view>

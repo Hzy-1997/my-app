@@ -1,0 +1,46 @@
+/* wxss */
+.waterfall-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: auto;
+  align-items: flex-start;
+  padding: 10rpx 20rpx;
+  gap: 10px;
+
+}
+
+
+
+.waterfall-item {
+  margin-bottom: 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 10rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.waterfall-item image {
+  width: 100%;
+  display: block;
+}
+
+/* .image-name {
+  display: block;
+  padding: 20rpx;
+  font-size: 35rpx;
+  font-weight: 900;
+  text-align: center;
+} */
+
+.image-name {
+  padding: 20rpx;
+}
+
+.image-title {
+  font-size: 32rpx;
+  font-weight: 900;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@babel/runtime": "^7.28.4",
+    "@vant/weapp": "^1.11.7",
+    "crypto-js": "^4.2.0",
+    "mp-html": "^2.5.2"
+  }
+}

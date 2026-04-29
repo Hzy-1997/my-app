@@ -1,0 +1,30 @@
+<view>
+  <view class="page-header">
+    <view class="top-bar">111</view>
+    111111
+  </view>
+
+  <view class="nav-tabs">
+    <view class="grid-container">
+      <view class="nav-tabs_item" wx:for="{{navMenu}}" wx:key="item">
+        <view class="item-icon">{{item.icon}}</view>
+        <view class="item-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="func-grid">
+    <view class="grid-container">
+      <view class="grid-item" wx:for="{{categoryMenu}}" wx:key="item">
+        <view class="item-icon">{{item.icon}}</view>
+        <view class="item-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-display">
+    <view>4</view>
+
+    <view>5</view>
+  </view>
+</view>

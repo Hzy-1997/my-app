@@ -1,0 +1,7 @@
+/* pages/login/login.wxss */
+
+.login {
+  width: 750rpx;
+  height: 1290rpx;
+  border: 1px solid;
+}

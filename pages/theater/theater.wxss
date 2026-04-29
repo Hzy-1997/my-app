@@ -1,0 +1,181 @@
+/* subpackages/theater/theater.wxss */
+
+.carousel {
+  width: 100%;
+  height: 350rpx;
+  border: 1px solid;
+}
+
+.container .Content-area {
+  width: 100%;
+  height: calc(100% - 350rpx);
+  position: absolute;
+  top: 330rpx;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+  padding-top: 10rpx;
+
+  /* background-color: #ffffff; */
+}
+
+.information {
+  width: 100%;
+  height: 200rpx;
+  background: #fff;
+  padding: 10rpx 10rpx 0rpx 10rpx;
+}
+
+.location-box {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+
+.location-title {
+  font-size: 36rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.location-time {
+  font-size: 25rpx;
+  color: #a6a9ac;
+}
+
+.location-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100rpx;
+}
+
+.navigation {
+  height: 80rpx;
+  padding: 10rpx;
+  line-height: 80rpx;
+}
+
+.ticketing {
+  height: calc(100% - 200rpx);
+  display: flex;
+}
+
+.Content-area .sidebar-panel {
+  padding-top: 10rpx;
+  width: 180rpx;
+  background-color: #ffff;
+}
+
+.sidebar-panel .sidebar-panel-item {
+  width: 155rpx;
+  height: 80rpx;
+  font-size: 25rpx;
+  font-weight: 600;
+  text-align: center;
+  line-height: 80rpx;
+  border-radius: 0rpx 10rpx 10rpx 0rpx;
+  margin: 5rpx 0rpx;
+  background-color: #ffff;
+}
+
+.sidebar-panel-item.active {
+  background-color: #007bff;
+  color: white;
+}
+
+
+
+
+.exhibition-area {
+  width: 100%;
+  background-color: rgba(245, 243, 243, 0.938);
+  padding: 10rpx;
+}
+
+.ticket-box {
+  padding: 8rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.ticket-card {
+  height: 160rpx;
+  border-bottom: 1px solid #a6a9ac;
+}
+
+.ticket-information {
+  margin-top: 6rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket-title {
+  font-size: 34rpx;
+  font-weight: 900;
+}
+
+.ticket-instructions {
+  display: flex;
+}
+
+.ticket-rule {
+  font-size: 26rpx;
+  color: #0caf14;
+  margin-bottom: 15rpx;
+  margin-right: 8rpx;
+  padding-right: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-image: linear-gradient(to bottom, 
+    transparent 0%, 
+    transparent 30%, 
+    #0caf14 30%, 
+    #0caf14 70%, 
+    transparent 70%, 
+    transparent 100%);
+    
+  background-position: right center;
+  background-size: 1px 55rpx;
+  background-repeat: no-repeat;
+}
+
+
+.ticket-rule:last-child {
+  border-right: none;
+}
+
+
+.ticket-sell {
+  font-size: 24rpx;
+  margin-top: 5rpx;
+  color: #a6a9ac;
+}
+
+.ticket-select {
+  display: flex;
+  height: 78%;
+  align-items: flex-end;
+  color: red;
+
+}
+
+.ticket-price {
+  height: 100rpx;
+  font-size: 28rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: flex-end;
+}
+
+.ticket-purchase {
+  width: 80rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  background: #0caf14;
+  border-radius: 15rpx;
+}
