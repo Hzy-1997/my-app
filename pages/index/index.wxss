@@ -137,7 +137,42 @@ page {
 
 .bottom-display {
   background: #ffff;
-  width: 100%;
   min-height: 700rpx;
   border: 1px solid;
+  padding: 0rpx 30rpx;
+}
+
+.section {
+  background-color: #ffffff;
+  height: 500rpx;
+  margin-top: 16rpx;
+  /* padding: 32rpx 0 40rpx; */
+  border: 1px solid;
+  /* border-radius: 20rpx; */
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rpx 15rpx;
+  margin-bottom: 32rpx;
+  /* border: 1px solid; */
+  height: 80rpx;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #1a1a1a;
+  position: relative;
+  padding-left: 16rpx;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: #999999;
 }

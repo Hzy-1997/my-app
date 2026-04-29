@@ -23,8 +23,21 @@
   </view>
 
   <view class="bottom-display">
-    <view>4</view>
+    <view class="section">
+      <view class="section-header">
+        <view class="section-title">酒店</view>
+        <view class="section-more" bindtap="onMoreTap" data-link="/guides">查看更多 ></view>
+      </view>
+      <view>
+        <scroll-view class="guide-scroll" scroll-x enable-flex>
+          <view class=""></view>
+        </scroll-view>
+      </view>
+    </view>
 
-    <view>5</view>
+    <view class="section">
+      <view></view>
+      <view></view>
+    </view>
   </view>
 </view>
