@@ -53,7 +53,7 @@ export const categoryMenu = [{
   },
   {
     id: "4",
-    name: '太舞班车',
+    name: '观光车',
     link: '/shuttle',
     icon: '🚌'
   },

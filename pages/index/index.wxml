@@ -1,6 +1,6 @@
 <view>
   <view class="page-header">
-    <view class="top-bar">111</view>
+    <view class="top-bar" style="background-color: {{headerBgColor}};">111</view>
     111111
   </view>
 
@@ -23,8 +23,107 @@
   </view>
 
   <view class="bottom-display">
-    <view>4</view>
+    <view class="section">
+      <view class="section-header">
+        <view class="section-title">酒店</view>
+        <view class="section-more" bindtap="onMoreTap" data-link="/guides">查看更多 ></view>
+      </view>
+      <view class="swiper-guide">
+        <swiper class="swiper" bindchange="onSwiperChange" circular autoplay="{{true}}" interval="{{2000}}" duration="{{500}}">
+          <block wx:for="{{background}}" wx:key="*this">
+            <swiper-item>
+              <view class="swiper-item {{item}}">{{item}}</view>
+            </swiper-item>
+          </block>
+        </swiper>
+        <!-- 自定义指示点 -->
+        <view class="custom-indicator">
+          <view class="dot {{currentIndex === index ? 'active' : ''}}" wx:for="{{5}}" wx:key="index">
+          </view>
+        </view>
+      </view>
+    </view>
 
-    <view>5</view>
+    <view class="section">
+      <view class="section-header">
+        <view class="section-title">攻略笔记</view>
+        <view class="section-more" bindtap="onMoreTap" data-link="/guides">查看更多 ></view>
+      </view>
+      <view class="swiper-guide">
+        <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
+          <view class="scroll-view_box">
+            <view id="demo1" class="scroll-view-item_H demo-text-1">
+              <view class="guide-image"></view>
+              <view class="guide-info">最后亿趟，当然要“疯”玩儿! 25大大</view>
+            </view>
+            <view id="demo2" class="scroll-view-item_H demo-text-2">2</view>
+            <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+            <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+            <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+            <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
   </view>
+  <view class="product">
+    <view class="section-header">
+      <view class="section-title">产品推荐</view>
+      <view class="section-more" bindtap="onMoreTap" data-link="/guides">查看更多 ></view>
+    </view>
+    <view class="product-box">
+      <view class="product-card">
+        <view class="product-image"></view>
+        <view>
+          <view class="product-info">
+            <view class="product-name">崇礼之巅观光缆车票:(单次往返)</view>
+            <view class="product-type">¥150</view>
+            <view class="product-price-row">
+              <view class="product-price">
+                <text class="price-symbol">¥</text>
+                <text class="price-value">100</text>
+                <text class="price-unit">起</text>
+              </view>
+              <view class="product-sold">已售21414+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="product-card">
+        <view class="product-image"></view>
+        <view>
+          <view class="product-info">
+            <view class="product-name">崇礼之巅观光缆车票:(单次往返)</view>
+            <view class="product-type">¥150</view>
+            <view class="product-price-row">
+              <view class="product-price">
+                <text class="price-symbol">¥</text>
+                <text class="price-value">100</text>
+                <text class="price-unit">起</text>
+              </view>
+              <view class="product-sold">已售21414+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+       <view class="product-card">
+        <view class="product-image"></view>
+        <view>
+          <view class="product-info">
+            <view class="product-name">崇礼之巅观光缆车票:(单次往返)</view>
+            <view class="product-type">¥150</view>
+            <view class="product-price-row">
+              <view class="product-price">
+                <text class="price-symbol">¥</text>
+                <text class="price-value">100</text>
+                <text class="price-unit">起</text>
+              </view>
+              <view class="product-sold">已售21414+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
 </view>
