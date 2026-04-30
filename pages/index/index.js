@@ -10,7 +10,10 @@ Page({
    */
   data: {
     navMenu,
-    categoryMenu
+    categoryMenu,
+    background: 5,
+    currentIndex: 0,
+    headerBgColor: 'rgba(255, 255, 255, 0)' // 初始透明
   },
 
   /**
@@ -51,9 +54,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh() {
-
-  },
+  onPullDownRefresh() {},
 
   /**
    * 页面上拉触底事件的处理函数
@@ -68,6 +69,22 @@ Page({
   onShareAppMessage() {
 
   },
+
+  onPageScroll(e) {
+    // e.scrollTop 是页面滚动距离
+    const scrollTop = e.scrollTop;
+    // 计算透明度：滚动距离 / 最大滚动距离（比如100px达到完全不透明）
+    let opacity = scrollTop / 100;
+    // 限制透明度范围在 0-1 之间
+    if (opacity > 1) opacity = 1;
+    if (opacity < 0) opacity = 0;
+  
+    this.setData({
+      headerBgColor: `rgba(255, 255, 255, ${opacity})`
+    });
+  },
+
+
   login() {
     console.log(123)
     wx.navigateTo({
@@ -92,6 +109,11 @@ Page({
   toHotel() {
     wx.navigateTo({
       url: '/pages/hotel/hotel',
+    })
+  },
+  onSwiperChange(e) {
+    this.setData({
+      currentIndex: e.detail.current
     })
   }
 })
