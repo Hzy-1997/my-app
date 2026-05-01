@@ -26,8 +26,8 @@
           "name": "pages/userInformation/userInformation",
           "pathName": "pages/userInformation/userInformation",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "subpackages/bookRoom/bookRoom",

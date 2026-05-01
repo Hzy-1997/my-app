@@ -6,7 +6,7 @@
 
   <view class="nav-tabs">
     <view class="grid-container">
-      <view class="nav-tabs_item" wx:for="{{navMenu}}" wx:key="item">
+      <view class="nav-tabs_item" wx:for="{{navMenu}}" wx:key="item" bindtap="onTopRowClick" data-num="{{item.id}}" data-item="{{item}}">
         <view class="item-icon">{{item.icon}}</view>
         <view class="item-name">{{item.name}}</view>
       </view>
@@ -15,24 +15,29 @@
 
   <view class="func-grid">
     <view class="grid-container">
-      <view class="grid-item" wx:for="{{categoryMenu}}" wx:key="item">
+      <view class="grid-item" wx:for="{{categoryMenu}}" wx:key="item" bindtap="onBottomRowClick" data-num="{{item.id}}" data-item="{{item}}">
         <view class="item-icon">{{item.icon}}</view>
         <view class="item-name">{{item.name}}</view>
       </view>
     </view>
   </view>
 
+
   <view class="bottom-display">
+    <!-- 酒店 -->
     <view class="section">
       <view class="section-header">
         <view class="section-title">酒店</view>
-        <view class="section-more" bindtap="onMoreTap" data-link="/guides">查看更多 ></view>
+        <view class="section-more" bindtap="toHotel" data-link="/guides">查看更多 ></view>
       </view>
       <view class="swiper-guide">
         <swiper class="swiper" bindchange="onSwiperChange" circular autoplay="{{true}}" interval="{{2000}}" duration="{{500}}">
-          <block wx:for="{{background}}" wx:key="*this">
+          <block wx:for="{{hotelList}}" wx:key="item">
             <swiper-item>
-              <view class="swiper-item {{item}}">{{item}}</view>
+              <view class="swiper-item" bindtap="goRoomType" data-id="{{item.id}}">
+                <image class="img" src="{{gImgUrl}}{{item.images}}" mode="" />
+                <view class="title">{{item.title}}</view>
+              </view>
             </swiper-item>
           </block>
         </swiper>
@@ -43,86 +48,54 @@
         </view>
       </view>
     </view>
-
+    <!-- 攻略 -->
     <view class="section">
       <view class="section-header">
         <view class="section-title">攻略笔记</view>
-        <view class="section-more" bindtap="onMoreTap" data-link="/guides">查看更多 ></view>
+        <view class="section-more" bindtap="toStrategy" data-link="/guides">查看更多 ></view>
       </view>
       <view class="swiper-guide">
         <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
           <view class="scroll-view_box">
-            <view id="demo1" class="scroll-view-item_H demo-text-1">
-              <view class="guide-image"></view>
-              <view class="guide-info">最后亿趟，当然要“疯”玩儿! 25大大</view>
+            <view id="demo1" class="scroll-view-item_H demo-text-1" wx:for="{{strategyList}}" wx:key="item" bindtap="goDetails" data-id="{{item.id}}">
+              <view class="guide-image">
+                <image class="img" src="{{gImgUrl}}{{item.cover}}" mode="" />
+              </view>
+              <view class="guide-info">{{item.title}}</view>
             </view>
-            <view id="demo2" class="scroll-view-item_H demo-text-2">2</view>
-            <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-            <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-            <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
-            <view id="demo3" class="scroll-view-item_H demo-text-3">3</view>
           </view>
         </scroll-view>
       </view>
     </view>
   </view>
+  <!-- 票务 -->
   <view class="product">
     <view class="section-header">
       <view class="section-title">产品推荐</view>
-      <view class="section-more" bindtap="onMoreTap" data-link="/guides">查看更多 ></view>
+      <view class="section-more" bindtap="toModule" data-link="/guides">查看更多 ></view>
     </view>
     <view class="product-box">
-      <view class="product-card">
-        <view class="product-image"></view>
-        <view>
-          <view class="product-info">
-            <view class="product-name">崇礼之巅观光缆车票:(单次往返)</view>
-            <view class="product-type">¥150</view>
-            <view class="product-price-row">
-              <view class="product-price">
-                <text class="price-symbol">¥</text>
-                <text class="price-value">100</text>
+      <view class="product-card" wx:for="{{tickeList}}" wx:key="item" bindtap="purchase" data-id="{{item.id}}">
+        <view class="product-image">
+          <image class="img" src="{{gImgUrl}}{{item.homeImg}}" mode="" />
+        </view>
+        <view class="product-name">{{item.title}}</view>
+        <view class="product-info">
+          <view class="product-type">¥{{item.originalPrice}}</view>
+          <view class="product-price-row">
+            <view class="product-sold">已售21414+</view>
+            <view class="product-price">
+              <view> <text class="price-symbol">¥</text>
+                <text class="price-value">{{item.discountPrice}}</text>
                 <text class="price-unit">起</text>
               </view>
-              <view class="product-sold">已售21414+</view>
             </view>
           </view>
         </view>
+
       </view>
-      <view class="product-card">
-        <view class="product-image"></view>
-        <view>
-          <view class="product-info">
-            <view class="product-name">崇礼之巅观光缆车票:(单次往返)</view>
-            <view class="product-type">¥150</view>
-            <view class="product-price-row">
-              <view class="product-price">
-                <text class="price-symbol">¥</text>
-                <text class="price-value">100</text>
-                <text class="price-unit">起</text>
-              </view>
-              <view class="product-sold">已售21414+</view>
-            </view>
-          </view>
-        </view>
-      </view>
-       <view class="product-card">
-        <view class="product-image"></view>
-        <view>
-          <view class="product-info">
-            <view class="product-name">崇礼之巅观光缆车票:(单次往返)</view>
-            <view class="product-type">¥150</view>
-            <view class="product-price-row">
-              <view class="product-price">
-                <text class="price-symbol">¥</text>
-                <text class="price-value">100</text>
-                <text class="price-unit">起</text>
-              </view>
-              <view class="product-sold">已售21414+</view>
-            </view>
-          </view>
-        </view>
-      </view>
+
+
     </view>
   </view>
 
