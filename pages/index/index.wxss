@@ -139,11 +139,10 @@ page {
 }
 
 .section {
-  height: 500rpx;
   margin-bottom: 20rpx;
   box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
-  border-radius: 15rpx 15rpx 0rpx 0rpx;
-  padding: 10rpx 10rpx;
+  border-radius: 15rpx;
+
 }
 
 .section-header {
@@ -178,8 +177,19 @@ page {
 }
 
 .swiper-item {
-  /* border: 1px solid; */
   height: 100%;
+  position: relative;
+}
+
+.swiper-item .img {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-item .title {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
 }
 
 .custom-indicator {
@@ -187,7 +197,7 @@ page {
   bottom: 10rpx;
   left: 50%;
   transform: translateX(-50%);
-  width: 210rpx;
+  width: 198rpx;
   display: flex;
   justify-content: center;
   gap: 10rpx;
@@ -235,8 +245,14 @@ page {
 .guide-image {
   width: 100%;
   height: 350rpx;
-  /* background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); */
   box-shadow: 0 0 10rpx rgba(0, 0, 0, 0.2);
+  border-radius: 15rpx;
+}
+
+.guide-image .img {
+  border-radius: 15rpx;
+  width: 100%;
+  height: 100%;
 }
 
 .guide-info {
@@ -253,7 +269,7 @@ page {
   min-height: 500rpx;
   margin-top: 20rpx;
   background: #ffff;
-  padding: 10rpx 20rpx 0rpx;
+  padding: 10rpx 20rpx 50rpx;
 }
 
 .product-box {
@@ -267,7 +283,6 @@ page {
   display: inline-block;
   width: 340rpx;
   margin-right: 24rpx;
-  background: #AFDCDF;
   border-radius: 20rpx;
   overflow: hidden;
   box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.4);
@@ -278,15 +293,22 @@ page {
   width: 100%;
   height: 280rpx;
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  position: relative;
+  margin-bottom: 5rpx;
+}
+
+.product-image .img {
+  width: 100%;
+  height: 100%;
 }
 
 .product-info {
-  padding: 20rpx;
-  white-space: normal;
+  padding: 20rpx 10rpx 5rpx;
+  position: relative;
 }
 
 .product-name {
+  height: 85rpx;
+  padding: 0rpx 10rpx;
   font-size: 28rpx;
   font-weight: 500;
   color: #1a1a1a;
@@ -294,14 +316,17 @@ page {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
 
 .product-type {
-  font-size: 22rpx;
+  font-size: 25rpx;
   color: #999999;
-  margin-bottom: 16rpx;
+  position: absolute;
+  right: 20rpx;
+  bottom: 50rpx;
+  text-decoration: line-through;
 }
 
 .product-price-row {
@@ -331,9 +356,10 @@ page {
 .price-unit {
   font-size: 22rpx;
   color: #999999;
+  color: #ff6b35;
 }
 
 .product-sold {
-  font-size: 20rpx;
+  font-size: 25rpx;
   color: #999999;
 }

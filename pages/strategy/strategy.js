@@ -175,11 +175,9 @@ Page({
     let {
       id
     } = row.currentTarget.dataset
-
     wx.navigateTo({
       url: `/subpackages/guideDetails/guideDetails?id=${id}`,
     })
-
   },
 
   // 添加触底加载更多

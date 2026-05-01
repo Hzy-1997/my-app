@@ -87,7 +87,6 @@ Page({
   },
 
   purchase(row) {
-
     let {
       index
     } = row.currentTarget.dataset;
