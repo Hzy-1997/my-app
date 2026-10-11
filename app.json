@@ -5,7 +5,9 @@
     "pages/strategy/strategy",
     "pages/hotel/hotel",
     "pages/theater/theater",
-    "pages/userInformation/userInformation"
+    "pages/userInformation/userInformation",
+    "pages/touristGuide/touristGuide",
+    "pages/campsitePage/campsitePage"
   ],
   "subpackages": [
     {
@@ -16,7 +18,18 @@
         "guideDetails/guideDetails",
         "hotelRoomType/hotelRoomType",
         "bookRoom/bookRoom",
-        "personalInformation/personalInformation"
+        "personalInformation/personalInformation",
+        "serviceDetailsInfo/serviceDetailsInfo",
+        "combination/combination",
+        "combinationItem/combinationItem",
+        "hotelDetails/hotelDetails",
+        "parkingSpace/parkingSpace",
+        "paymentPage/paymentPage",
+        "reservationPayment/reservationPayment",
+        "campDetails/campDetails",
+        "campSessionNumber/campSessionNumber",
+        "registrationInfor/registrationInfor"
+      
       ]
     }
   ],

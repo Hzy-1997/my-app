@@ -1,0 +1,315 @@
+/* subpackages/combination/combination.wxss */
+
+.container {
+  min-height: 100vh;
+  /* 移除固定高度 */
+}
+
+/* 整个顶部区域容器 */
+.page-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+/* 导航栏主体 */
+.top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 标题居中 */
+  position: relative;
+  /* 为绝对定位的返回按钮提供参考 */
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  /* 平滑过渡效果 */
+}
+
+/* 返回按钮 - 绝对定位在左侧 */
+.back-btn {
+  position: absolute;
+  left: -10rpx;
+  bottom: 0;
+  height: 88rpx;
+  /* 与胶囊按钮高度相近 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20rpx;
+  z-index: 10;
+}
+
+.back-icon {
+  font-size: 40rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 标题样式 */
+.title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  max-width: 60%;
+  /* 防止标题过长遮挡按钮 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.img_box {
+  width: 100%;
+  height: 500rpx;
+  background: seashell;
+}
+
+.combinBox {
+  position: sticky;
+  top: 180rpx;
+}
+
+.promo-header {
+  height: 240rpx;
+  /*  */
+  border-radius: 25rpx 25rpx 0rpx 0rpx;
+  margin-top: -30rpx;
+  padding: 60rpx 40rpx 0rpx;
+  background: #fff;
+}
+
+.promo-header_badge {
+  font-weight: 600;
+  font-size: 38rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+}
+
+.promo-header_badge text:nth-child(1) {
+  font-size: 25rpx;
+  background: #21774A;
+  color: #fff;
+  padding: 5rpx 10rpx;
+  margin-right: 10rpx;
+  border-radius: 8rpx;
+  font-weight: 500;
+}
+
+.promo-header_tag {
+  color: #21774A;
+  margin: 10rpx 0rpx;
+  font-size: 28rpx;
+}
+
+.promo-header_sold {
+  font-size: 23rpx;
+  text-align: right;
+  color: #7E7E7E;
+}
+
+.promo-header_price {
+  /*  */
+  /* display: flex; */
+  /* align-items: center; */
+  font-size: 26rpx;
+  color: red;
+}
+
+.promo-header_price text:nth-child(1) {
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.promo-header_price text:nth-child(2) {
+  font-size: 25rpx;
+  color: #7E7E7E;
+  text-decoration: line-through;
+  margin: 0rpx 10rpx;
+}
+
+.promo-header_price text:nth-child(3) {
+  font-size: 26rpx;
+  border: 1px solid #E19A2C;
+  color: #E19A2C;
+  background: #f7eedb;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+}
+
+.package_box {
+  display: flex;
+}
+
+.promo-tabs {
+  min-width: 180rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10rpx;
+  background-color: #fff;
+}
+
+.promo-tabs_item {
+  width: 180rpx;
+  text-align: center;
+  height: 100rpx;
+  line-height: 80rpx;
+  border-radius: 0rpx 10rpx 10rpx 0rpx;
+}
+
+.action {
+  background: #21774A;
+  color: #fff;
+}
+
+
+.package-list {
+
+  padding: 20rpx;
+  min-height: 850rpx;
+  min-width: 520rpx;
+}
+
+.package-item {
+  background: #fff;
+  padding: 20rpx;
+  border-radius: 15rpx;
+  margin-bottom: 30rpx;
+
+}
+
+.package-item_title {
+  font-weight: 600;
+
+}
+
+.package-item_feature {
+  display: flex;
+  font-size: 26rpx;
+}
+
+.package-item_feature view:nth-child(1) {
+  margin: 10rpx;
+  background: #21774A;
+  border-radius: 50%;
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+
+}
+
+.package-item_feature view:nth-child(2) {
+  margin: 10rpx;
+}
+
+.package-item_tags {
+  color: #21774A;
+  display: flex;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+}
+
+.package-item_tag {
+  border-right: 1px solid;
+  padding: 0rpx 20rpx;
+}
+
+.package-item_tags view:last-child {
+  border-right: none;
+}
+
+
+.package-item_price-block {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40rpx;
+}
+
+.package-item_price-block_box {
+  right: 0rpx;
+  display: flex;
+  height: 100rpx;
+
+}
+
+.package-item_text {
+  margin-right: 20rpx;
+  min-width: 200rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
+
+.package-item_discount {
+  display: flex;
+  justify-content: flex-end;
+  
+}
+
+.package-item_discount view:nth-child(1) {
+  margin-top: 10rpx;
+  font-size: 25rpx;
+  width: 100rpx;
+  border-radius: 8rpx;
+  border: 1px solid #E19A2C;
+  color: #E19A2C;
+  background: #f7eedb;
+  padding: 0rpx 4rpx;
+  text-align: center;
+}
+
+.package-item_price {
+  display: flex;
+  font-size: 25rpx;
+  line-height: 60rpx;
+}
+
+.package-item_price--original {
+  color: #7E7E7E;
+  text-decoration: line-through;
+}
+
+.package-item_price--final {
+  font-size: 26rpx;
+  color: red;
+}
+
+.package-item_price--final text {
+  font-weight: 600;
+  font-size: 35rpx;
+}
+
+
+.package-item_btn {
+  background-image: linear-gradient(120deg, #F5C842, #E09A2B);
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  width: 170rpx;
+  border-radius: 10rpx;
+}
+
+.package-item_btn view:nth-child(1) {
+  font-weight: 600;
+  font-size: 33rpx;
+  color: #fff;
+}
+
+.package-item_btn view:nth-child(2) {
+  font-size: 24rpx;
+  margin: 10rpx 0rpx 5rpx;
+  width: 155rpx;
+  text-align: center;
+  background: #fff;
+  border-radius: 10rpx;
+}

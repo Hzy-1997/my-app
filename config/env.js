@@ -22,14 +22,14 @@ const getEnvVersion = () => {
 const configs = {
   develop: {
     CRYPTO_SECRET_KEY: 'hezhaoyuSecretKey@admin123',
-    // BASE_URL: 'http://127.0.0.1:3000/api',
-    BASE_URL: 'https://hezhaoyumvp.cn/api',
+    BASE_URL: 'http://127.0.0.1:3000/api',
+    // BASE_URL: 'https://hezhaoyumvp.cn/api',
     ENV_TYPE: '开发版'
   },
 
   trial: {
     CRYPTO_SECRET_KEY: 'hezhaoyuSecretKey@admin123',
-    BASE_URL: 'https://test-api.example.com',
+    BASE_URL: 'https://hezhaoyumvp.cn/api',
     ENV_TYPE: '体验版'
   },
 

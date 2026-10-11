@@ -1,0 +1,232 @@
+/* subpackages/HotelDetails/hotelDetails.wxss */
+
+
+
+
+
+.header {
+  height: 120rpx;
+}
+
+.hotel-header {
+  padding: 0rpx 40rpx;
+  height: 230rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background: #fff;
+}
+
+.hotel-name-cn {
+  font-size: 45rpx;
+}
+
+.hotel-name-en {
+  font-size: 30rpx;
+}
+
+.hotel-header-tag {
+  font-size: 24rpx;
+  display: flex;
+}
+
+.hotel-header-tag .tag {
+  background: #FFF9EB;
+  color: #DFAC63;
+  margin-right: 20rpx;
+
+}
+
+.hotel-info {
+  min-height: 450rpx;
+  background: #fff;
+  margin-top: 15rpx;
+  padding: 0rpx 40rpx;
+  font-size: 35rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.info-item {
+  display: flex;
+}
+
+.info-label {
+  margin-right: 10rpx;
+  min-width: 150rpx;
+  color: #999;
+}
+
+.rate {
+  color: #DFAC63;
+}
+
+.phone {
+  color: #21774A;
+}
+
+
+.desc-section {
+  min-height: 700rpx;
+  background: #fff;
+  margin-top: 15rpx;
+  padding: 20rpx 40rpx;
+}
+
+.desc-content {
+  text-indent: 2em;
+  display: block;
+  margin-top: 30rpx;
+  font-size: 30rpx;
+}
+
+.gallery-section {
+  min-height: 300rpx;
+  background: #fff;
+  margin-top: 15rpx;
+  padding: 20rpx 40rpx;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.section-title {
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-bottom: 40rpx;
+}
+
+.gallery-wrap {
+  display: flex;
+
+}
+
+.gallery-wrap view {
+  width: 180rpx;
+  height: 170rpx;
+  margin-right: 12rpx;
+  border-radius: 20rpx;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20rpx;
+}
+
+
+.policy-section {
+  min-height: 120rpx;
+  background: #fff;
+  margin-top: 15rpx;
+  padding: 20rpx 40rpx;
+}
+
+.policy-item {
+  font-size: 35rpx;
+  color: #21774A;
+}
+
+
+.facility-section {
+  margin-top: 15rpx;
+  background: #fff;
+  padding-bottom: 20rpx;
+  padding: 20rpx 40rpx;
+}
+
+
+
+.facility-wrap {
+  height: 150rpx;
+  margin-top: 15rpx;
+  padding: 20rpx 40rpx;
+  overflow: hidden;
+}
+
+.facility-wrap.expanded {
+  height: auto;
+}
+
+
+.facility-item {
+  position: relative;
+  min-height: 200rpx;
+  margin-bottom: 20rpx;
+
+}
+
+.facility-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2rpx;
+  background: #aaa9a9;
+  transform: scaleY(0.5);
+  transform-origin: bottom;
+  display: block;
+  pointer-events: none;
+}
+
+.facility-name {
+  font-size: 40rpx;
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.more-btn {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #666;
+  text-align: center;
+}
+
+.booking-section {
+  min-height: 400rpx;
+  background: #fff;
+  margin-top: 15rpx;
+  padding: 20rpx 40rpx;
+}
+
+.facility-icon-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.facility-icon {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.facility-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 25%;
+  /* 一行 4 个，按需调整 */
+  margin-bottom: 24rpx;
+}
+
+.icon-size {
+  font-size: 48rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.facility-icon-font {
+  font-size: 48rpx;
+  /* 图标大小 */
+  color: #666;
+  margin-bottom: 8rpx;
+}
+
+.facility-text {
+  font-size: 24rpx;
+  color: #999;
+}

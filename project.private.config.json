@@ -23,15 +23,22 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/userInformation/userInformation",
-          "pathName": "pages/userInformation/userInformation",
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
           "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "subpackages/campDetails/campDetails",
+          "pathName": "subpackages/campDetails/campDetails",
+          "query": "id=2",
           "launchMode": "default",
           "scene": null
         },
         {
-          "name": "subpackages/bookRoom/bookRoom",
-          "pathName": "subpackages/bookRoom/bookRoom",
+          "name": "pages/campsitePage/campsitePage",
+          "pathName": "pages/campsitePage/campsitePage",
           "query": "",
           "launchMode": "default",
           "scene": null

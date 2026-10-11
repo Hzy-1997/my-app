@@ -6,7 +6,7 @@ import {
 
 import {
   hotelApi,
-  strategyApi,
+  serviceApi,
   ticketingApi
 } from "../../api/index"
 
@@ -21,40 +21,20 @@ Page({
     background: 5,
     currentIndex: 0,
     headerBgColor: 'rgba(255, 255, 255, 0)', // 初始透明
+    textColor: "#fff",
+    navBarHeight: 0,
     hotelList: [],
     strategyList: [],
     tickeList: [],
     gImgUrl: app.globalData.gImgUrl,
-    dada: [{
-        title: "崇礼之巅观光缆车票",
-        pice: "150",
-        shoumai: "21414",
-        picea: "100"
-      },
-      {
-        title: "崇礼之巅观光缆车票:(单次往返大事发生法发的撒大苏打大撒)dasdasdsada",
-        pice: "150",
-        shoumai: "21414",
-        picea: "100"
-      }, {
-        title: "崇礼之巅观光缆车票:(单次往返)",
-        pice: "150",
-        shoumai: "21414",
-        picea: "100"
-      }, {
-        title: "崇礼之巅观光缆车票:(单次往返)",
-        pice: "150",
-        shoumai: "21414",
-        picea: "100"
-      }
-    ]
+    dada: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.initNavBar();
   },
 
   /**
@@ -106,6 +86,34 @@ Page({
 
   },
 
+  // // 初始化导航栏高度
+  initNavBar() {
+    try {
+      const systemInfo = wx.getSystemInfoSync();
+      const statusBarHeight = systemInfo.statusBarHeight;
+      const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+
+      // 导航栏内容高度
+      const navBarHeight = (menuButtonInfo.top - statusBarHeight) * 2 + menuButtonInfo.height;
+
+      // 计算右侧间距，避免遮挡胶囊按钮
+      const menuButtonRight = (systemInfo.windowWidth - menuButtonInfo.right);
+
+      this.setData({
+        statusBarHeight: statusBarHeight,
+        navBarHeight: navBarHeight,
+        menuButtonRight: menuButtonRight, // 保存右侧间距
+      });
+
+    } catch (error) {
+      console.error('获取导航栏高度失败:', error);
+      this.setData({
+        statusBarHeight: 20,
+        navBarHeight: 44,
+        menuButtonRight: 20,
+      });
+    }
+  },
   onPageScroll(e) {
     // e.scrollTop 是页面滚动距离
     const scrollTop = e.scrollTop;
@@ -114,8 +122,13 @@ Page({
     // 限制透明度范围在 0-1 之间
     if (opacity > 1) opacity = 1;
     if (opacity < 0) opacity = 0;
+
+    const gray = Math.round(255 - opacity * 255);
+    const textColor = `rgb(${gray}, ${gray}, ${gray})`;
+
     this.setData({
-      headerBgColor: `rgba(255, 255, 255, ${opacity})`
+      headerBgColor: `rgba(255, 255, 255, ${opacity})`,
+      textColor: textColor,
     });
   },
 
@@ -130,7 +143,7 @@ Page({
   },
   // 攻略列表
   async getStrategyList() {
-    let res = await strategyApi.strategyListApi()
+    let res = await serviceApi.strategyListApi()
     let data = res.data.rows.splice(0, 5);
     this.setData({
       strategyList: data
@@ -161,9 +174,8 @@ Page({
         })
         break;
       case '2':
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: "/subpackages/combination/combination"
         })
         break;
       case '3':
@@ -198,9 +210,8 @@ Page({
 
     switch (num) {
       case "1":
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: `/pages/touristGuide/touristGuide?type=${num}`,
         })
         break;
       case "2":
@@ -209,10 +220,14 @@ Page({
         })
         break;
       case "3":
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        // wx.showToast({
+        //   title: `${item.name}页面开发中`,
+        //   icon: 'none'
+        // })
+        wx.navigateTo({
+          url: "/pages/campsitePage/campsitePage"
         })
+
         break;
       case "4":
         wx.showToast({
@@ -227,27 +242,23 @@ Page({
         })
         break;
       case "6":
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: `/pages/touristGuide/touristGuide?type=${num}`,
         })
         break;
       case "7":
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: `/pages/touristGuide/touristGuide?type=${num}`,
         })
         break;
       case "8":
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: `/pages/touristGuide/touristGuide?type=${num}`,
         })
         break;
       case "9":
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: `/subpackages/parkingSpace/parkingSpace`
         })
         break;
 
@@ -313,4 +324,6 @@ Page({
       currentIndex: e.detail.current
     })
   },
+
+  // 截图
 })

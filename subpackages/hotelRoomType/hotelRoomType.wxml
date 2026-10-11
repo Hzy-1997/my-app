@@ -10,7 +10,7 @@
             <van-rate value="{{ hotelData.hotel.star_rating }}" size="{{ 15 }}" count="{{hotelData.hotel.star_rating}}" color="#ffd21e" void-icon="star" /> <text style=" margin-left: 8rpx;"><text>{{hotelData.hotel.level}}</text>/<text>高档</text> </text>
           </view>
         </view>
-        <view class="location-details"> 酒店详情> </view>
+        <view class="location-details"  bind:tap="gohotelDetails" > 酒店详情> </view>
       </view>
       <view class="navigation">
         <view>{{hotelData.hotel.address}}</view>
@@ -74,5 +74,5 @@
       </view>
     </view>
   </view>
-  <van-calendar show="{{ show }}" formatter="{{ formatter }}" type="range" show-mark close-on-click-overlay="false" confirm-text="完成" color="#21774A" confirm-disabled-text="请选择结束时间" bind:close="onClose" bind:confirm="onConfirm" />
+  <van-calendar show="{{ show }}" formatter="{{ formatter }}" type="range" show-mark close-on-click-overlay="{{ false }}" confirm-text="完成" color="#21774A" confirm-disabled-text="请选择结束时间" bind:close="onClose" bind:confirm="onConfirm" />
 </view>

@@ -1,8 +1,12 @@
 <view>
   <view class="page-header">
-    <view class="top-bar" style="background-color: {{headerBgColor}};">111</view>
-    111111
+    <view class="top-bar" style="background-color: {{headerBgColor}};">
+      <view class="top-bar-box" style="height: {{navBarHeight + 'px'}}; margin-top: {{statusBarHeight + 'px'}}; padding-right: {{menuButtonRight + 'px'}}; color:{{textColor}}">
+        <view class="title-text">小何 XIAOHELOVE</view>
+      </view>
+    </view>
   </view>
+
 
   <view class="nav-tabs">
     <view class="grid-container">

@@ -1,0 +1,33 @@
+<view>
+  <view class="banner">
+
+  </view>
+
+  <view class="info_date">
+    <view class="date">档期选择</view>
+    <view class="info_date-box">
+      <view class="info_date-item {{scheduleIndex === index ? 'active' : ''}}" wx:for="{{data.campSessions}}" wx:key="index" bind:tap="onSelectSchedule" data-data="{{item}}" data-index="{{index}}">{{item.sessionName}}({{item.dateRange}})</view>
+    </view>
+  </view>
+
+  <view class="schedule">
+    <view class="tier">票档选择</view>
+    <view class="schedule-item {{ticketTierIndex === index ? 'active' : ''}}" wx:for="{{scheduleList}}" wx:key="index" bind:tap="onticketTier" data-data="{{item}}" data-index="{{index}}">{{item.ticketName}}</view>
+  </view>
+
+
+  <view class="number">
+    <view class="tier">数量</view>
+    <view class="info-value">
+      <van-stepper value="{{ inputValue }}" bind:change="onChange" plus-class="my-plus" minus-class="my-minus" input-class="my-input" max="5" min="1" button-size="24px" />
+    </view>
+  </view>
+
+  <view class="submit">
+    <view class="submitPice">
+      <view>¥<text style="font-size: 38rpx;">{{discountedPrice}}</text> </view>
+      <view>¥{{originalPrice}}</view>
+    </view>
+    <view class="btn" bind:tap="determine">确 定</view>
+  </view>
+</view>

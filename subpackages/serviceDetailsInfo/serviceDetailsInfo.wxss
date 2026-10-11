@@ -1,0 +1,298 @@
+/* subpackages/serviceDetailsInfo/serviceDetailsInfo.wxss */
+/* .top-bar {
+  position: fixed;
+  top: 0rpx;
+  width: 100%;
+  height: 180rpx;
+}
+
+.page-header {
+  width: 100%;
+  height: 500rpx;
+  background: coral;
+} */
+
+/* 整个顶部区域容器 */
+.page-header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+
+/* 导航栏主体 */
+.top-bar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 标题居中 */
+  position: relative;
+  /* 为绝对定位的返回按钮提供参考 */
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+  /* 平滑过渡效果 */
+}
+
+/* 返回按钮 - 绝对定位在左侧 */
+.back-btn {
+  position: absolute;
+  left: -10rpx;
+  bottom: 0;
+  height: 88rpx;
+  /* 与胶囊按钮高度相近 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20rpx;
+  z-index: 10;
+}
+
+.back-icon {
+  font-size: 40rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 标题样式 */
+.title {
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  max-width: 60%;
+  /* 防止标题过长遮挡按钮 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+
+.box-image {
+  height: 600rpx;
+}
+
+.box-image image {
+  height: 600rpx;
+  width: 100%;
+}
+
+
+.title-block {
+  padding: 30rpx 30rpx 10rpx;
+  background: #ffffff;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.main-title {
+  font-size: 36rpx;
+  font-weight: bold;
+
+}
+
+.tag-not-self {
+  font-size: 22rpx;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+
+.status-green {
+  color: #336633;
+  border: 1px solid #336633;
+  background: #f0f7f0;
+
+}
+
+.status-red {
+  color: #cc3333;
+  border: 1px solid #cc3333;
+  background: #fdf0f0;
+}
+
+.tag-group {
+  display: flex;
+  gap: 16rpx;
+  margin: 16rpx 0;
+
+}
+
+.tag-item {
+  background: #f7efd8;
+  color: #b48c48;
+  font-size: 20rpx;
+  padding: 6rpx 14rpx;
+  border-radius: 6rpx;
+
+}
+
+.desc-sub {
+  font-size: 28rpx;
+  color: #777;
+}
+
+.info-card {
+  padding: 0rpx 30rpx 30rpx;
+  display: flex;
+  margin: 0rpx 0rpx 30rpx;
+  background: #ffffff;
+}
+
+.info-row {
+  display: flex;
+  margin: 20rpx 0;
+}
+
+.label {
+  width: 160rpx;
+  font-size: 26rpx;
+}
+
+
+
+
+
+.val {
+  flex: 1;
+  font-size: 26rpx;
+  width: 320rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.location-link {
+  padding-left: 150rpx;
+  font-size: 26rpx;
+  color: #008833;
+}
+
+.text-icon {
+  font-size: 44rpx;
+  color: #666;
+  border-left: 1px solid;
+  width: 100%;
+  margin-left: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.intro-block {
+  /* padding: 30rpx;
+  border: 1px solid;
+  margin-top: 25rpx; */
+}
+
+.reserve_box {
+  width: 100%;
+  height: 150rpx;
+  background: #fff;
+  /* border: 1px solid; */
+  margin-bottom: 30rpx;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.reserve_box .price {
+  margin-left: 30rpx;
+  /* border: 1px solid; */
+
+}
+
+.reserve_box .price-title {
+  font-weight: 600;
+  margin-bottom: 20rpx;
+}
+
+.price-num {
+  display: flex;
+  font-size: 28rpx;
+  align-items: center;
+
+}
+
+.price-num view:nth-child(1) {
+  color: red;
+}
+
+.price-num view:nth-child(1) text {
+  color: red;
+  font-weight: 600;
+  font-size: 40rpx;
+  margin-right: 10rpx;
+}
+
+.reserve_box .text {
+  width: 160rpx;
+  height: 110rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  background: #008833;
+  border-radius: 20rpx;
+  color: #fff;
+  font-weight: 600;
+  margin-right: 30rpx;
+}
+
+
+
+.car-position-title {
+  margin-top: 50rpx;
+  font-size: 40rpx;
+  font-weight: 600;
+  text-align: center;
+}
+
+
+.car-position-box {
+  margin-top: 30rpx;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20rpx;
+  padding: 20rpx;
+}
+
+.position {
+  border: 1px solid;
+  height: 140rpx;
+  border-radius: 12rpx;
+  border: 2rpx solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+}
+
+/* 可选：绿  */
+.free {
+  background: #008833;
+  color: #e8f7e8;
+}
+
+
+/* 已预约：灰 + 不可点 */
+.occupied {
+  background: #f5f5f5;
+  color: #bbb;
+}
+
+/* 维护中：红 */
+.maintenance {
+  background: #fdf1f0;
+  color: #f56c6c;
+}

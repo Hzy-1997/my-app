@@ -141,6 +141,8 @@ Page({
         };
       });
       console.log("日期映射", priceMap)
+      console.log("出错数据", res.data)
+      console.log("出错了", res.data.datePrices[0])
       this.setData({
         ticketDetails: res.data,
         datePrices: res.data.datePrices,

@@ -14,13 +14,12 @@ export const request = (parameter) => {
   } = parameter
   return new Promise((resolve, reject) => {
 
-
-
     // 设置默认请求头
     const defaultHeader = {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + wx.getStorageSync('token') || '', // 如果有token存储在本地
+      'Authorization': 'Bearer ' + wx.getStorageSync('token') || '',
     };
+    
     // URL处理
     const fullUrl = url.startsWith('http') ? url : `${getKeyString()}${url}`;
     wx.request({

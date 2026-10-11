@@ -1,0 +1,160 @@
+<view class="container">
+  <view class="header"></view>
+
+  <view class="hotel-header">
+    <view class="hotel-name-cn">{{hotelDetails.title}}</view>
+    <!-- <view class="hotel-name-en">THAIWOO HOTEL</view> -->
+    <view class="hotel-header-tag">
+      <view class="tag" wx:for="{{hotelDetails.tags}}" wx:key="index">{{item}}</view>
+    </view>
+  </view>
+
+
+
+  <!-- ====== 酒店基础信息 ====== -->
+  <view class="hotel-info">
+    <view class="info-item">
+      <view class="info-label">酒店星级</view>
+      <view class="info-value rate">
+        <van-rate value="{{ hotelDetails.star_rating }}" size="25" color="#DFAC63" void-icon="star" void-color="#eee" readonly count="{{ hotelDetails.star_rating }}" /> 四星级
+      </view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">开业年限</view>
+      <view class="info-value">{{hotelDetails.openingTime}}</view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">装修年限</view>
+      <view class="info-value">{{hotelDetails.openingTime}}</view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">酒店位置</view>
+      <view class="info-value">{{hotelDetails.address}}</view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">酒店电话</view>
+      <view class="info-value phone" bind:tap="goPhone" data-call="{{hotelDetails.phone}}">{{hotelDetails.phone}}</view>
+    </view>
+    <view class="info-item">
+      <view class="info-label">酒店特色</view>
+      <view class="info-value">{{hotelDetails.feature}}</view>
+    </view>
+  </view>
+
+  <!-- ====== 酒店介绍 ====== -->
+  <view class="desc-section">
+    <view class="section-title">酒店介绍</view>
+    <view class="desc-content" wx:for="{{hotelDetails.intro}}" wx:key="item">
+      {{item}}
+    </view>
+  </view>
+
+  <!-- ========== 酒店图片 ========== -->
+  <view class="gallery-section">
+    <view class="section-header">
+      <text class="section-title">酒店图片</text>
+      <view class="more-btn" bindtap="onMoreImages">
+        <text>更多</text>
+      </view>
+    </view>
+    <view class="gallery-wrap">
+      <view wx:for="{{hotelDetails.banner}}" wx:key="index" bindtap="previewImage" data-index="{{index}}">
+        <image class="gallery-img" src="{{gImgUrl}}{{item}}" mode="aspectFill" />
+      </view>
+    </view>
+  </view>
+
+  <!-- ========== 酒店政策 ========== -->
+  <view class="policy-section">
+    <view class="section-title">酒店政策</view>
+    <view class="policy-item">
+      {{hotelDetails.policies}}
+    </view>
+  </view>
+
+  <!-- ========== 活动设施 ========== -->
+  <view class="facility-section">
+    <view class="section-header">
+      <text class="section-title">活动设施</text>
+    </view>
+    <view class="facility-wrap {{controlHeigth ? 'expanded' : ''}}">
+      <view class="facility-item" wx:if="{{hotelDetails.facilities.activityFacilities.length > 0}}">
+        <view class="facility-name">活动设施</view>
+        <view class="facility-icon">
+          <view class="facility-icon-item" wx:for="{{hotelDetails.facilities.activityFacilities}}" wx:key="id">
+            <text class="{{item.iconClass}} icon-size" />
+            <text class="facility-text">{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="facility-item" wx:if="{{hotelDetails.facilities.hotFacilities.length > 0}}">
+        <view class="facility-name">热门设施</view>
+        <view class="facility-icon">
+          <view class="facility-icon-item" wx:for="{{hotelDetails.facilities.hotFacilities}}" wx:key="id">
+            <text class="{{item.iconClass}} icon-size" />
+            <text class="facility-text">{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="facility-item" wx:if="{{hotelDetails.facilities.hotelServices.length > 0}}">
+        <view class="facility-name">酒店服务</view>
+        <view class="facility-icon">
+          <view class="facility-icon-item" wx:for="{{hotelDetails.facilities.hotelServices}}" wx:key="id">
+            <text class="{{item.iconClass}} icon-size" />
+            <text class="facility-text">{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="facility-item" wx:if="{{hotelDetails.facilities.commonAreaFacilities.length > 0}}">
+        <view class="facility-name">通用设施</view>
+        <view class="facility-icon">
+          <view class="facility-icon-item" wx:for="{{hotelDetails.facilities.commonAreaFacilities}}" wx:key="id">
+            <text class="{{item.iconClass}} icon-size" />
+            <text class="facility-text">{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="facility-item" wx:if="{{hotelDetails.facilities.infrastructures.length > 0}}">
+        <view class="facility-name">基础设施</view>
+        <view class="facility-icon">
+          <view class="facility-icon-item" wx:for="{{hotelDetails.facilities.infrastructures}}" wx:key="id">
+            <text class="{{item.iconClass}} icon-size" />
+            <text class="facility-text">{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="facility-item" wx:if="{{hotelDetails.facilities.roomFacilities.length > 0}}">
+        <view class="facility-name">房型设施</view>
+        <view class="facility-icon">
+          <view class="facility-icon-item" wx:for="{{hotelDetails.facilities.roomFacilities}}" wx:key="id">
+            <text class="{{item.iconClass}} icon-size" />
+            <text class="facility-text">{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="facility-item" wx:if="{{hotelDetails.facilities.commonFacilities.length > 0}}">
+        <view class="facility-name">公共区</view>
+        <view class="facility-icon">
+          <view class="facility-icon-item" wx:for="{{hotelDetails.facilities.commonFacilities}}" wx:key="id">
+            <text class="{{item.iconClass}} icon-size" />
+            <text class="facility-text">{{item.text}}</text>
+          </view>
+        </view>
+      </view>
+
+    </view>
+
+    <view class="more-btn" bindtap="onMoreFacility">
+      {{controlHeigth ? '收起' : '展开'}}
+    </view>
+  </view>
+
+  <!-- ========== 预定须知 ========== -->
+  <view class="booking-section">
+    <view class="section-title">预定须知</view>
+    <view class="intro-block">
+      <mp-html content="{{hotelDetails.description}}" />
+    </view>
+
+  </view>
+</view>

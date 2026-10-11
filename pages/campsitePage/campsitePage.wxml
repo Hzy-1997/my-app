@@ -1,0 +1,25 @@
+<view class="page-container">
+  <view class="hero-banner">暂无数据</view>
+
+
+  <view class="product-card" wx:for="{{campsiteList}}" wx:key="index" bind:tap="goCampDetails" data-id="{{item.id}}">
+    <view class="product-card__cover"></view>
+    <view class="product-card__info">
+      <view class="product-card__box">
+        <view class="product-card__title card-height">{{item.title}}</view>
+        <view class="product-card__date card-height">{{item.businessHours}}</view>
+        <view class="product-card__location card-height">{{item.locationDesc}}</view>
+        <view class="product-card__tags card-height">
+          <view class="product-card__tag" wx:for="{{item.tags}}" wx:key="item">{{item}}</view>
+        </view>
+      </view>
+      <view class="product-card__price">
+        <view class="product-card__price-symbol">¥</view>
+        <view class="product-card__price-num">6080</view>
+        <view class="product-card__price-unit">起</view>
+      </view>
+    </view>
+
+  </view>
+
+</view>

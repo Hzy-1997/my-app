@@ -1,0 +1,24 @@
+<!-- 运动-餐饮-购物-休闲 -->
+
+<view class="containerr">
+  <van-toast id="van-toast" />
+  <view class="venue-list" wx:for="{{dataList}}" wx:key="item" bind:tap="goDetails" data-id="{{item.id}}">
+    <view class="venue-card_img">
+      <image src="{{gImgUrl}}{{item.image}}" mode="" />
+    </view>
+    <view class="venue-card_Text">
+      <view class="venue-card__name">
+        <view class="name">{{item.title}}</view>
+      </view>
+      <view class="venue-card__hours {{type == 8 ? 'consumption':''}}" wx:if="{{type ==8}}">{{item.shortDesc}}</view>
+      <view class="consumption" wx:if="{{type ==8}}">{{item.avgPrice}}</view>
+      <view class="venue-card__tag">
+        <text class="tag" wx:for="{{item.tags}}" wx:key="item">{{item}}</text>
+      </view>
+      <view class="venue-card__action" wx:if="{{type !=8}}">
+        <text>点击查看场馆位置</text>
+      </view>
+    </view>
+    <view class="cover"></view>
+  </view>
+</view>

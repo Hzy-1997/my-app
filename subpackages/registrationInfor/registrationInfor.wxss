@@ -1,0 +1,100 @@
+/* subpackages/registrationInfor/registrationInfor.wxss */
+
+.orderInfo {
+  background: #21774A;
+  padding: 80rpx 20rpx;
+  height: 280rpx;
+  color: #fff;
+}
+
+.orderInfo view:nth-child(1) {
+  font-size: 38rpx;
+  font-weight: 600;
+}
+
+.orderInfo view:nth-child(2) {
+  margin: 20rpx 0rpx 15rpx;
+}
+
+.orderInfo view:nth-child(3) {
+  font-weight: 600;
+}
+
+.orderInfo view:nth-child(4) {
+  margin: 20rpx 0rpx 40rpx;
+  font-size: 28rpx;
+}
+
+
+
+.participant-box {
+  margin-top: -70rpx;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+}
+
+.participant-box .participant-item:last-child {
+  padding-bottom: 300rpx;
+}
+
+.participant-item {
+  background: #fff;
+  padding: 20rpx 40rpx 80rpx;
+  margin-bottom: 20rpx;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+}
+
+.submit {
+  height: 150rpx;
+  position: fixed;
+  bottom: 0rpx;
+  width: 750rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.submit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #e5e5e5;
+  /* 边框颜色 */
+  transform: scaleY(0.8);
+  transform-origin: 0 0;
+}
+
+.submitPice {
+  display: flex;
+  align-items: center;
+  margin-left: 40rpx;
+}
+
+.submitPice view:nth-child(1) {
+  font-weight: 600;
+  color: red;
+}
+
+.submitPice view:nth-child(2) {
+  font-weight: 600;
+  text-decoration: line-through;
+  margin-left: 8rpx;
+}
+
+.submit .btn {
+  width: 200rpx;
+  height: 85rpx;
+  border: 1px solid;
+  margin-right: 40rpx;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #fff;
+  background: #21774A
+}

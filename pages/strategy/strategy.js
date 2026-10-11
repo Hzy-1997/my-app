@@ -1,7 +1,7 @@
 // subpackages/strategy/strategy.js
 const app = getApp()
 import {
-  strategyApi
+  serviceApi
 } from "../../api/index"
 
 import Toast from '@vant/weapp/toast/toast';
@@ -39,7 +39,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-  
+
   },
 
   /**
@@ -90,7 +90,7 @@ Page({
       columns
     } = this.data;
 
-    let res1 = await strategyApi.strategyListApi()
+    let res1 = await serviceApi.strategyListApi()
 
     console.log(res1.data.rows)
     let res = images.splice(this.data.num, this.data.size)

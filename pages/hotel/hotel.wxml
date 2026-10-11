@@ -17,7 +17,7 @@
           </view>
         </view>
         <view>
-          <view class="intro">{{item.intro}}</view>
+          <!-- <view class="intro">{{item.intro}}</view> -->
           <view>
             <text class="star-rating" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="index">{{tag}}</text>
           </view>

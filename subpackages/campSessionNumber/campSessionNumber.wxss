@@ -1,0 +1,152 @@
+/* subpackages/campSessionNumber/campSessionNumber.wxss */
+
+
+.banner {
+  width: 100%;
+  height: 500rpx;
+  /* border: 1px solid; */
+}
+
+.info_date {
+  width: 100%;
+  padding: 30rpx 40rpx;
+  font-weight: 600;
+  background: #fff;
+  box-sizing: border-box;
+  min-height: 300rpx;
+}
+
+.date {
+  font-size: 38rpx;
+  margin-bottom: 20rpx;
+}
+
+.info_date-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40rpx;
+}
+
+.info_date-item {
+  height: 80rpx;
+  background: #f5f6f8;
+  border-radius: 15rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: 600;
+  /* 格子里文字别太粗，跟标题区分开 */
+  /* 防止文字溢出 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.schedule {
+  /* width: 100%; */
+  margin-top: 8rpx;
+  padding: 30rpx 40rpx;
+  font-weight: 600;
+  background: #fff;
+  box-sizing: border-box;
+  font-size: 38rpx;
+  min-height: 300rpx;
+}
+
+
+.schedule-item {
+  font-weight: 600;
+  font-size: 32rpx;
+  display: inline-block;
+  height: 80rpx;
+  line-height: 80rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background: #f5f6f8;
+  border-radius: 15rpx;
+  padding: 0rpx 15rpx;
+  margin-top: 25rpx;
+}
+
+.active {
+  border: 1px solid #118b50;
+  color: #118b50;
+}
+
+.number {
+  margin-top: 8rpx;
+  padding: 30rpx 40rpx;
+  font-weight: 600;
+  background: #fff;
+  box-sizing: border-box;
+  font-size: 38rpx;
+  min-height: 350rpx;
+}
+
+.info-value {
+  margin-top: 55rpx;
+}
+
+.my-plus {
+  border-radius: 50% !important;
+  background: #008833 !important;
+}
+
+.my-minus {
+  background: #008833 !important;
+  border-radius: 50% !important;
+}
+
+.my-input {
+  font-size: 35rpx !important;
+  font-weight: 600 !important;
+  margin: 0rpx 15rpx !important;
+  background: #fff !important;
+}
+
+
+.submit {
+  height: 150rpx;
+  position: fixed;
+  bottom: 0rpx;
+  width: 750rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.submitPice {
+  display: flex;
+  align-items: center;
+  margin-left: 40rpx;
+}
+
+.submitPice view:nth-child(1) {
+  font-weight: 600;
+  color: red;
+}
+
+.submitPice view:nth-child(2) {
+  font-weight: 600;
+  text-decoration: line-through;
+  margin-left: 8rpx;
+}
+
+.submit .btn {
+  width: 200rpx;
+  height: 85rpx;
+  border: 1px solid;
+  margin-right: 40rpx;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  color: #fff;
+  background: #21774A
+}

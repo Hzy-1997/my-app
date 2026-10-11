@@ -1,0 +1,89 @@
+<view>
+  <van-toast id="van-toast" />
+  <!-- 自定义顶部导航栏 -->
+  <view class="page-header">
+    <view class="top-bar" style="background-color: {{headerBgColor}}; height: {{totalTopBarHeight}}px; padding-top: {{statusBarHeight}}px;">
+      <!-- 左侧返回按钮 - 绝对定位 -->
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon" style="color:{{textColor}};">〈</text>
+      </view>
+      <!-- 中间标题 - 居中显示 -->
+      <view class="title" wx:if="{{textShow}}">{{navTitle}}</view>
+    </view>
+  </view>
+  <view class=" body">
+    <view class="box-image">
+      <image src="{{gImgUrl}}{{dataInfo.carouselImages[0]}}" mode="" />
+    </view>
+    <!-- 标题部分 -->
+    <view class="title-block">
+      <view class="title-row">
+        <text class="main-title">{{dataInfo.title}}</text>
+        <view wx:if="{{type !=9 }}">
+          <view class="tag-not-self {{dataInfo.subtitle == 1 ? 'status-green' : 'status-red'}}">
+            <text>{{dataInfo.subtitle==1? "自营":"非自营"}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="tag-group">
+        <view class="tag-item" wx:for="{{dataInfo.tags}}" wx:key="item">{{item}}</view>
+      </view>
+      <text class="desc-sub">{{dataInfo.shortDesc}}</text>
+    </view>
+
+    <!-- 营业时间位置信息 -->
+    <view class="info-card">
+      <view>
+        <view class="info-row">
+          <text class="label">营业时间</text>
+          <text class="val">{{dataInfo.businessHours}}</text>
+        </view>
+
+        <view class="info-row">
+          <text class="label">场馆位置</text>
+          <text class="val">{{dataInfo.locationDesc}}</text>
+        </view>
+
+        <view class="location-link">
+          <text>点击查看场馆位置</text>
+        </view>
+      </view>
+      <view class="text-icon">
+        <view class="icon">📞</view>
+      </view>
+    </view>
+    <view class="reserve_box" wx:if="{{type  == 9}}">
+
+      <view class="price">
+        <view class="price-title">可进行车位预约</view>
+        <view class="price-num">
+          <view>￥<text>{{dataInfo.price}}</text></view>/1小时
+        </view>
+      </view>
+
+      <view class="text" is-link bind:tap="showPopup">
+        预定
+      </view>
+
+    </view>
+    <view class="intro-block">
+      <view class="rich-text-container">
+        <view class="container-text">
+          <mp-html content="{{html}}" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <van-popup show="{{ show }}" closeable close-icon="close" position="bottom" custom-style="height: 60%" bind:close="onClose" round>
+    <view class="car-position-title">选择你要预约的车位编号</view>
+    <view class="car-position-box">
+      <view class="position  available {{item.available ? 'free' : 'occupied'}} {{item.status == 2 ? 'maintenance' : ''}}" wx:for="{{spotList}}" wx:key="index" bind:tap="Confirm" data-item="{{item}}">
+        {{item.spotNumber}}-{{item.status == 2 ? '维护中' : (item.available ? '空闲' : '已预约')}}
+      </view>
+    </view>
+  </van-popup>
+
+
+
+</view>

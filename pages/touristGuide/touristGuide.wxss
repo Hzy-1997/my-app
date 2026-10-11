@@ -1,0 +1,134 @@
+/* pages/touristGuide/touristGuide.wxss */
+
+page {
+  background: #ffffff;
+}
+
+.containerr {
+  width: 750rpx;
+  box-sizing: border-box;
+  background: #ffffff;
+  padding-bottom: 50rpx;
+}
+
+.venue-list {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  padding: 10rpx 30rpx;
+  margin-top: 20rpx;
+  background: #FFFF;
+}
+
+.backgr {
+  background: #F3F3F3;
+}
+
+.venue-card_img {
+  width: 300rpx;
+  height: 230rpx;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
+}
+
+.venue-card_img image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.venue-card_Text {
+  min-height: 230rpx;
+  position: relative;
+  width: 410rpx;
+}
+
+.venue-card__name {
+  display: flex;
+  align-items: center;
+}
+
+.venue-card__name .name {
+  font-weight: 900;
+  font-size: 28rpx;
+  max-width: 300rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.venue-card__name .status {
+  margin-left: 10rpx;
+  font-size: 18rpx;
+  padding: 0rpx 10rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  line-height: 30rpx;
+  border: 1px solid;
+}
+
+.status-green {
+  color: #336633;
+  border: 1px solid #336633;
+  background: #f0f7f0;
+
+}
+
+.status-red {
+  color: #cc3333;
+  border: 1px solid #cc3333;
+  background: #fdf0f0;
+}
+
+.venue-card__hours {
+  display: flex;
+  color: dimgray;
+  font-size: 26rpx;
+  margin: 6rpx 0rpx 6rpx;
+}
+
+.venue-card__hours .businessTi {
+  margin-right: 10rpx;
+}
+
+.consumption {
+  font-size: 22rpx;
+  margin: 20rpx 0rpx;
+}
+
+.venue-card__tag {
+  display: flex;
+}
+
+.venue-card__tag text {
+  background: #fef7c3;
+  padding: 5rpx;
+  font-size: 23rpx;
+  color: #f9b93c;
+  text-align: center;
+  margin-right: 10rpx;
+}
+
+.venue-card__action {
+  position: absolute;
+  bottom: 0;
+  width: 370rpx;
+  color: #336633;
+  font-size: 30rpx;
+  padding-bottom: 6rpx;
+}
+
+.venue-card__action::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  /* 先设为1px */
+  background: #000;
+  transform: scaleY(0.5);
+  /* Y轴压缩到一半 = 0.5px */
+  transform-origin: bottom;
+}

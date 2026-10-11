@@ -222,7 +222,7 @@ Page({
   selectDate() {
     this.setData({
       show: true,
-      formatter: this.formatter.bind(this)
+      // formatter: this.formatter.bind(this)
     })
   },
 
@@ -354,6 +354,13 @@ Page({
     const dataStr = JSON.stringify(data)
     wx.navigateTo({
       url: `/subpackages/bookRoom/bookRoom?id=${encodeURIComponent(dataStr)}`
+    })
+  },
+
+  // 酒店详情
+  gohotelDetails(e){
+    wx.navigateTo({
+      url:`/subpackages/hotelDetails/hotelDetails?id=${this.data.hotelId}`
     })
   }
 })

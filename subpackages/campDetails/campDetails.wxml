@@ -1,0 +1,59 @@
+<view>
+  <van-toast id="van-toast" />
+  <!-- 自定义顶部导航栏 -->
+  <view class="page-header">
+    <view class="top-bar" style="background-color: {{headerBgColor}}; height: {{totalTopBarHeight}}px; padding-top: {{statusBarHeight}}px;">
+      <!-- 左侧返回按钮 - 绝对定位 -->
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon" style="color:{{textColor}};">〈</text>
+      </view>
+      <!-- 中间标题 - 居中显示 -->
+      <view class="title" wx:if="{{textShow}}">{{navTitle}}</view>
+    </view>
+  </view>
+  <view class="banner">
+    <!-- <img src="..." alt="..."> -->
+  </view>
+  <view class="content">
+    <view class="deputy-title">太舞滑雪冬令营</view>
+    <view class="tags">
+      <view class="tag">冬令营</view>
+      <view class="tag tag--promo">限时早鸟优惠</view>
+    </view>
+    <view class="price">
+      <text class="price__currency">¥ </text>
+      <text class="price__num">6080</text>
+      <text class="price__suffix"> 起</text>
+    </view>
+  </view>
+
+  <view class="info">
+    <view class="info__row">
+      <view class="info__label">时间:</view>
+      <view class="info__text">2026.12.13 - 2027.02.19</view>
+    </view>
+    <view class="info__row">
+      <view class="info__label">地点:</view>
+      <view class="info__text">
+        <view>我也不知道地址</view>
+        <view> </view>
+        <view class="info__link">点击查看场地位置</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="intro-block">
+    <view class="rich-text-container">
+      <view class="container-text">
+        <mp-html content="{{html}}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="botton-btn">
+    <view>帮助</view>
+    <view bind:tap="generatePoster">海报</view>
+    <view bind:tap="participate">立即参与</view>
+  </view>
+
+</view>

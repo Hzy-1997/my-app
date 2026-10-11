@@ -1,0 +1,291 @@
+/* subpackages/combinationItem/combinationItem.wxss */
+
+.container {
+  background: #e0dfdf7e;
+}
+
+.image_box {
+  width: 100%;
+  height: 450rpx;
+  border: 1px solid;
+
+}
+
+.body_box {
+  margin-top: -20rpx;
+  min-height: 1200rpx;
+}
+
+
+.promo-banner {
+  height: 200rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background: #fff;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 36rpx;
+}
+
+.sold {
+  font-size: 24rpx;
+  color: #7E7E7E;
+}
+
+.promo-tags {
+  margin: 25rpx 0rpx 30rpx;
+}
+
+.promo-tag {
+  border: 1px solid;
+  margin-right: 20rpx;
+  padding: 5rpx 10rpx;
+  color: darkgreen;
+}
+
+.promo-price {
+  display: flex;
+
+  align-items: flex-end;
+}
+
+.promo-price-current {
+  color: red;
+}
+
+.promo-price-current text {
+  font-size: 40rpx;
+  font-weight: 600;
+}
+
+.promo-price-original {
+  font-size: 26rpx;
+  margin: 0rpx 10rpx;
+  text-decoration: line-through;
+  color: #7E7E7E;
+}
+
+.promo-price-discount {
+  font-size: 26rpx;
+  border: 1px solid #E19A2C;
+  color: #E19A2C;
+  background: #f7eedb;
+  padding: 5rpx 10rpx;
+  border-radius: 10rpx;
+}
+
+.card_box {
+  background: #fff;
+  padding-bottom: 100rpx;
+}
+
+
+.hotel-card {
+  padding: 20rpx;
+
+}
+
+.hotel-body {
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx 0 rgba(201, 198, 198, 0.7);
+  overflow: hidden;
+  /* 重要：让动画更干净 */
+  transition: all 0.4s ease;
+  background: #fff;
+}
+
+.hotel_head {
+  box-shadow: 0 8rpx 20rpx -8rpx rgba(156, 155, 155, 0.7);
+  padding: 20rpx;
+  height: 250rpx;
+  background: #fff;
+  border-radius: 0rpx 0rpx 10rpx 10rpx;
+  display: flex;
+}
+
+.package-wrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.4s ease,
+    margin 0.4s ease;
+  margin-top: 0;
+
+}
+
+.package-wrapper.show {
+  max-height: 800rpx;
+  /* 足够容纳内容的高度 */
+  opacity: 1;
+  margin-top: 20rpx;
+}
+
+.package-card {
+  padding: 20rpx;
+  /* 里面样式保持不变，可以加一点内边距让内容更舒适 */
+  background: #fff;
+  border-radius: 12rpx;
+  margin: 0 10rpx 10rpx 10rpx;
+}
+
+/* 其他样式保持你的原有样式 */
+.package-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.package-cancel {
+  /* color: #ff4444; */
+  font-size: 30rpx;
+  color: darkgreen;
+  font-weight: 900;
+}
+
+
+
+.package-include {
+  font-size: 24rpx;
+  margin-top: 10rpx;
+}
+
+.package-price_box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 12rpx;
+  height: 150rpx;
+
+}
+
+.package-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  margin-right: 20rpx;
+}
+
+.package-price-total {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: red;
+}
+
+.package-price-total text {
+  font-size: 38rpx;
+  font-weight: bold;
+
+}
+
+.package-price-per {
+  font-size: 26rpx;
+  color: #999;
+  text-decoration: line-through;
+}
+
+.package-price-btn {
+  width: 150rpx;
+  height: 100rpx;
+  border-radius: 18rpx;
+  line-height: 100rpx;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  background-image: linear-gradient(120deg, #F5C842, #E09A2B);
+}
+
+
+.sold-count {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 8rpx;
+}
+
+.hotel_img {
+  width: 280rpx;
+  height: 200rpx;
+  border-radius: 30rpx;
+  margin-right: 20rpx;
+  border: 1px solid;
+}
+
+.hotel_img image {
+  width: 100%;
+  height: 100%;
+}
+
+.hotel_info {
+  width: 100%;
+}
+
+
+
+.hotel-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+}
+
+.room-name {
+  color: darkgreen;
+}
+
+.package-includes {}
+
+.package-include {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.package-include view:nth-child(1) {
+  border: 1px solid;
+  border-radius: 50%;
+  font-size: 24rpx;
+  padding: 6rpx;
+  text-align: center;
+  color: #fff;
+  background: darkgreen;
+  margin-right: 10rpx;
+}
+
+
+
+.room-info {
+  color: #5c5b5b;
+  margin: 14rpx 0rpx;
+}
+
+.room-tags {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 8rpx;
+}
+
+.room-tag {
+  color: darkgreen;
+  font-size: 26rpx;
+  padding: 2rpx 8rpx;
+  border-radius: 10rpx;
+  border: 1px solid darkgreen;
+}
+
+.room-price {
+  text-align: right;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: red;
+  padding-right: 20rpx;
+}

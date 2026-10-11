@@ -1,0 +1,78 @@
+<view class="container">
+  <van-toast id="van-toast" />
+  <view class="page-header">
+    <view class="top-bar" style="background-color: {{headerBgColor}}; height: {{totalTopBarHeight}}px; padding-top: {{statusBarHeight}}px;">
+      <!-- 左侧返回按钮 - 绝对定位 -->
+      <view class="back-btn" bindtap="goBack">
+        <text class="back-icon" style="color:{{textColor}};">〈</text>
+      </view>
+      <!-- 中间标题 - 居中显示 -->
+      <view class="title" wx:if="{{textShow}}">{{navTitle}}</view>
+    </view>
+  </view>
+
+
+  <view class="img_box"></view>
+  <view class="combinBox">
+    <view class="promo-header">
+      <view class="promo-header_badge">
+        <text class="badge-first">{{kindList[type-1].title}}</text>
+        <text class="badge-rest">{{kindList[type-1].mainTitle}}</text>
+      </view>
+      <view class="promo-header_tag">超性价比 | 优惠套餐</view>
+      <view class="promo-header_sold">已售21003份</view>
+      <view class="promo-header_price">¥<text>{{productInfo.originalPrice}}</text>起 <text>¥{{productInfo.maxSaleNum}}</text> <text>优惠{{productInfo.maxSaleNum - productInfo.originalPrice}}</text></view>
+    </view>
+    <view class="package_box" style="height: {{boxHeight}}">
+      <view class="promo-tabs">
+        <view class="promo-tabs_item  {{type == item.id ? 'action':''}} " wx:for="{{kindList}}" wx:key="item" bind:tap="choiceKind" data-index="{{item.id}}">{{item.title}}</view>
+      </view>
+      <scroll-view class="package-list-scroll" scroll-y="{{innerScrollEnabled}}" style="height: {{boxHeight}}" bindscrolltolower="onLoadMore" lower-threshold="50">
+        <view class="package-list">
+          <view class="package-item" wx:for="{{productList}}" wx:key="item">
+            <text class="package-item_title">{{item.name}}</text>
+            <view style="margin-top: 10rpx; padding-top: 10rpx;">
+              <view class="package-item_feature" wx:for="{{item.includes}}" wx:key="index">
+                <view>{{item[0]}}</view>
+                <view>{{item[1]}}</view>
+              </view>
+            </view>
+            <view class="package-item_tags">
+              <view class="package-item_tag" wx:for="{{item.tags}}" wx:key="item">
+                {{item}}
+              </view>
+            </view>
+            <view class="package-item_price-block">
+              <view class="package-item_price-block_box">
+                <view class="package-item_text">
+                  <view class="package-item_discount">
+                    <view>优惠{{item.lowestUnitPrice - item.lowestOriginalPrice}}</view>
+                  </view>
+                  <view class="package-item_price">
+                    <view class="package-item_price--original">￥{{item.lowestUnitPrice}}</view>
+                    <view class="package-item_price--final">
+                      ￥<text>{{item.lowestOriginalPrice}}</text>起</view>
+                  </view>
+                </view>
+                <view class="package-item_btn" bind:tap="goBuy" data-id="{{item.id}}">
+                  <view>抢购</view>
+                  <view>已售101+</view>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 加载状态提示 -->
+          <view class="load-more-tip" wx:if="{{showLoadMore}}">
+            <text>{{loadMoreText}} 加载更多</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+
+
+
+
+
+</view>

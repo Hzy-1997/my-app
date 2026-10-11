@@ -18,3 +18,12 @@ export const hotelInfor = (data) => {
     data
   })
 }
+
+export const hotelDetail = (data)=>{
+  return request({
+    url: "/wx/hotel/hotelDetails",
+    method: "get",
+    data
+  })
+}
+

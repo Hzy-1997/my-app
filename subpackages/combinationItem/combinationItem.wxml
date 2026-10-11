@@ -1,0 +1,71 @@
+<view class="container">
+  <van-toast id="van-toast" />
+  <view class="image_box">
+    <!-- <image src="" mode="" /> -->
+  </view>
+
+  <view class="body_box">
+    <!-- 页面标题 -->
+    <view class="promo-banner">
+      <view class="page-title">
+        <view class="title">{{iteminfo.name}}</view>
+        <view class="sold">已售43+</view>
+      </view>
+      <view class="promo-tags">
+        <text class="promo-tag" wx:for="{{iteminfo.tags}}" wx:key="item">{{item}}</text>
+
+      </view>
+      <view class="promo-price">
+        <view class="promo-price-current">¥<text>{{dataInfo.originalPrice}}</text>起</view>
+        <text class="promo-price-original">¥{{dataInfo.unitPrice}}</text>
+        <text class="promo-price-discount">优惠{{dataInfo.unitPrice - dataInfo.originalPrice}}</text>
+      </view>
+    </view>
+    <!-- 酒店卡片 -->
+    <view class="card_box">
+      <view class="hotel-card" wx:for="{{hotelList}}" wx:key="item">
+        <view class="hotel-body" bindtap="toggleCard" data-index="{{index}}">
+          <view class="hotel_head">
+            <view class="hotel_img">
+              <image src="" mode="" />
+            </view>
+            <view class="hotel_info">
+              <view class="hotel-name">
+                <view catch:tap="goHotelInfo" data-id="{{item.roomPackage.roomType.hotelId}}"> {{item.roomPackage.roomType.hotel.title}} > </view>
+                <view style="padding-right: 20rpx;">*</view>
+              </view>
+              <view class="room-name">{{item.roomPackage.roomType.name}}</view>
+              <view class="room-info">{{item.roomPackage.roomType.roomDescription}}</view>
+              <view class="room-tags">
+                <text class="room-tag">立即支付</text>
+                <text class="room-tag">超值优惠</text>
+              </view>
+              <view class="promo-price-current room-price ">¥<text>{{item.originalPrice}}</text>起</view>
+            </view>
+          </view>
+          <view class="package-wrapper {{item.showPackage ? 'show' : ''}}">
+            <view class="package-card">
+              <view class="package-title">{{iteminfo.name}}{{item.itemName}}</view>
+              <view class="package-cancel">不可取消</view>
+              <view class="package-includes">
+                <view class="package-include" wx:for="{{iteminfo.includes}}" wx:key="*this">
+                  <view>{{item[0]}}</view>
+                  <view>{{item[1]}}</view>
+                </view>
+              </view>
+
+              <view class="package-price_box">
+                <view class="package-price">
+                  <view class="package-price-per">{{item.unitPrice}}</view>
+                  <view class="package-price-total">¥<text>{{item.originalPrice}}</text> 起</view>
+                </view>
+                <view class="package-price-btn">抢购</view>
+              </view>
+
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

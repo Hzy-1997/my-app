@@ -65,8 +65,25 @@ page {
 
 .top-bar {
   position: fixed;
-  top: 0rpx;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  /* 宽度默认100%，不需要设置 */
 }
+
+.top-bar-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 30rpx;
+}
+
+.title-text {
+  font-weight: 900;
+  font-size: 36rpx;
+}
+
 
 .page-header {
   width: 100%;

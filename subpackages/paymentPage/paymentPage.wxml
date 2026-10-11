@@ -1,0 +1,88 @@
+<view class="page-confirm-order">
+
+  <view class="product-card card">
+    <view class="product-title">【9月生日专享价】成人票...</view>
+
+    <view class="info-row">
+      <view class="info-label">车位编号:</view>
+      <view class="info-value">B1-A01</view>
+    </view>
+
+    <view class="info-row">
+      <view class="info-label">开始时间:</view>
+      <view class="info-value">{{startTime}}</view>
+    </view>
+
+    <view class="info-row">
+      <view class="info-label">结束时间:</view>
+      <view class="info-value endTime">{{endTime}}</view>
+    </view>
+
+    <view class="info-row">
+      <view class="info-label">单价:</view>
+      <view class="info-value price">￥{{price}}/1小时 </view>
+    </view>
+
+    <view class="info-row">
+      <view class="info-label">预约时常:</view>
+      <view class="info-value">
+        <van-stepper value="{{ inputValue }}" bind:change="onChange" plus-class="my-plus" minus-class="my-minus" input-class="my-input" max="4" min="1" button-size="24px" />
+      </view>
+    </view>
+  </view>
+
+  <view class="visitor-list">
+    <view class="visitor-item">
+      <van-cell-group>
+        <van-field value="{{ carNumber }}" size="large" required label="车牌号" placeholder="请输入车牌号" />
+        <van-field value="{{ phone }}" size="large" required label="联系电话" placeholder="请输入电话号码" />
+        <van-field value="{{ idCard }}" size="large" required label="身份证号" placeholder="请输入身份证号" />
+      </van-cell-group>
+    </view>
+
+  </view>
+  <!-- <view>123</view> -->
+  <view class="checkout-area">
+    <view class="submit_prompt">
+      <view class="van-radio">
+        <van-checkbox value="{{ checked }}" icon-size="20px" bind:change="onChangeRadio" checked-color="#008833"></van-checkbox>
+        我阅读并同意
+        <view>《用户服务协议》</view> 和
+        <view>《用户隐私协议》</view>
+      </view>
+      <!-- <view>提示:""</view> -->
+    </view>
+    <view class="submit">
+      <view class="price-num">￥{{price}}</view>
+      <view class="submit-btn">
+        <view bind:tap="showPopup">明细</view>
+        <view bind:tap="goSubmit">立即付款</view>
+
+      </view>
+    </view>
+
+
+  </view>
+  <van-toast id="van-toast" />
+  <van-popup show="{{ show }}" position="bottom" custom-style="height: 40%;" bind:close="onClose" closeable>
+    <view class="details_title">
+      订单明细
+    </view>
+    <view class="popup_details">
+
+      <view class="details_item">
+        <view>起始日期</view>
+        <view>{{startTime}}</view>
+      </view>
+      <view class="details_item">
+        <view>结束日期</view>
+        <view>{{endTime}}</view>
+      </view>
+      <view class="details_item">
+        <view>在线支付</view>
+        <view>{{inputValue}}小时 共 <text style="color: red;">￥{{price}}</text> </view>
+      </view>
+    </view>
+
+  </van-popup>
+</view>
