@@ -93,10 +93,11 @@ Page({
       const start = item.startDate ? item.startDate.slice(5) : ''
       return {
         ...item,
-        dateRange: `${start}-${end}`,
+        dateRange: `${start}/${end}`,
       }
     })
 
+    console.log("数据", res.data)
     this.setData({
       data: res.data,
       campsiteId: res.data.id
