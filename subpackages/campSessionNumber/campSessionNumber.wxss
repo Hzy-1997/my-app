@@ -24,11 +24,12 @@
 .info_date-box {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40rpx;
+  gap: 10rpx;
+
 }
 
 .info_date-item {
-  height: 80rpx;
+  height: 75rpx;
   background: #f5f6f8;
   border-radius: 15rpx;
   display: flex;
@@ -36,11 +37,10 @@
   align-items: center;
   font-size: 32rpx;
   font-weight: 600;
-  /* 格子里文字别太粗，跟标题区分开 */
-  /* 防止文字溢出 */
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+
 }
 
 
