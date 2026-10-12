@@ -28,8 +28,9 @@
         "reservationPayment/reservationPayment",
         "campDetails/campDetails",
         "campSessionNumber/campSessionNumber",
-        "registrationInfor/registrationInfor"
-      
+        "registrationInfor/registrationInfor",
+        "sightseeingBus/sightseeingBus",
+        "transportationPage/transportationPage"
       ]
     }
   ],

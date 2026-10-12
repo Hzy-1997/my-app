@@ -230,15 +230,13 @@ Page({
 
         break;
       case "4":
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: "/subpackages/sightseeingBus/sightseeingBus"
         })
         break;
       case "5":
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: "/subpackages/transportationPage/transportationPage"
         })
         break;
       case "6":
