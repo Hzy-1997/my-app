@@ -59,7 +59,7 @@ export const categoryMenu = [{
   },
   {
     id: "5",
-    name: '徒步',
+    name: '交通',
     link: '/hiking',
     icon: '🥾'
   },

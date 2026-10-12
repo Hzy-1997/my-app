@@ -1,0 +1,154 @@
+<view class="page">
+  <!-- 顶部深绿色背景区域 -->
+  <view class="header">
+    <view class="header-inner">
+      <text class="subtitle">GETTING HERE · 抵达太舞</text>
+      <text class="title">交通指南</text>
+      <text class="desc">五种出行方式，轻松抵达太舞小镇</text>
+      <!-- 右上角装饰图标（用CSS模拟三角形，或用图片） -->
+      <view class="mountain-icon">123</view>
+    </view>
+  </view>
+
+  <!-- 主体内容区（负 margin 制造波浪覆盖效果） -->
+  <view class="content">
+
+    <!-- ================= 卡片 01：自驾出行 ================= -->
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">01</view>
+        <view class="header-text">
+          <text class="card-title">自驾出行</text>
+          <text class="card-sub">导航「太舞小镇」·北京出发两条高速直达</text>
+        </view>
+        <view class="icon-car">🚗</view>
+      </view>
+
+      <!-- 图片占位区 -->
+      <view class="image-placeholder">
+        <image class="placeholder-img" src="" mode="aspectFill"></image>
+      </view>
+
+      <!-- 路线 1 -->
+      <view class="route-box">
+        <view class="route-item">
+          <text class="route-name">京礼高速·太子城高速口</text>
+          <text class="time-tag">约 2 小时</text>
+        </view>
+        <view class="route-detail"><text class="label">里程</text> 距北京约 176 公里</view>
+        <view class="route-detail"><text class="label">路线</text> 京礼高速 → 太子城高速口下，直达太舞小镇</view>
+      </view>
+
+      <!-- 路线 2 -->
+      <view class="route-box">
+        <view class="route-item">
+          <text class="route-name">G6 京藏高速·崇礼南下</text>
+          <text class="time-tag">约 220 公里</text>
+        </view>
+        <view class="route-detail"><text class="label">里程</text> 全程约 220 公里</view>
+        <view class="route-detail"><text class="label">路线</text> 崇礼南下高速 → 沿东马线行驶 25 公里抵达太舞</view>
+      </view>
+    </view>
+
+    <!-- ================= 卡片 02：乘坐飞机 ================= -->
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">02</view>
+        <view class="header-text">
+          <text class="card-title">乘坐飞机</text>
+          <text class="card-sub">落地张家口宁远机场·接驳小镇</text>
+        </view>
+        <view class="icon-plane">✈️</view>
+      </view>
+      <view class="plain-text">
+        <text>抵达张家口宁远机场，可通达 石家庄·上海·杭州·广州·重庆 等多个城市。</text>
+        <text>出站后乘坐出租车至太舞小镇，约 1 小时 10 分（实际以当日路况为准）。</text>
+      </view>
+    </view>
+
+    <!-- ================= 卡片 03：高铁直达 ================= -->
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">03</view>
+        <view class="header-text">
+          <text class="card-title">高铁直达</text>
+          <text class="card-sub">太子城站下车·换乘接驳车</text>
+        </view>
+        <view class="icon-train">🚄</view>
+      </view>
+      <view class="plain-text">
+        <text>从北京北站或清河站乘坐高铁至太子城站，约 1 小时。</text>
+        <text>出站后换乘接驳车，最终时刻表以实际高铁班次为准。</text>
+      </view>
+    </view>
+
+    <!-- ================= 卡片 04：公共交通 ================= -->
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">04</view>
+        <view class="header-text">
+          <text class="card-title">公共交通</text>
+          <text class="card-sub">崇礼城区公交直达</text>
+        </view>
+        <view class="icon-bus">🚌</view>
+      </view>
+      <view class="image-placeholder">
+        <image class="placeholder-img" src="" mode="aspectFill"></image>
+      </view>
+      <view class="plain-text">
+        <text>自崇礼城区出发，乘坐 10 路 / 201 路 公交车，于 太舞鹰巢青年国际酒店 站下车即达。</text>
+      </view>
+    </view>
+
+    <!-- ================= 卡片 05：园区摆渡车 ================= -->
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">05</view>
+        <view class="header-text">
+          <text class="card-title">园区摆渡车</text>
+          <text class="card-sub">小镇内免费乘坐</text>
+        </view>
+        <view class="icon-shuttle">🚌</view>
+      </view>
+
+      <!-- 长图占位 -->
+      <view class="image-placeholder large-placeholder">
+        <image class="placeholder-img" src="" mode="aspectFill"></image>
+      </view>
+
+      <!-- A 线 -->
+      <view class="route-box special-route">
+        <view class="route-item">
+          <view class="icon-circle icon-a">A</view>
+          <text class="route-name">A 线·雪场方向</text>
+        </view>
+        <view class="route-detail no-label">鹰巢青年酒店站 → 太舞酒店&威斯汀雪滩停车场站 → 帕斯顿酒店站 → 南山里酒店群&九索站</view>
+      </view>
+
+      <!-- B 线 -->
+      <view class="route-box special-route">
+        <view class="route-item">
+          <view class="icon-circle icon-b">B</view>
+          <text class="route-name">B 线·酒店环线</text>
+        </view>
+        <view class="route-detail no-label">南山里酒店群&九索站 → 帕斯顿酒店站 → 雪滩停车场站 → 太舞酒店&威斯汀雪滩停车场站 → 太舞酒店站 → 凯悦嘉轩 & 雪麓居温泉酒店 → 宾丽雅酒店站</view>
+      </view>
+
+      <!-- 底部徽章 -->
+      <view class="badge-wrapper">
+        <view class="badge">
+          <text class="badge-icon">🚐</text>
+          <text>小镇内摆渡车免费乘坐</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- ================= 底部 Footer ================= -->
+    <view class="footer">
+      <view class="footer-icon">🌲</view>
+      <text class="footer-title">贴心接驳 · 一站式便捷度假</text>
+      <text class="footer-sub">太舞小镇欢迎您</text>
+    </view>
+
+  </view>
+</view>
