@@ -1,0 +1,32 @@
+<view class="page">
+  <view class="content">
+    <view class="title">输入车牌</view>
+    <view class="input-number-box">
+      <block wx:for="{{ car }}" wx:key="*this">
+        <view id="{{index}}" class="input-number special-route {{index ==selectIdx? 'action':''}} " catchtap="selectCarNum">
+          {{item.text}}
+          <view wx:if="{{index == 7 && !item.text}}" class="textEnergy">
+            <view>+</view>
+            <view>新能源</view>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="history-number">{{cardNo}}</view>
+
+    <view class="btn">
+      <view class="submit" bind:tap="submit">绑定车牌</view>
+    </view>
+
+  </view>
+
+  <view class="hint">注： 请认真核对车牌，以免支付错误!</view>
+
+</view>
+
+<view class="numericKeypad" wx:if="{{showKey}}">
+  <block wx:for="{{keyboard}}" wx:key="index">
+    <button class="Keypad {{item.disabled ? 'Keypad-disabled' : ''}}" catchtap="keyboardTap" data-index="{{index}}">{{item.char}}</button>
+  </block>
+  <view class="Keypad" catchtap="deleteTap">删除</view>
+</view>

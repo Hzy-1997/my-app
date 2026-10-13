@@ -30,7 +30,8 @@
         "campSessionNumber/campSessionNumber",
         "registrationInfor/registrationInfor",
         "sightseeingBus/sightseeingBus",
-        "transportationPage/transportationPage"
+        "transportationPage/transportationPage",
+        "licensePlate/licensePlate"
       ]
     }
   ],

@@ -10,6 +10,9 @@
     </view>
   </view>
 
+  <view class="wave-container">
+    <image src="../../assets/image/shuibo.png" mode="" />
+  </view>
   <!-- 主体内容区（负 margin 制造波浪覆盖效果） -->
   <view class="content">
 
@@ -30,7 +33,7 @@
       </view>
 
       <!-- 路线 1 -->
-      <view class="route-box">
+      <view class="route-box  special-route">
         <view class="route-item">
           <text class="route-name">京礼高速·太子城高速口</text>
           <text class="time-tag">约 2 小时</text>
@@ -40,7 +43,7 @@
       </view>
 
       <!-- 路线 2 -->
-      <view class="route-box">
+      <view class="route-box special-route">
         <view class="route-item">
           <text class="route-name">G6 京藏高速·崇礼南下</text>
           <text class="time-tag">约 220 公里</text>

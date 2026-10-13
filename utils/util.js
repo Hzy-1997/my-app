@@ -5,6 +5,22 @@ import {
   envConfig
 } from "../config/env.js"
 
+// crypto-js 4.2.0+ 的 WordArray.random 依赖原生 crypto 模块（crypto.getRandomValues / crypto.randomBytes），
+// 小程序运行环境没有，会抛 "Native crypto module could not be used to get secure random number"。
+// 这里在无原生 crypto 时回退到 Math.random 实现（与 4.1.2 行为一致），保证 encrypt 可用。
+const hasNativeCrypto = typeof crypto !== 'undefined' &&
+  (typeof crypto.getRandomValues === 'function' || typeof crypto.randomBytes === 'function');
+
+if (!hasNativeCrypto) {
+  CryptoJS.lib.WordArray.random = function (nBytes) {
+    const words = [];
+    for (let i = 0; i < nBytes; i += 4) {
+      words.push((Math.random() * 0x100000000) | 0);
+    }
+    return new CryptoJS.lib.WordArray.init(words, nBytes);
+  };
+}
+
 
 const formatTime = date => {
   const year = date.getFullYear()

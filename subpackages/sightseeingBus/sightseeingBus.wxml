@@ -1,4 +1,6 @@
 <view class="page-container">
-  <view></view>
+  <view>123</view>
+
+  <view>456</view>
 
 </view>
