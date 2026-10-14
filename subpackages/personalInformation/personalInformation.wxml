@@ -44,7 +44,7 @@
 
 
     <!-- 车牌号（操作入口，不可编辑值） -->
-    <view class="form-item" bindtap="goLicensePlate">
+    <view class="form-item" bindtap="goLicensePlate" data-id="{{userInformation.id}}" data-carNumber="{{userInformation.licensePlate}}">
       <text class="form-label">车牌号</text>
       <view>{{userInformation.licensePlate}}</view>
       <view class="form-action">

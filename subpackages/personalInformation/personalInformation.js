@@ -79,9 +79,8 @@ Page({
       return
     }
     res.data = JSON.parse(cryptoUtil.decrypt(res.data))
-
-    // res.data.encryptionIdCard = res.data.idCard.replace(/(\d{6})\d{8}(\d{4})/, '$1********$2')
-    // res.data.encryptionPhone = res.data.phone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')
+    res.data.idCard = cryptoUtil.decrypt(res.data.idCard)
+    res.data.phone = cryptoUtil.decrypt(res.data.phone)
     res.data.idCardType = res.data.idCardType - 1
     res.data.sex = res.data.sex - 1
     for (let key in res.data) {
@@ -255,45 +254,68 @@ Page({
     }
   },
 
-  /**
-   * 更换头像
-   */
-  // changeAvatar: function () {
-  //   wx.showActionSheet({
-  //     itemList: ['拍照', '从相册选择'],
-  //     success: (res) => {
-  //       wx.chooseImage({
-  //         count: 1,
-  //         success: (res) => {
-  //           const tempFilePaths = res.tempFilePaths;
-  //           // 这里可以上传头像
-  //           console.log('选择头像：', tempFilePaths);
-  //           wx.showToast({
-  //             title: '头像已更新',
-  //             icon: 'success'
-  //           });
-  //         }
-  //       });
-  //     }
-  //   });
-  // },
-
-  onChooseAvatar(e) {
+  async onChooseAvatar(e) {
     const {
       avatarUrl
-    } = e.detail
-    console.log(avatarUrl)
+    } = e.detail; // 临时路径
+    console.log('临时路径:', avatarUrl);
+
+    // 1. 先用临时路径显示，给用户即时反馈
     this.setData({
-      userInformation: {
-        ...this.data.userInformation,
-        avatar: avatarUrl
-      }
-    })
-    console.log(this.data.userInformation.avatar)
-    wx.showToast({
-      title: '头像已更新',
-      icon: 'success'
+      'userInformation.avatar': avatarUrl
     });
+
+    // 2. 上传到后端（封装内部自动拼 BASE_URL、带 token、解析响应）
+    wx.showLoading({
+      title: '上传中...',
+      mask: true
+    });
+    try {
+      const res = await loginApi.uploadImg(avatarUrl);
+      const realUrl = res.data.imgUrl; // OSS 完整地址
+      console.log('真实地址:', realUrl);
+
+      // 3. 更新为真正的 URL
+      this.setData({
+        'userInformation.avatar': realUrl
+      });
+
+      wx.hideLoading();
+
+      // 4. 存到数据库（资料已加载出 id 时立即保存，否则等 submit 统一提交）
+      if (this.data.userInformation.id) {
+        this.updateUserAvatar(realUrl);
+      }
+
+      wx.showToast({
+        title: '头像已更新',
+        icon: 'success'
+      });
+    } catch (err) {
+      wx.hideLoading();
+      console.error('上传失败', err);
+      // 业务失败（非200）封装里已提示过，这里只兜底网络异常
+      if (!err || !err.message) {
+        wx.showToast({
+          title: '上传失败',
+          icon: 'none'
+        });
+      }
+    }
+  },
+
+  // 把真实 URL 存到数据库（复用 updateUserInfo，后端只更新传入字段，不会清空其他资料）
+  async updateUserAvatar(avatarUrl) {
+    const res = await loginApi.updateUserInfo({
+      id: this.data.userInformation.id,
+      avatar: avatarUrl
+    });
+    if (res.code == 200) {
+      // 更新本地缓存的用户信息
+      const userInfo = wx.getStorageSync('userInfo') || {};
+      userInfo.avatar = avatarUrl;
+      wx.setStorageSync('userInfo', userInfo);
+    }
   },
 
   /**
@@ -310,12 +332,21 @@ Page({
   /**
    * 去绑定车牌
    */
-  goLicensePlate: function () {
+  goLicensePlate: function (e) {
     wx.showToast({
       title: '跳转车牌绑定',
       icon: 'none'
     });
-    // wx.navigateTo({ url: '/pages/plate/plate' })
+
+    let {
+      carnumber,
+      id
+    } = e.currentTarget.dataset
+    console.log(e)
+
+    wx.navigateTo({
+      url: `/subpackages/licensePlate/licensePlate?id=${id}&carnumber=${carnumber}`
+    })
   },
 
   close: function () {
@@ -324,8 +355,8 @@ Page({
     })
   },
 
-  submit() {
-    console.log(this.data.userInformation)
+  async submit() {
+
     const {
       avatar,
       email,
@@ -334,6 +365,7 @@ Page({
       memberCardType,
       nickName,
       phone,
+      idCard,
       region,
       userName,
       idCardType,
@@ -342,7 +374,18 @@ Page({
       id
     } = this.data.userInformation
 
-  },
+    console.log(this.data.userInformation)
 
+    let data = {
+      ...this.data.userInformation,
+      phone: cryptoUtil.encrypt(phone),
+      idCard: cryptoUtil.encrypt(idCard),
+      idCardType: idCardType + 1,
+      sex: sex + 1
+    }
+    console.log(data)
+    // return;
+    let res = await loginApi.updateUserInfo(data)
+  },
 
 })

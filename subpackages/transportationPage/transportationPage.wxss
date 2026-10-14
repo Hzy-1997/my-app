@@ -11,7 +11,7 @@ page {
 
 /* ================= 头部深绿色区域 ================= */
 .header {
-  background-color: #145A3E;
+  background-color: #1B653F;
   /* 深墨绿色 */
   padding: 60rpx 40rpx 100rpx;
   /* 底部留出大 padding 给 content 遮盖 */
@@ -55,15 +55,27 @@ page {
   color: rgba(255, 255, 255, 0.9);
 }
 
+.wave-container {
+  background: cornflowerblue;
+  height: 80rpx;
+}
+
+.wave-container image {
+  width: 100%;
+  height: 100%;
+}
+
+
+
 /* ================= 内容区（波浪覆盖） ================= */
 .content {
-  /* padding: 0 30rpx; */
-  /* margin-top: -50rpx; */
   /* 关键：向上覆盖，形成波浪弧度的视觉 */
   position: relative;
   z-index: 10;
   background: #ffff;
   border-radius: 0rpx 0rpx 40rpx 40rpx;
+
+
 }
 
 /* ================= 通用卡片样式 ================= */
@@ -168,7 +180,6 @@ page {
 
 .route-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 16rpx;
 }
