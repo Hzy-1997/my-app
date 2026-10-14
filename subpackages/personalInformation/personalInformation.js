@@ -321,12 +321,17 @@ Page({
   /**
    * 去实名认证
    */
-  goRealName: function () {
+  goRealName: function (e) {
     wx.showToast({
       title: '跳转实名认证',
       icon: 'none'
     });
-    // wx.navigateTo({ url: '/pages/realname/realname' })
+    let {
+      id
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/subpackages/realname/realname?id=${id}`
+    })
   },
 
   /**
@@ -374,8 +379,6 @@ Page({
       id
     } = this.data.userInformation
 
-    console.log(this.data.userInformation)
-
     let data = {
       ...this.data.userInformation,
       phone: cryptoUtil.encrypt(phone),
@@ -383,9 +386,22 @@ Page({
       idCardType: idCardType + 1,
       sex: sex + 1
     }
-    console.log(data)
-    // return;
+    wx.showLoading({
+      title: '正在提交',
+      mask: true
+    });
+
     let res = await loginApi.updateUserInfo(data)
+    if (res.code == 200) {
+      wx.hideLoading();
+      wx.showToast({
+        title: '修改成功',
+        icon: 'success',
+        duration: 2000
+      })
+    }
+
+
   },
 
 })

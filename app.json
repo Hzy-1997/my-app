@@ -31,7 +31,8 @@
         "registrationInfor/registrationInfor",
         "sightseeingBus/sightseeingBus",
         "transportationPage/transportationPage",
-        "licensePlate/licensePlate"
+        "licensePlate/licensePlate",
+        "realname/realname"
       ]
     }
   ],
