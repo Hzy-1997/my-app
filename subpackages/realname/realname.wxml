@@ -8,37 +8,47 @@
 
   <view class="card-box">
     <!-- 2. 正面身份证卡片 -->
-    <view class="upload-card-top">
-      <view class="card-title">上传身份证正面(人像面)</view>
-
+    <view class="upload-card">
       <!-- 上传区域 -->
-      <view class="upload-area upload-area--front">
-        <image class="upload-area__camera-icon" src="../../assets/image/idCardFront.png"></image>
+      <view class="upload-area-box">
+
+        <view class="upload-card-box">
+          <view class="card-title">上传身份证正面</view>
+          <view class="upload-area upload-area--front">
+            <image class="upload-area__camera-icon" src="../../assets/image/idCardFront.png"></image>
+            <!-- <image class="upload-area__camera-icon" src="../../assets/image/idCardFront.png"></image> -->
+          </view>
+        </view>
+
+        <view class="upload-card-box">
+          <view class="card-title">上传身份证反面</view>
+          <view class="upload-area upload-area--back">
+            <image class="upload-area__camera-icon" src="../../assets/image/idCardBack.png"></image>
+            <!-- <image class="upload-area__camera-icon" src="../../assets/image/idCardBack.png"></image> -->
+          </view>
+        </view>
       </view>
 
       <!-- 表单区域 -->
       <view class="form-area">
         <view class="form-item">
-          <text class="form-item__label">姓名</text>
-          <input class="form-item__input" placeholder="请输入姓名" placeholder-class="input-placeholder" />
+          <text class="form-label">姓名：</text>
+          <input class="form-input" type="text" value="{{userInformation.nickName}}" placeholder="昵称" disabled bindinput="onNicknameInput" />
         </view>
         <view class="form-item">
-          <text class="form-item__label">身份证号</text>
-          <input class="form-item__input" placeholder="请输入身份证号" placeholder-class="input-placeholder" />
+          <text class="form-label">身份证号：</text>
+          <input class="form-input" type="text" value="{{userInformation.nickName}}" placeholder="身份证号" disabled bindinput="onNicknameInput" />
         </view>
         <view class="form-item">
-          <text class="form-item__label">住址</text>
-          <input class="form-item__input" placeholder="请输入住址" placeholder-class="input-placeholder" />
+          <text class="form-label">住址：</text>
+          <input class="form-input" type="text" value="{{userInformation.nickName}}" placeholder="住址" disabled bindinput="onNicknameInput" />
         </view>
       </view>
     </view>
 
-    <!-- 3. 反面身份证卡片 -->
-    <view class="upload-card-bottom">
-      <view class="card-title">上传身份证反面(国徽面)</view>
-      <view class="upload-area upload-area--back">
-        <image class="upload-area__camera-icon" src="../../assets/image/idCardBack.png"></image>
-      </view>
+
+    <view class="submit">
+      <view class="submit-inner">提交</view>
     </view>
   </view>
 
