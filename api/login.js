@@ -48,3 +48,23 @@ export const uploadImg = (filePath) => {
     name: "file"
   })
 }
+
+/**
+ * 
+ * 
+ */
+// export const recognizeIdCard = (file) => {
+//   return uploadFile({
+//     url: "/wx/login/recognizeIdCard",
+//     method: "post",
+//     file: "file"
+//   })
+// }
+
+export const recognizeIdCard = (filePath) => {
+  return uploadFile({
+    url: "/wx/login/recognizeIdCard",
+    filePath,
+    name: "file", 
+  })
+}

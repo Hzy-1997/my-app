@@ -11,20 +11,19 @@
     <view class="upload-card">
       <!-- 上传区域 -->
       <view class="upload-area-box">
-
         <view class="upload-card-box">
           <view class="card-title">上传身份证正面</view>
-          <view class="upload-area upload-area--front">
-            <image class="upload-area__camera-icon" src="../../assets/image/idCardFront.png"></image>
-            <!-- <image class="upload-area__camera-icon" src="../../assets/image/idCardFront.png"></image> -->
+          <view class="upload-area upload-area--front" bind:tap="chooseImage" data-side="front">
+            <image wx:if="{{frontImage}}" class="upload-area__camera-icon" src="../../assets/image/idCardFront.png"></image>
+            <image wx:else class="upload-area__preview" src="{{frontImageUrl}}" mode="aspectFit"></image>
           </view>
         </view>
 
         <view class="upload-card-box">
           <view class="card-title">上传身份证反面</view>
-          <view class="upload-area upload-area--back">
-            <image class="upload-area__camera-icon" src="../../assets/image/idCardBack.png"></image>
-            <!-- <image class="upload-area__camera-icon" src="../../assets/image/idCardBack.png"></image> -->
+          <view class="upload-area upload-area--back" bind:tap="chooseImage" data-side="back">
+            <image wx:if="{{backImage}}" class="upload-area__camera-icon" src="../../assets/image/idCardBack.png"></image>
+            <image wx:else class="upload-area__preview" src="{{backImageUrl}}" mode="aspectFit"></image>
           </view>
         </view>
       </view>
@@ -33,22 +32,22 @@
       <view class="form-area">
         <view class="form-item">
           <text class="form-label">姓名：</text>
-          <input class="form-input" type="text" value="{{userInformation.nickName}}" placeholder="昵称" disabled bindinput="onNicknameInput" />
+          <input class="form-input" type="text" value="{{userName}}" placeholder="昵称" disabled bindinput="onNicknameInput" />
         </view>
         <view class="form-item">
           <text class="form-label">身份证号：</text>
-          <input class="form-input" type="text" value="{{userInformation.nickName}}" placeholder="身份证号" disabled bindinput="onNicknameInput" />
+          <input class="form-input" type="text" value="{{idCard}}" placeholder="身份证号" disabled bindinput="onNicknameInput" />
         </view>
         <view class="form-item">
           <text class="form-label">住址：</text>
-          <input class="form-input" type="text" value="{{userInformation.nickName}}" placeholder="住址" disabled bindinput="onNicknameInput" />
+          <input class="form-input" type="text" value="{{region}}" placeholder="住址" disabled bindinput="onNicknameInput" />
         </view>
       </view>
     </view>
 
 
     <view class="submit">
-      <view class="submit-inner">提交</view>
+      <view class="submit-inner"  bind:tap="submit">提交</view>
     </view>
   </view>
 

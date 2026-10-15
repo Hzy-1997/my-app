@@ -2,7 +2,7 @@
   <view class="member-header">
     <view class="member-header_bx">
       <view class="member-avatar">
-        <image src="{{userInformation.avatar}}" mode="" />
+        <image src="{{gImgUrl}}{{userInformation.avatar}}" mode="" />
       </view>
       <view class="member-info">
         <view class="member-info_name">

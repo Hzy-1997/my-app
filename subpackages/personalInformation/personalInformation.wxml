@@ -1,20 +1,11 @@
-<!-- editInfo.wxml -->
-<!-- 可编辑的个人资料页面：输入框 + 下拉选择 + 只读会员信息 -->
 <view class="page">
   <!-- 头像区域（可点击更换） -->
-  <!-- <view class="avatar-section" bindtap="changeAvatar">
-    <image class="avatar" src="/images/default-avatar.png" mode="aspectFill"></image>
-    <view class="avatar-edit">
-      <text class="edit-text">点击更换头像</text>
-    </view>
-  </view> -->
   <button class="avatar-section" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-    <image class="avatar" src="{{userInformation.avatar}}"></image>
+    <image class="avatar" src="{{gImgUrl}}{{userInformation.avatar}}"></image>
     <view class="avatar-edit">
       <text class="edit-text">点击更换头像</text>
     </view>
   </button>
-
   <!-- 资料表单卡片 -->
   <view class="form-list">
     <!-- 昵称（可编辑输入框） -->

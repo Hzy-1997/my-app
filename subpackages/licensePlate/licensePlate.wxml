@@ -12,7 +12,7 @@
         </view>
       </block>
     </view>
-    <view class="history-number">{{cardNo}}</view>
+    <view class="history-number" bind:tap="backfill" data-No="{{cardNo}}">{{cardNo}}</view>
 
     <view class="btn">
       <view class="submit" bind:tap="submit">绑定车牌</view>

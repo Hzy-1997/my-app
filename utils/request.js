@@ -19,7 +19,7 @@ export const request = (parameter) => {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + wx.getStorageSync('token') || '',
     };
-    
+
     // URL处理
     const fullUrl = url.startsWith('http') ? url : `${getKeyString()}${url}`;
     wx.request({
@@ -60,13 +60,15 @@ export const uploadFile = (parameter) => {
     formData = {},
   } = parameter
   return new Promise((resolve, reject) => {
+
+    let token = wx.getStorageSync('token')
     wx.uploadFile({
       url: url.startsWith('http') ? url : `${getKeyString()}${url}`,
       filePath,
       name,
-      header: {
-        'Authorization': 'Bearer ' + wx.getStorageSync('token') || '',
-      },
+      header: token ? {
+        Authorization: 'Bearer ' + token
+      } : {},
       formData,
       timeout: 10000,
       success(res) {

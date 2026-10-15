@@ -1,5 +1,7 @@
 // pages/userInformation/userInformation.js
 
+const app = getApp()
+
 import {
   loginApi,
 } from "../../api/index"
@@ -13,7 +15,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInformation: ""
+    userInformation: "",
+    gImgUrl: app.globalData.gImgUrl,
   },
 
   /**

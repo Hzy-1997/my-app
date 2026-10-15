@@ -1,3 +1,4 @@
+const app = getApp()
 import {
   loginApi,
 } from "../../api/index"
@@ -33,8 +34,9 @@ Page({
       idCardType: "",
       memberLevel: "",
       sex: "",
-      id: ""
-    }
+      id: "",
+    },
+    gImgUrl: app.globalData.gImgUrl,
   },
 
   /**
@@ -73,6 +75,8 @@ Page({
   // 获取用户信息
   async getUserInfo() {
     let res = await loginApi.getUserInfo()
+
+
 
     if (res.code != 200) {
       this.login()
@@ -260,10 +264,10 @@ Page({
     } = e.detail; // 临时路径
     console.log('临时路径:', avatarUrl);
 
-    // 1. 先用临时路径显示，给用户即时反馈
-    this.setData({
-      'userInformation.avatar': avatarUrl
-    });
+    // // 1. 先用临时路径显示，给用户即时反馈
+    // this.setData({
+    //   'userInformation.avatar': avatarUrl
+    // });
 
     // 2. 上传到后端（封装内部自动拼 BASE_URL、带 token、解析响应）
     wx.showLoading({
@@ -274,10 +278,11 @@ Page({
       const res = await loginApi.uploadImg(avatarUrl);
       const realUrl = res.data.imgUrl; // OSS 完整地址
       console.log('真实地址:', realUrl);
+      const pathUrl = realUrl.split('.com')[1]
 
       // 3. 更新为真正的 URL
       this.setData({
-        'userInformation.avatar': realUrl
+        'userInformation.avatar': pathUrl
       });
 
       wx.hideLoading();
@@ -306,9 +311,11 @@ Page({
 
   // 把真实 URL 存到数据库（复用 updateUserInfo，后端只更新传入字段，不会清空其他资料）
   async updateUserAvatar(avatarUrl) {
+
+    const pathUrl = avatarUrl.split('.com')[1]
     const res = await loginApi.updateUserInfo({
       id: this.data.userInformation.id,
-      avatar: avatarUrl
+      avatar: pathUrl
     });
     if (res.code == 200) {
       // 更新本地缓存的用户信息
@@ -400,8 +407,6 @@ Page({
         duration: 2000
       })
     }
-
-
   },
 
 })

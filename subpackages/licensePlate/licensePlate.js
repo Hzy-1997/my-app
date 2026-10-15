@@ -216,6 +216,30 @@ Page({
     })
   },
 
+  // 回填车牌号 "苏D0D58V"
+  backfill(e) {
+
+    let {
+      no
+    } = e.currentTarget.dataset
+
+    let data = this.data.car.map((it, index) => {
+      return {
+        ...it,
+        text: no[index],
+      };
+    })
+
+    console.log(data)
+    this.changeKeyboard(no.length)
+    this.setData({
+      selectIdx: no.length,
+      car: data,
+      showKey: true
+    })
+
+  },
+
 
   async submit() {
     this.data.carNumber = this.data.car.map(item => item.text).join('');
@@ -248,6 +272,7 @@ Page({
     }
 
   }
+
 
 
 
