@@ -1,8 +1,69 @@
 <view class="page-container">
-  <view class="Carousel">
-  
+  <view class="carousel">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block wx:for="{{background}}" wx:key="*this">
+        <swiper-item>
+          <view class="swiper-item {{item}}"></view>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view class="hero-section">
+      <view class="info-title">
+        <view class="hero-title">岳麓山风景区 观光车</view>
+        <view class="btn-guide">乘车指南</view>
+      </view>
+      <view class="info-list">
+        <view class="info-item"><i class="info-icon icon-clock"></i>
+          <view class="info-text">开放时间 8:30-20:00(南门线路，运营17:30结束)</view>
+        </view>
+        <view class="info-item"><i class="info-icon icon-phone"></i>
+          <view class="info-text">咨询电话 0731-82294576</view>
+        </view>
+      </view>
+
+    </view>
   </view>
 
-  <view>456</view>
+  <view class="main">
+
+    <view class=" main-content">
+      <scroll-view scroll-y style="height: 1200rpx;">
+        <view class="ticket-list">
+          <view class="ticket-card" wx:for="{{5}}" wx:key="*this">
+            <view class="ticket-header">
+              <span class="ticket-icon">🎫</span>
+              <span class="ticket-title">下行票（东门）</span>
+            </view>
+            <view class="ticket-route">
+              <view class="route-station-start">东门上站·古峰口</view>
+              <view class="route-arrow_tag">123</view>
+              <view class="route-station-end">东门下站</view>
+            </view>
+            <div class="ticket-footer">
+              <div class="ticket-price">
+                <view class="discountedPrice">
+                  <span class="price-symbol">¥</span>
+                  <span class="price-number">29</span>
+                </view>
+                <view class="sellingPrice">
+                  <span class="price-number">¥ 59</span>
+                </view>
+              </div>
+              <view class="btn-buy">立即购买</view>
+            </div>
+          </view>
+        </view>
+        <text class="notice-text">
+          温馨提示:1、每款票种点立即购票后将会出现详细的乘车须知，请核对清楚后再进行购票:2、免票政策:1.2米以下孩童且未单独占座:3、双程票停票时间为营运截止前一个半小时，特殊情况需停票时见停票通知。4、观光车排队区域暂未设定军人、未成年人、老年人、残疾人等特殊人群的优先通道，请各位游客按秩序排队乘坐。
+        </text>
+      </scroll-view>
+    </view>
+
+
+
+
+
+  </view>
 
 </view>

@@ -1,7 +1,145 @@
 /* subpackages/sightseeingBus/sightseeingBus.wxss */
 
-.Carousel {
+.carousel {
+  height: 500rpx;
+  position: relative;
+}
+
+.swiper-item {
+  background: chartreuse;
+}
+
+.hero-section {
+  position: absolute;
+  bottom: 130rpx;
+  color: #fff;
   width: 100%;
-  height: 350rpx;
-  border: 1px solid;
+}
+
+.info-title {
+  display: flex;
+  justify-content: space-between;
+  padding: 0rpx 40rpx;
+}
+
+.hero-title {
+  font-size: 37rpx;
+  font-weight: 600;
+}
+
+.btn-guide {
+  padding: 5rpx;
+  font-size: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-list {
+  margin-top: 35rpx;
+  padding: 0rpx 40rpx;
+  height: 80rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 28rpx;
+}
+
+
+.main {
+  display: flex;
+  justify-content: center;
+  margin-top: -80rpx;
+
+}
+
+.main-content {
+  width: 680rpx;
+  border-radius: 20rpx;
+  height: 1217rpx;
+  background: #fff;
+  z-index: 2;
+}
+
+.ticket-list {
+  padding: 0rpx 30rpx;
+  border-radius: 20rpx;
+}
+
+.ticket-card {
+  height: 250rpx;
+  margin-top: 40rpx;
+  background: #F3F9F1;
+  border-radius: 20rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ticket-route {
+  height: 70rpx;
+  background: #F7F7F7;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rpx 20rpx;
+}
+
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ticket-price {
+  display: flex;
+  align-items: center;
+}
+
+.discountedPrice {
+  font-size: 40rpx;
+  font-weight: 600;
+  color: red;
+}
+
+.discountedPrice .price-symbol {
+  font-size: 30rpx;
+  margin-right: 5rpx;
+}
+
+.sellingPrice {
+  margin-left: 30rpx;
+  text-decoration: line-through;
+}
+
+.btn-buy {
+  background: #C2E2B8;
+  border-radius: 50rpx;
+  width: 150rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.notice-text {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #666;
 }
