@@ -1,4 +1,5 @@
 const app = getApp()
+
 import {
   navMenu,
   categoryMenu

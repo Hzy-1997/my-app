@@ -1,1 +1,7 @@
 /* subpackages/sightseeingBus/sightseeingBus.wxss */
+
+.Carousel {
+  width: 100%;
+  height: 350rpx;
+  border: 1px solid;
+}
