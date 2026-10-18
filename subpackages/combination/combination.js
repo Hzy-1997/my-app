@@ -34,10 +34,6 @@ Page({
     productInfo: "",
     innerScrollEnabled: false,
     navTitle: '套餐',
-    headerBgColor: 'rgba(255, 255, 255, 0)', // 初始完全透明
-    textColor: 'rgba(255, 255, 255, 1)',
-    statusBarHeight: 0, // 状态栏高度
-    totalTopBarHeight: 0, // 整个导航栏高度
     gImgUrl: app.globalData.gImgUrl,
     boxHeight: "",
     pageNum: 1,
@@ -52,7 +48,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.initNavBar();
+    this.initBoxHeight();
     // 创建防抖的加载更多函数，保存为实例方法
     this.debouncedLoadMore = debounceThrottle(
       this.getComboList.bind(this),
@@ -113,55 +109,21 @@ Page({
 
 
 
-  // 高度获取
-  // initNavBar() {
-  //   try {
-  //     // 获取系统信息
-  //     const systemInfo = wx.getSystemInfoSync();
-  //     const statusBarHeight = systemInfo.statusBarHeight;
-  //     console.log("屏幕滑动", statusBarHeight)
-
-  //   } catch {
-
-  //   }
-  // },
-
   /**
    * 页面滚动事件
    */
   onPageScroll(e) {
-    // e.scrollTop 是页面滚动距离
     const scrollTop = e.scrollTop;
-    let opacity = scrollTop / 50;
-    // 限制透明度范围在 0-1 之间
-    if (opacity > 1) opacity = 1;
-    if (opacity < 0) opacity = 0;
-    this.setData({
-      headerBgColor: `rgba(255, 255, 255, ${opacity})`,
-    });
-    // 根据透明度改变标题和按钮颜色（可选）
-    if (opacity > 0.8) {
-      // 背景变白时，内容应该变深
-      this.setData({
-        // textColor: '#ff6f20'
-        textColor: '#1a1a1a',
-        textShow: true
-      });
-    } else {
-      this.setData({
-        // textColor: '#d5006d'
-        textColor: 'rgba(255, 255, 255, 1)',
-        textShow: false
-      });
-    }
+
+    // 通知导航栏组件更新透明度和文字颜色
+    this.selectComponent('#nav-bar').onScroll(scrollTop);
+
     // 控制滑动
     if (scrollTop >= 160) {
-      console.log("scrollTop", scrollTop)
       this.setData({
         innerScrollEnabled: true
       })
     } else if (scrollTop < 5) {
-      console.log("scrollTop", scrollTop)
       this.setData({
         innerScrollEnabled: false
       })
@@ -169,68 +131,18 @@ Page({
   },
 
   /**
-   * 初始化导航栏高度
+   * 初始化内容区高度（不同机型不同高度）
    */
-  initNavBar() {
-    try {
-      // 获取系统信息
-      const systemInfo = wx.getSystemInfoSync();
-      console.log("信息", systemInfo)
-      const platform = systemInfo.system.split(" ")[0]; // 'ios' 或 'android'
-      console.log("机型", platform)
-      // 设置不同的高度
-      let boxHeight = platform === 'iOS' ? '1200rpx' : '1250rpx';
-      const statusBarHeight = systemInfo.statusBarHeight;
+  initBoxHeight() {
+    const systemInfo = wx.getSystemInfoSync();
+    const platform = systemInfo.system.split(" ")[0]; // 'iOS' 或 'Android'
+    // 设置不同的高度
+    const boxHeight = platform === 'iOS' ? '1200rpx' : '1250rpx';
 
-      // 获取胶囊按钮位置信息
-      const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
-
-      // 计算导航栏高度
-      // 导航栏高度 = 状态栏高度 + (胶囊按钮距顶部距离 - 状态栏高度) * 2 + 胶囊按钮高度
-      const navBarHeight = (menuButtonInfo.top - statusBarHeight) * 2 + menuButtonInfo.height;
-
-      // 整个top-bar的总高度
-      const totalTopBarHeight = statusBarHeight + navBarHeight;
-      console.log(boxHeight)
-      this.setData({
-        statusBarHeight,
-        navBarHeight,
-        totalTopBarHeight,
-        boxHeight
-      });
-
-      // 将导航栏总高度存储到全局，方便其他页面使用
-      wx.setStorageSync('navBarHeight', totalTopBarHeight);
-
-    } catch (error) {
-      console.error('获取导航栏高度失败:', error);
-      // 设置默认值
-      this.setData({
-        statusBarHeight: 44,
-        totalTopBarHeight: 132
-      });
-    }
+    this.setData({
+      boxHeight
+    });
   },
-
-  /**
-   * 返回按钮点击事件
-   */
-  goBack() {
-    const pages = getCurrentPages();
-    if (pages.length > 1) {
-      // 如果有上一页，返回上一页
-      wx.navigateBack({
-        delta: 1
-      });
-    } else {
-      // 如果是第一个页面，跳转到首页 serviceApi
-      wx.switchTab({
-        url: '/pages/index/index'
-      });
-    }
-  },
-
-
 
   // 获取列表
   async getComboList() {

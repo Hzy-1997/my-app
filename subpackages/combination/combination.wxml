@@ -1,15 +1,7 @@
 <view class="container">
   <van-toast id="van-toast" />
-  <view class="page-header">
-    <view class="top-bar" style="background-color: {{headerBgColor}}; height: {{totalTopBarHeight}}px; padding-top: {{statusBarHeight}}px;">
-      <!-- 左侧返回按钮 - 绝对定位 -->
-      <view class="back-btn" bindtap="goBack">
-        <text class="back-icon" style="color:{{textColor}};">〈</text>
-      </view>
-      <!-- 中间标题 - 居中显示 -->
-      <view class="title" wx:if="{{textShow}}">{{navTitle}}</view>
-    </view>
-  </view>
+  <!-- 自定义顶部导航栏 -->
+  <nav-bar id="nav-bar" title="{{navTitle}}" />
 
 
   <view class="img_box"></view>

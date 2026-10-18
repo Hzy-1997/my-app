@@ -122,10 +122,6 @@ Page({
       dataInfo: data,
       hotelList: res.data.list[0].items
     })
-
-    console.log(data)
-    console.log(this.data.iteminfo)
-    console.log(this.data.hotelList)
   },
 
 
@@ -164,5 +160,10 @@ Page({
       url: `/subpackages/hotelDetails/hotelDetails?id=${id}`
     })
   },
+
+  // 购买
+  goBuy() {
+    
+  }
 
 })

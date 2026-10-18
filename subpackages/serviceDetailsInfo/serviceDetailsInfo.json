@@ -3,7 +3,8 @@
     "van-loading": "@vant/weapp/loading/index",
     "van-toast": "@vant/weapp/toast/index",
     "van-popup": "@vant/weapp/popup/index",
-    "mp-html": "mp-html"
+    "mp-html": "mp-html",
+    "nav-bar": "/components/nav-bar/nav-bar"
   },
   "navigationStyle": "custom"
 }

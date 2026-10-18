@@ -4,8 +4,14 @@ import dayjs from 'dayjs';
 import Toast from '@vant/weapp/toast/toast';
 
 import {
+  loginApi,
   parkingApi
 } from "../../api/index"
+
+import {
+  cryptoUtil
+} from "../../utils/util"
+
 
 Page({
 
@@ -27,7 +33,6 @@ Page({
     unitPrice: "",
     show: false,
     inputValue: 1,
-
   },
 
   /**
@@ -104,10 +109,24 @@ Page({
       id: this.data.parkingId
     })
 
-    this.setData({
-      price: res.data.price,
-      unitPrice: res.data.price,
-    })
+    if (res.code == 200) {
+
+      let info = await loginApi.getUserInfo()
+      info.data = cryptoUtil.decrypt(info.data)
+
+
+      let data = JSON.parse(info.data)
+
+      this.setData({
+        price: res.data.price,
+        unitPrice: res.data.price,
+        phone: data.phone ? cryptoUtil.decrypt(data.phone) : '',
+        carNumber: data.licensePlate || '',
+        idCard: data.idCard ? cryptoUtil.decrypt(data.idCard) : '',
+      })
+
+
+    }
 
     Toast.clear()
   },

@@ -1,9 +1,12 @@
 <view class="page-container">
+  <van-toast id="van-toast" />
+  <!-- 自定义顶部导航栏 -->
+  <nav-bar id="nav-bar" />
   <view class="carousel">
     <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
       <block wx:for="{{background}}" wx:key="*this">
         <swiper-item>
-          <view class="swiper-item {{item}}"></view>
+          <view class="swiper-item {{item}}">{{item}}</view>
         </swiper-item>
       </block>
     </swiper>
@@ -17,7 +20,7 @@
         <view class="info-item"><i class="info-icon icon-clock"></i>
           <view class="info-text">开放时间 8:30-20:00(南门线路，运营17:30结束)</view>
         </view>
-        <view class="info-item"><i class="info-icon icon-phone"></i>
+        <view class="info-item">
           <view class="info-text">咨询电话 0731-82294576</view>
         </view>
       </view>
@@ -26,32 +29,51 @@
   </view>
 
   <view class="main">
-
     <view class=" main-content">
-      <scroll-view scroll-y style="height: 1200rpx;">
+      <view class="vanTab">
+        <van-tabs active="{{ active }}" bind:change="onChangeType" color="#336633">
+          <van-tab title="普通票"></van-tab>
+          <van-tab title="学生票"></van-tab>
+          <van-tab title="优惠票"></van-tab>
+          <van-tab title="包车服务"></van-tab>
+        </van-tabs>
+      </view>
+      <scroll-view scroll-y style="height: 1100rpx;">
         <view class="ticket-list">
-          <view class="ticket-card" wx:for="{{5}}" wx:key="*this">
-            <view class="ticket-header">
-              <span class="ticket-icon">🎫</span>
-              <span class="ticket-title">下行票（东门）</span>
-            </view>
-            <view class="ticket-route">
-              <view class="route-station-start">东门上站·古峰口</view>
-              <view class="route-arrow_tag">123</view>
-              <view class="route-station-end">东门下站</view>
-            </view>
-            <div class="ticket-footer">
-              <div class="ticket-price">
-                <view class="discountedPrice">
-                  <span class="price-symbol">¥</span>
-                  <span class="price-number">29</span>
-                </view>
-                <view class="sellingPrice">
-                  <span class="price-number">¥ 59</span>
+          <view wx:if="{{hint}}">
+            <view class="ticket-card " wx:for="{{scenicBusList}}" wx:key="*this">
+              <view class="ticket-header">
+                <span class="ticket-icon">🎫</span>
+                <span class="ticket-title">{{item.title}}</span>
+              </view>
+              <view class="ticket-route">
+                <view class="route-station-start">{{item.startStation}}</view>
+                <view class="route-arrow_tag">123</view>
+                <view class="route-station-end">{{item.endStation}}</view>
+              </view>
+              <div class="ticket-footer">
+                <div class="ticket-price">
+                  <view class="discountedPrice">
+                    <span class="price-symbol">¥</span>
+                    <span class="price-number">{{item.price}}</span>
+                  </view>
+                  <view class="sellingPrice">
+                    <span class="price-number">¥{{item.originalPrice}}</span>
+                  </view>
+                </div>
+                <view class="{{item.cannot ? 'cannot' : 'btn-buy'}}" bindtap="onBuy" data-item="{{item}}" data-cannot="{{item.cannot}}">
+                  立即购买
                 </view>
               </div>
-              <view class="btn-buy">立即购买</view>
-            </div>
+            </view>
+          </view>
+          <view class="hint" wx:else>
+
+            <view class="search">
+              <image src="../../assets/image/search.png" mode="" />
+              <text>暂无车票</text>
+            </view>
+
           </view>
         </view>
         <text class="notice-text">
@@ -59,11 +81,69 @@
         </text>
       </scroll-view>
     </view>
-
-
-
-
-
   </view>
 
+
+  <!-- 提示框   -->
+  <van-popup show="{{ show }}" bind:close="onClose" round custom-style="overflow: visible;">
+    <view class="promptBox">
+      <view class="ticket_icon">
+        <image src="../../assets/image/ticket.png" mode="" />
+      </view>
+      <view class="ticket_title">购票须知</view>
+      <view class="ticket_text">
+        <view>1，实名购票，一人一票，当日有效，过期作废。</view>
+        <view>2，1.2米以下儿童免票（需成人陪同），1.2—1.5米儿童半价。</view>
+        <view>3，按线路站点候车乘车，服从引导，严禁携带危险品。</view>
+        <view>4，车票售出不退不换，遗失不补，停运可退改。</view>
+      </view>
+
+      <view class="agree" bind:tap="agree">我已阅读并同意上述须知</view>
+    </view>
+  </van-popup>
+
+
+  <van-popup show="{{ buyShow }}" round position="bottom" custom-style="height: 71%" bind:close="onClose">
+    <view class="ticket-dialog">
+      <view class="dialog-header">
+        <text class="dialog-title">{{ticketDetails.title}}</text>
+        <van-icon name="cross" color="black" size="20px" bind:tap="onClose" />
+      </view>
+      <view class="ticket-price">¥{{ticketDetails.price}}</view>
+
+      <view class="ticket-action-bar">
+        <view class="ticket-tag">
+          <view class="tag-name">成人票</view>
+          <view class="tag-desc">1人/1次</view>
+        </view>
+        <view class="stepper">
+          <view class="stepper-btn-minus" bind:tap="btnMinus">
+            <image src="../../assets/image/minus.png" mode="" />
+          </view>
+          <view class="stepper-num">
+            <input type="text" value="{{quantity}}" bind:input="onChange" />
+          </view>
+          <view class="stepper-btn-plus" bind:tap="btnPlus">
+            <image src="../../assets/image/plus.png" mode="" />
+          </view>
+        </view>
+      </view>
+      <view class="thread"></view>
+      <scroll-view scroll-y style="height: 730rpx;">
+        <view class="text-box">
+          <mp-html content="{{ticketDetails.description}}" />
+        </view>
+      </scroll-view>
+
+
+      <view class="dialog-footer">
+        <view class="total-price-box">
+          <text class="total-label">合计</text>
+          <text class="total-symbol">¥</text>
+          <text class="total-num">{{totalPrice}}</text>
+        </view>
+        <view class="pay-btn">支付</view>
+      </view>
+    </view>
+  </van-popup>
 </view>

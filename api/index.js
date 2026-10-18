@@ -6,6 +6,7 @@ import * as ticketingApi from "./ticketing"
 import * as ComboApi from "./combination"
 import * as parkingApi from "./parking"
 import * as campsiteApi from "./campsite"
+import * as scenicBusApi from "./sightseeingBus"
 
 
 export {
@@ -15,5 +16,6 @@ export {
   ticketingApi,
   ComboApi,
   parkingApi,
-  campsiteApi
+  campsiteApi,
+  scenicBusApi,
 };

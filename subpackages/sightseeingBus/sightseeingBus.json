@@ -1,4 +1,14 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "mp-html": "mp-html",
+    "nav-bar": "/components/nav-bar/nav-bar"
+  },
   "navigationStyle": "custom"
 }

@@ -59,7 +59,7 @@
                   <view class="package-price-per">{{item.unitPrice}}</view>
                   <view class="package-price-total">¥<text>{{item.originalPrice}}</text> 起</view>
                 </view>
-                <view class="package-price-btn">抢购</view>
+                <view class="package-price-btn" bind:tap="goBuy">抢购</view>
               </view>
 
             </view>

@@ -1,17 +1,24 @@
 /* subpackages/sightseeingBus/sightseeingBus.wxss */
 
 .carousel {
-  height: 500rpx;
+  height: 450rpx;
   position: relative;
+  border: 1px solid;
+}
+
+swiper {
+  height: 100%;
 }
 
 .swiper-item {
   background: chartreuse;
+  width: 100%;
+  height: 100%;
 }
 
 .hero-section {
   position: absolute;
-  bottom: 130rpx;
+  bottom: 110rpx;
   color: #fff;
   width: 100%;
 }
@@ -33,6 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid #fff;
 }
 
 .info-list {
@@ -62,9 +70,15 @@
   z-index: 2;
 }
 
+.vanTab {
+  margin-top: 16rpx;
+}
+
 .ticket-list {
   padding: 0rpx 30rpx;
   border-radius: 20rpx;
+  min-height: 750rpx;
+
 }
 
 .ticket-card {
@@ -76,6 +90,34 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.hint {
+  width: 100%;
+  height: 500rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  width: 200rpx;
+  /* height: 150rpx; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.search image {
+  width: 200rpx;
+  height: 150rpx;
+}
+
+.search text {
+  font-size: 30rpx;
+  margin-top: 20rpx;
+  color: #8A8A8A;
 }
 
 .ticket-route {
@@ -110,11 +152,22 @@
 }
 
 .sellingPrice {
-  margin-left: 30rpx;
+  margin-left: 20rpx;
   text-decoration: line-through;
 }
 
 .btn-buy {
+  background: #C2E2B8;
+  background: #336633;
+  border-radius: 50rpx;
+  width: 150rpx;
+  height: 60rpx;
+  text-align: center;
+  line-height: 60rpx;
+  color: #fff;
+}
+
+.cannot {
   background: #C2E2B8;
   border-radius: 50rpx;
   width: 150rpx;
@@ -124,22 +177,204 @@
   color: #fff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .notice-text {
   font-size: 17px;
   line-height: 1.8;
   color: #666;
+}
+
+.promptBox {
+  width: 580rpx;
+  height: 580rpx;
+  border-radius: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ticket_icon {
+  width: 170rpx;
+  height: 150rpx;
+  margin-top: -90rpx;
+}
+
+.ticket_icon image {
+  width: 100%;
+  height: 100%;
+}
+
+.ticket_title {
+  margin: 20rpx 0rpx 10rpx;
+  font-size: 35rpx;
+  font-weight: 600;
+}
+
+.ticket_text {
+  font-size: 25rpx;
+  padding: 0rpx 20rpx;
+
+}
+
+.ticket_text view {
+  line-height: 1.7;
+}
+
+.agree {
+  margin-top: 50rpx;
+  height: 70rpx;
+  width: 350rpx;
+  text-align: center;
+  line-height: 70rpx;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  background: #336633;
+  color: #fff;
+}
+
+
+.ticket-dialog {
+  /* margin-top: 20rpx; */
+  padding: 50rpx 50rpx 0rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialog-title {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+
+.ticket-dialog .ticket-price {
+  font-size: 26rpx;
+  margin: 20rpx;
+  font-weight: 600;
+}
+
+.ticket-action-bar {
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.ticket-tag {
+  display: flex;
+  font-size: 25rpx;
+  border: 1px solid #336633;
+  border-radius: 8rpx;
+}
+
+.tag-name {
+  background: #336633;
+  font-size: 25rpx;
+  width: 110rpx;
+  height: 47rpx;
+  text-align: center;
+  line-height: 47rpx;
+  color: #fff;
+  border-radius: 0rpx 8rpx 8rpx 0rpx;
+}
+
+.tag-desc {
+  color: #336633;
+  width: 110rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 50rpx;
+
+}
+
+.stepper {
+  display: flex;
+  width: 150rpx;
+  justify-content: space-between;
+}
+
+.stepper-num {
+  width: 60rpx;
+  text-align: center;
+  font-size: 35rpx;
+}
+
+.stepper-btn-minus {
+  width: 42rpx;
+  height: 42rpx;
+  border: 2px solid #336633;
+  border-radius: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stepper-btn-plus {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 40rpx;
+  background: #336633;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stepper-btn-minus image {
+  width: 30rpx;
+  height: 35rpx;
+}
+
+.stepper-btn-plus image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.thread {
+  border-bottom: 1px solid #CBCBCB;
+  width: 100%;
+  margin-top: 40rpx;
+}
+
+.text-box {
+  min-height: 730rpx;
+}
+
+.dialog-footer {
+  height: 110rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.total-price-box {
+  width: 200rpx;
+}
+
+.total-label {
+  margin-right: 20rpx;
+}
+
+.total-symbol {
+  font-size: 24rpx;
+  margin-right: 8rpx;
+  color: red;
+}
+
+.total-num {
+  font-size: 37rpx;
+  font-weight: 600;
+  color: red;
+}
+
+
+.pay-btn {
+  width: 190rpx;
+  height: 80rpx;
+  background: #336633;
+  text-align: center;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 50rpx;
 }
