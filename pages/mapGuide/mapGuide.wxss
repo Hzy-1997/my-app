@@ -1,1 +1,47 @@
 /* pages/mapGuide/mapGuide.wxss */
+
+/* 页面容器设置相对定位 */
+.map-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* 筛选框样式 */
+.filter-bar {
+  position: absolute;
+  top: 20rpx;
+  /* 距离顶部的距离，可以避开状态栏和导航栏 */
+  left: 20rpx;
+  right: 20rpx;
+  z-index: 99;
+  /* 确保悬浮在地图上方 */
+
+  /* 以下是为了美观 */
+  display: flex;
+  background: rgba(255, 255, 255, 0.95);
+  /* 半透明白底 */
+  border-radius: 40rpx;
+  /* 圆角 */
+  padding: 10rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  /* 阴影 */
+}
+
+/* 单个筛选按钮样式 */
+.filter-item {
+  flex: 1;
+  /* 平分宽度 */
+  text-align: center;
+  font-size: 28rpx;
+  color: #333;
+  padding: 10rpx 0;
+  border-radius: 30rpx;
+}
+
+/* 选中状态的按钮样式 */
+.filter-item.active {
+  background-color: #007AFF;
+  /* 蓝色背景 */
+  color: #fff;
+}
