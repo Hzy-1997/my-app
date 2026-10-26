@@ -1,11 +1,9 @@
-<view class="page">
-  <!-- 顶部深绿色背景区域 -->
+<!-- <view class="page">
   <view class="header">
     <view class="header-inner">
       <text class="subtitle">GETTING HERE · 抵达太舞</text>
       <text class="title">交通指南</text>
       <text class="desc">五种出行方式，轻松抵达太舞小镇</text>
-      <!-- 右上角装饰图标（用CSS模拟三角形，或用图片） -->
       <view class="mountain-icon">123</view>
     </view>
   </view>
@@ -13,10 +11,7 @@
   <view class="wave-container">
     <image src="../../assets/image/shuibo.png" mode="" />
   </view>
-  <!-- 主体内容区（负 margin 制造波浪覆盖效果） -->
   <view class="content">
-
-    <!-- ================= 卡片 01：自驾出行 ================= -->
     <view class="card">
       <view class="card-header">
         <view class="icon-num">01</view>
@@ -27,12 +22,10 @@
         <view class="icon-car">🚗</view>
       </view>
 
-      <!-- 图片占位区 -->
       <view class="image-placeholder">
         <image class="placeholder-img" src="" mode="aspectFill"></image>
       </view>
 
-      <!-- 路线 1 -->
       <view class="route-box  special-route">
         <view class="route-item">
           <text class="route-name">京礼高速·太子城高速口</text>
@@ -42,7 +35,6 @@
         <view class="route-detail"><text class="label">路线</text> 京礼高速 → 太子城高速口下，直达太舞小镇</view>
       </view>
 
-      <!-- 路线 2 -->
       <view class="route-box special-route">
         <view class="route-item">
           <text class="route-name">G6 京藏高速·崇礼南下</text>
@@ -53,7 +45,6 @@
       </view>
     </view>
 
-    <!-- ================= 卡片 02：乘坐飞机 ================= -->
     <view class="card">
       <view class="card-header">
         <view class="icon-num">02</view>
@@ -69,7 +60,6 @@
       </view>
     </view>
 
-    <!-- ================= 卡片 03：高铁直达 ================= -->
     <view class="card">
       <view class="card-header">
         <view class="icon-num">03</view>
@@ -85,7 +75,6 @@
       </view>
     </view>
 
-    <!-- ================= 卡片 04：公共交通 ================= -->
     <view class="card">
       <view class="card-header">
         <view class="icon-num">04</view>
@@ -103,7 +92,6 @@
       </view>
     </view>
 
-    <!-- ================= 卡片 05：园区摆渡车 ================= -->
     <view class="card">
       <view class="card-header">
         <view class="icon-num">05</view>
@@ -114,12 +102,11 @@
         <view class="icon-shuttle">🚌</view>
       </view>
 
-      <!-- 长图占位 -->
+
       <view class="image-placeholder large-placeholder">
         <image class="placeholder-img" src="" mode="aspectFill"></image>
       </view>
 
-      <!-- A 线 -->
       <view class="route-box special-route">
         <view class="route-item">
           <view class="icon-circle icon-a">A</view>
@@ -128,7 +115,6 @@
         <view class="route-detail no-label">鹰巢青年酒店站 → 太舞酒店&威斯汀雪滩停车场站 → 帕斯顿酒店站 → 南山里酒店群&九索站</view>
       </view>
 
-      <!-- B 线 -->
       <view class="route-box special-route">
         <view class="route-item">
           <view class="icon-circle icon-b">B</view>
@@ -137,7 +123,6 @@
         <view class="route-detail no-label">南山里酒店群&九索站 → 帕斯顿酒店站 → 雪滩停车场站 → 太舞酒店&威斯汀雪滩停车场站 → 太舞酒店站 → 凯悦嘉轩 & 雪麓居温泉酒店 → 宾丽雅酒店站</view>
       </view>
 
-      <!-- 底部徽章 -->
       <view class="badge-wrapper">
         <view class="badge">
           <text class="badge-icon">🚐</text>
@@ -146,7 +131,6 @@
       </view>
     </view>
 
-    <!-- ================= 底部 Footer ================= -->
     <view class="footer">
       <view class="footer-icon">🌲</view>
       <text class="footer-title">贴心接驳 · 一站式便捷度假</text>
@@ -154,4 +138,155 @@
     </view>
 
   </view>
+</view> -->
+
+<view class="page">
+  <view class="header">
+    <view class="header-inner">
+      <text class="subtitle">GETTING HERE · 抵达光雾山</text>
+      <text class="title">交通指南</text>
+      <text class="desc">多种出行方式，轻松抵达光雾山</text>
+
+      <view class="mountain-icon">123</view>
+    </view>
+  </view>
+  <view class="wave-container">
+    <image src="../../assets/image/shuibo.png" mode="" />
+  </view>
+  <view class="content">
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">01</view>
+        <view class="header-text">
+          <text class="card-title">自驾出行</text>
+          <text class="card-sub">导航「光雾山旅游景区」·成都/重庆/西安三向可达</text>
+        </view>
+        <view class="icon-car">🚗</view>
+      </view>
+
+      <view class="image-placeholder">
+        <image class="placeholder-img" src="" mode="aspectFill"></image>
+      </view>
+
+      <view class="route-box special-route">
+        <view class="route-item">
+          <text class="route-name">成都出发·成巴高速转巴陕高速</text>
+          <text class="time-tag">约 4.5–5 小时</text>
+        </view>
+        <view class="route-detail"><text class="label">里程</text> 全程约 420 公里</view>
+        <view class="route-detail"><text class="label">路线</text> 成巴高速 → 巴中 → 巴陕高速 → 桥亭出高速 → 光雾山旅游景区</view>
+      </view>
+
+      <view class="route-box special-route">
+        <view class="route-item">
+          <text class="route-name">重庆出发·巴广渝高速转巴陕高速</text>
+          <text class="time-tag">约 5 小时</text>
+        </view>
+        <view class="route-detail"><text class="label">路线</text> 巴广渝高速 → 巴中 → 巴陕高速 → 桥亭出高速 → 光雾山旅游景区</view>
+      </view>
+
+      <view class="route-box special-route">
+        <view class="route-item">
+          <text class="route-name">西安出发·西汉高速转巴陕高速</text>
+          <text class="time-tag">约 4.5–5 小时</text>
+        </view>
+        <view class="route-detail"><text class="label">路线</text> 西汉高速 → 汉中 → 巴陕高速 → 喜神坝出高速 → 光雾山旅游景区</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">02</view>
+        <view class="header-text">
+          <text class="card-title">乘坐飞机</text>
+          <text class="card-sub">落地巴中恩阳机场·转乘至景区</text>
+        </view>
+        <view class="icon-plane">✈️</view>
+      </view>
+      <view class="plain-text">
+        <text>巴中恩阳机场已开通上海、深圳、成都、广州、昆明、西安、海口、宁波、贵阳等航线。</text>
+        <text>抵达后乘坐出租车至巴中江北客运中心，转乘旅游大巴前往光雾山景区[citation:14]。</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">03</view>
+        <view class="header-text">
+          <text class="card-title">高铁 + 景区直通车</text>
+          <text class="card-sub">巴中东站下车·直通车直达景区</text>
+        </view>
+        <view class="icon-train">🚄</view>
+      </view>
+      <view class="plain-text">
+        <text>成都东至巴中最快约 2 小时 16 分[citation:7]。抵达巴中东站后，可乘坐景区直通车直达光雾山。</text>
+        <text>直通车线路：巴中东站 → 巴中市体育馆 → 农业银行 → 江北车站 → 白云台车站 → 光雾山景区 → 米仓山景区。</text>
+        <text>巴中至光雾山发车时间：07:00 / 09:30 / 13:00；返程：10:00 / 13:30 / 17:30。优惠票价 49 元/人。</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">04</view>
+        <view class="header-text">
+          <text class="card-title">客运班车</text>
+          <text class="card-sub">成都/重庆/西安经中转至南江或汉中</text>
+        </view>
+        <view class="icon-bus">🚌</view>
+      </view>
+      <view class="plain-text">
+        <text>成都方向：成都北门汽车站 → 南江广运汽车站 → 光雾山景区。</text>
+        <text>重庆方向：菜园坝汽车站 → 南江 → 光雾山景区。</text>
+        <text>西安方向：西安城西/城南客运站 → 汉中客运枢纽站 → 光雾山景区。</text>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="card-header">
+        <view class="icon-num">05</view>
+        <view class="header-text">
+          <text class="card-title">景区内交通</text>
+          <text class="card-sub">景交车 + 索道·游览光雾山各片区</text>
+        </view>
+        <view class="icon-shuttle">🚌</view>
+      </view>
+
+      <view class="image-placeholder large-placeholder">
+        <image class="placeholder-img" src="" mode="aspectFill"></image>
+      </view>
+
+      <view class="route-box special-route">
+        <view class="route-item">
+          <view class="icon-circle icon-a">光</view>
+          <text class="route-name">光雾山旅游景区（桃园）</text>
+        </view>
+        <view class="route-detail no-label">景交车 40 元/人。线路：景区入口 → 三道关（往返）；景区入口 → 彭家坝 → 碑沟口（往返）；景区入口 → 燕子岭索道（往返）。运行时间 7:30–18:00。</view>
+      </view>
+
+      <view class="route-box special-route">
+        <view class="route-item">
+          <view class="icon-circle icon-b">米</view>
+          <text class="route-name">米仓山旅游景区（大坝）</text>
+        </view>
+        <view class="route-detail no-label">红叶节期间（10/1–11/18）实行景交车区间运行，游客车辆停放景区外，统一换乘进入。景交车路线：景区入口 → 天然画廊 → 大坝换乘中心；大坝换乘中心 → 各核心景点。</view>
+      </view>
+
+      <view class="badge-wrapper">
+        <view class="badge">
+          <text class="badge-icon">🚐</text>
+          <text>红叶节期间建议优先换乘景区交通</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="footer">
+      <view class="footer-icon">🍁</view>
+      <text class="footer-title">便捷接驳 · 轻松赏红叶</text>
+      <text class="footer-sub">光雾山欢迎您</text>
+    </view>
+
+  </view>
 </view>
+
+
+
