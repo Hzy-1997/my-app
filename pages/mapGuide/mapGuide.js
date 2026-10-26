@@ -440,7 +440,6 @@ Page({
     const target = this.data.markers.find(m => m.id === markerId);
 
     if (!target) return;
-
     // 情况 1：点击的是 层级 1 或 层级 2（带有 isArea 属性）
     if (target.isArea) {
       // 决定下一跳的缩放级别：如果是大区就进到片区(14)，如果是片区就进到演出点(17)
@@ -457,7 +456,6 @@ Page({
       // 延迟 400 毫秒，等地图飞行动画做完后，再渲染新一层级的点
       setTimeout(() => this.renderMarkers(nextScale), 400);
     }
-
     // 情况 2：点击的是自研聚合出来的“聚合点”（ID >= 9000）
     else if (markerId >= 9000) {
       // 直接拉到微信允许的最大缩放级别 20 级
@@ -483,7 +481,6 @@ Page({
         }
       });
     }
-
     // 情况 3：点击的是普通的演出点（具体的一个点）
     else {
       // 弹窗展示详情

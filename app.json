@@ -38,7 +38,8 @@
         "sightseeingBus/sightseeingBus",
         "transportationPage/transportationPage",
         "licensePlate/licensePlate",
-        "realname/realname"
+        "realname/realname",
+        "aboutUs/aboutUs"
       ]
     }
   ],

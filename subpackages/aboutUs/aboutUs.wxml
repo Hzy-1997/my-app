@@ -1,0 +1,66 @@
+<view class="page-container">
+
+  <view class="hero-banner">
+    <image src="https://hezhaoyu.oss-cn-hangzhou.aliyuncs.com/staticImage/aboutUs-banner.png" mode="" />
+  </view>
+
+  <view class="info-card">
+    <view class="welcome-section">
+      <view class="welcome-section__title">欢迎来到光雾山智慧旅游小程序</view>
+      <view class="welcome-section__desc">本平合为景区官方服务，为游客提供门票预约、智慧导览、停车查询、民宿预订、活动资等一站式游玩服
+        务，陪您遇见四季光雾山。</view>
+    </view>
+
+    <view class="overview-section">
+      <view class="section-title">
+        <view>景区概况</view>
+        <view></view>
+      </view>
+      <view class="overview-section__desc">光雾山旅游区地处川陕交界米仓山腹地，幅员830平方公里，包仓光雾山、米仓山、十八月潭三大片区。是国家5A级旅游景区、世界地质公园，以红叶间名，被誉为亚洲红叶观赏胜地。春赏杜鹃、夏纳清凉、秋观红叶、冬览冰雪，米仓古道人文与原始自然山水相融。</view>
+      <view class="tag-group">
+        <image src="https://hezhaoyu.oss-cn-hangzhou.aliyuncs.com/staticImage/aboutUs-group.png" mode="" />
+      </view>
+    </view>
+
+
+    <view class="contact-section">
+      <view class="contact-section-title">
+        <view class="contact-list" bind:tap="makeCall" >咨询电话：012-1878211</view>
+      </view>
+      <view class="contact-list">服务时间：08:00 - 18:00</view>
+      <!-- <view class="section-list-box">
+        <view class="contact-list">景区地址：四川省巴中市南江县光雾山镇</view>
+        <view class="contact-list">咨询电话：012-1878211</view>
+        <view class="contact-list">投诉电话：023-1886125</view>
+        <view class="contact-list">服务时间：08:00 - 18:00</view>
+      </view> -->
+      <view></view>
+    </view>
+
+
+  </view>
+  <view class="page-footer">
+    <!-- 社交媒体图标 -->
+    <view class="footer-socials">
+      <view class="footer-socials__item">
+        <image class="footer-socials__icon" src=""></image>
+        <text class="footer-socials__text">公众号</text>
+      </view>
+      <view class="footer-socials__item">
+        <image class="footer-socials__icon" src=""></image>
+        <text class="footer-socials__text">抖音</text>
+      </view>
+    </view>
+
+    <!-- 协议链接 -->
+    <!-- <view class="footer-links">
+      <text class="footer-links__item">隐私政策</text>
+      <text class="footer-links__divider">|</text>
+      <text class="footer-links__item">用户服务协议</text>
+    </view> -->
+
+    <!-- 版权信息 -->
+    <text class="footer-copyright">© 光雾山旅游发展有限公司 版权所有</text>
+    <text class="footer-copyright">小何科技提供技术支持</text>
+  </view>
+</view>

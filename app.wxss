@@ -21,6 +21,6 @@ page,
 
 .rich-text-container {
   min-height: 800rpx;
-  padding: 40rpx 60rpx;
+  padding: 40rpx 30rpx;
   background: #ffffff;
 }

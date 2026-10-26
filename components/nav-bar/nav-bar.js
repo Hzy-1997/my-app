@@ -10,6 +10,12 @@ Component({
       type: String,
       value: ''
     },
+
+    // 是否展示返回按钮
+    backShow: {
+      type: Boolean,
+      value: true
+    },
     // 是否始终显示标题（默认滚动到背景变白后才显示标题）
     alwaysShowTitle: {
       type: Boolean,
@@ -25,7 +31,7 @@ Component({
     totalTopBarHeight: 0, // 整个导航栏高度
     headerBgColor: 'rgba(255, 255, 255, 0)', // 初始完全透明
     textColor: 'rgba(255, 255, 255, 1)',
-    textShow: false
+    textShow: false,
   },
 
   lifetimes: {

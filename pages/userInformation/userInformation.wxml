@@ -1,4 +1,6 @@
-<view class="member-center">
+<view class="member-center" style="background-image: url('{{seasonBg}}');">
+  <nav-bar id="nav-bar" title="{{navTitle}}" backShow="{{false}}" />
+  <view style="height: {{totalTopBarHeight+50}}px;"></view>
   <view class="member-header">
     <view class="member-header_bx">
       <view class="member-avatar">
@@ -6,62 +8,57 @@
       </view>
       <view class="member-info">
         <view class="member-info_name">
-          <!-- {{userInformation.nickName}} -->
-          你好
+          {{userInformation.nickName}}
         </view>
         <view class="member-info_card">
-          会员ID:{{userInformation.memberCardNo}}</view>
+          会员ID: {{userInformation.memberCardNo}}</view>
       </view>
 
       <view class="qrCode">123</view>
     </view>
   </view>
   <view class="assets-grid">
-    <view class="assets-grid_item">123</view>
-    <view class="assets-grid_item">123</view>
-    <view class="assets-grid_item">123</view>
-    <view class="assets-grid_item">123</view>
+    <view class="assets-grid_item">
+      <view class="grid_item_icon">1</view>
+      <view class="grid_item_text">优惠券</view>
+    </view>
+    <view class="assets-grid_item">
+      <view class="grid_item_icon">123</view>
+      <view class="grid_item_text">积分</view>
+    </view>
+    <view class="assets-grid_item">
+      <view class="grid_item_icon">0</view>
+      <view class="grid_item_text">活动</view>
+    </view>
+    <view class="assets-grid_item">
+      <view class="grid_item_icon">0</view>
+      <view class="grid_item_text">消息</view>
+    </view>
   </view>
 
 
-  <view class="order-grid">
-    <view class="order-grid_item">
-      <view class="order-grid_item_icon">123</view>
-      <view class="order-grid_item_text">活动订单</view>
+  <view class="order-box">
+    <view class="order-title-box">
+      <view class="order-title">
+        <text>我的订单</text>
+        <text>.</text>
+      </view>
     </view>
-    <view class="order-grid_item">
-      <view class="order-grid_item_icon">123</view>
-      <view class="order-grid_item_text">活动订单</view>
-    </view>
-    <view class="order-grid_item">
-      <view class="order-grid_item_icon">123</view>
-      <view class="order-grid_item_text">活动订单</view>
-    </view>
-    <view class="order-grid_item">
-      <view class="order-grid_item_icon">123</view>
-      <view class="order-grid_item_text">活动订单</view>
-    </view>
-    <view class="order-grid_item">
-      <view class="order-grid_item_icon">123</view>
-      <view class="order-grid_item_text">活动订单</view>
-    </view>
-    <view class="order-grid_item">
-      <view class="order-grid_item_icon">123</view>
-      <view class="order-grid_item_text">活动订单</view>
-    </view>
-    <view class="order-grid_item">
-      <view class="order-grid_item_icon">123</view>
-      <view class="order-grid_item_text">活动订单</view>
-    </view>
-    <view class="order-grid_item">
-      <view class="order-grid_item_icon">123</view>
-      <view class="order-grid_item_text">活动订单</view>
+    <view class="order-grid">
+      <view class="order-grid_item" wx:for="{{orderData}}" wx:key="*this">
+        <view class="order-grid_item_icon">
+          <image src="{{item.icon}}" mode="" />
+        </view>
+        <view class="order-grid_item_text">{{item.title}}</view>
+      </view>
     </view>
   </view>
 
   <view class="service">
     <view class="service_left">
-      <view>&&</view>
+      <view class="settings_icon">
+        <image src="../../assets/image/kehufuwukefu.png" mode="" />
+      </view>
       <view>客户服务</view>
     </view>
     <view>》</view>
@@ -70,14 +67,18 @@
   <view class="settings">
     <view class="settings_box" bind:tap="changeInformation" data-id="{{userInformation.id}}">
       <view class="settings_box_left">
-        <view>&&</view>
+        <view class="settings_icon">
+          <image src="../../assets/image/zhanghaoshezhi.png" mode="" />
+        </view>
         <view>账号设置</view>
       </view>
       <view> 》 </view>
     </view>
-    <view class="settings_box">
+    <view class="settings_box" bind:tap="goAboutUs">
       <view class="settings_box_left">
-        <view>&& </view>
+        <view class="settings_icon">
+          <image src="../../assets/image/guanyuwomen.png " mode="" />
+        </view>
         <view> 关于我们</view>
       </view>
       <view> 》 </view>

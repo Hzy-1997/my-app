@@ -145,6 +145,30 @@ const cryptoUtil = {
   }
 }
 
+// 获取小程序头部胶囊位置
+const topBarHeight = (barHeight) => {
+  // 1. 获取系统信息
+  const systemInfo = wx.getSystemInfoSync();
+  // 或者用新版 API：const windowInfo = wx.getWindowInfo();
+
+  // 2. 状态栏高度 (px)
+  const statusBarHeight = systemInfo.statusBarHeight || 20;
+
+  // 3. 导航栏内容高度
+  // iOS / Android 标准导航栏内容高度一般是 44px
+  // 如果你要严格对齐右上角胶囊按钮，可以这样算：
+  let navBarHeight = barHeight ? barHeight : 44
+  try {
+    const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+    // 导航栏高度 = (胶囊底部 - 状态栏高度) + (胶囊顶部 - 状态栏高度)
+    navBarHeight = (menuButtonInfo.bottom - statusBarHeight) + (menuButtonInfo.top - statusBarHeight);
+  } catch (e) {
+    console.log('获取胶囊信息失败，使用默认值', e);
+  }
+
+  // 4. 总高度
+  return statusBarHeight + navBarHeight;
+}
 
 /**
  * 防抖/节流函数
@@ -210,4 +234,5 @@ export {
   formatDate,
   cryptoUtil,
   debounceThrottle,
+  topBarHeight,
 };

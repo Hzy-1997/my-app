@@ -2,7 +2,7 @@
 <view class="page-header">
   <view class="top-bar" style="background-color: {{headerBgColor}}; height: {{totalTopBarHeight}}px; padding-top: {{statusBarHeight}}px;">
     <!-- 左侧返回按钮 - 绝对定位 -->
-    <view class="back-btn" bindtap="goBack">
+    <view class="back-btn" wx:if="{{backShow}}" bindtap="goBack">
       <text class="back-icon" style="color:{{textColor}};">〈</text>
     </view>
     <!-- 中间标题 - 居中显示 -->

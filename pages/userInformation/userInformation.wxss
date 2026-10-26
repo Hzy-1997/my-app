@@ -2,23 +2,22 @@
 
 
 .member-center {
-  /* border: 1px solid; */
   padding: 10rpx 20rpx 0rpx;
-  background: #EFF0F0;
   height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .member-header {
   height: 150rpx;
-  /* border: 1px solid; */
   border-radius: 20rpx 20rpx 0rpx 0rpx;
-  padding: 30rpx;
-  background: #DAE8EE;
+  padding: 20rpx;
+  background: #FBF5EA;
 
 }
 
 .member-header_bx {
-  /* border: 1px solid; */
   height: 100%;
   display: flex;
   position: relative;
@@ -26,14 +25,14 @@
 }
 
 .member-avatar {
-  width: 150rpx;
-  height: 150rpx;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
 }
 
 .member-avatar image {
-  width: 150rpx;
-  height: 150rpx;
+  width: 120rpx;
+  height: 120rpx;
   border-radius: 50%;
 }
 
@@ -41,11 +40,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-left: 10rpx;
+  margin-left: 20rpx;
+}
+
+.member-info_name {
+  font-weight: 600;
+  font-size: 36rpx;
 }
 
 .member-info_card {
-  margin-top: 15rpx;
+  margin-top: 10rpx;
   font-size: 25rpx;
 }
 
@@ -55,32 +59,65 @@
 }
 
 .assets-grid {
-  /* border: 1px solid; */
-  height: 170rpx;
+  height: 100rpx;
   border-radius: 0rpx 0rpx 20rpx 20rpx;
   display: grid;
   grid-template-columns: auto auto auto auto;
   align-content: center;
-  background: #fff;
+  background: #1B7071;
 }
 
 .assets-grid_item {
   height: 100rpx;
   width: 150rpx;
-  /* border: 1px solid; */
-  text-align: center;
-  line-height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 26rpx;
+  color: #fff;
 }
 
-.order-grid {
+
+.order-box {
+  background: #fff;
+  border-radius: 20rpx;
   margin-top: 30rpx;
-  padding: 5rpx;
-  /* border: 1px solid; */
+}
+
+.order-title-box {
+  padding: 10rpx 35rpx 0rpx;
+}
+
+.order-title {
+  margin-top: 30rpx;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+
+}
+
+.order-title text:nth-child(2) {
+  margin: 0rpx 20rpx;
+}
+
+/* 画右侧的长线 */
+.order-title::after {
+  content: '';
+  display: block;
+  flex: 1;
+  height: 3rpx;
+  background-color: #C4A57B;
+}
+
+
+.order-grid {
   height: 300rpx;
   border-radius: 20rpx;
   display: grid;
   grid-template-columns: auto auto auto auto;
-  background: #fff;
 }
 
 .order-grid_item {
@@ -88,26 +125,32 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid; */
 }
 
 .order-grid_item_icon {
   width: 60rpx;
   height: 60rpx;
-  border: 1px solid;
   text-align: center;
   line-height: 80rpx;
+  padding: 10rpx;
+  background: #FEF6EA;
+  border-radius: 10rpx;
+  margin-bottom: 5rpx;
+}
+
+.order-grid_item_icon image {
+  width: 100%;
+  height: 100%;
 }
 
 .order-grid_item_text {
-  font-size: 27rpx;
+  font-size: 25rpx;
 }
 
 
 .service {
   margin: 30rpx 0rpx;
   height: 100rpx;
-  border: 1px solid;
   border-radius: 10rpx;
   background: #fff;
   display: flex;
@@ -118,7 +161,8 @@
 
 .service_left {
   display: flex;
-  font-weight: bold;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -142,4 +186,15 @@
 
 .settings_box_left {
   display: flex;
+}
+
+.settings_icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
+}
+
+.settings_icon image {
+  width: 100%;
+  height: 100%;
 }

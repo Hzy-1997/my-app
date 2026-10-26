@@ -3,6 +3,16 @@
 const app = getApp()
 
 import {
+  topBarHeight
+} from "../../utils/util"
+
+
+import {
+  orderData
+}
+from "./data.js"
+
+import {
   loginApi,
 } from "../../api/index"
 
@@ -15,15 +25,24 @@ Page({
    * 页面的初始数据
    */
   data: {
+    orderData,
+    navTitle: '页面标题',
     userInformation: "",
     gImgUrl: app.globalData.gImgUrl,
+    totalTopBarHeight: "0",
+    seasonBg: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    let height = topBarHeight()
+    console.log(height)
+    this.setSeasonBg();
+    this.setData({
+      totalTopBarHeight: topBarHeight()
+    })
   },
 
   /**
@@ -74,6 +93,25 @@ Page({
   onShareAppMessage() {
 
   },
+  setSeasonBg() {
+    const month = new Date().getMonth() + 1;
+    let seasonBg = '';
+
+    if (month >= 3 && month <= 8) {
+      // 春
+      seasonBg = 'https://hezhaoyu.oss-cn-hangzhou.aliyuncs.com/staticImage/backgroundSpring.png';
+    } else if (month >= 9 && month <= 12) {
+      // 秋
+      seasonBg = 'https://hezhaoyu.oss-cn-hangzhou.aliyuncs.com/staticImage/backgroundAutumn.png';
+    } else {
+      // 冬
+      seasonBg = 'https://hezhaoyu.oss-cn-hangzhou.aliyuncs.com/staticImage/backgroundWinter.png';
+    }
+
+    this.setData({
+      seasonBg
+    });
+  },
 
   login() {
     wx.navigateTo({
@@ -102,6 +140,11 @@ Page({
     wx.navigateTo({
       url: `/subpackages/personalInformation/personalInformation`,
     })
-
+  },
+  // 关于我们
+  goAboutUs() {
+    wx.navigateTo({
+      url: `/subpackages/aboutUs/aboutUs`,
+    })
   }
 })
