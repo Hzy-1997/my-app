@@ -64,7 +64,7 @@
   display: grid;
   grid-template-columns: auto auto auto auto;
   align-content: center;
-  background: #1B7071;
+  background: #458c8d;
 }
 
 .assets-grid_item {
