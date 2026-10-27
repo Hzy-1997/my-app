@@ -39,7 +39,8 @@
         "transportationPage/transportationPage",
         "licensePlate/licensePlate",
         "realname/realname",
-        "aboutUs/aboutUs"
+        "aboutUs/aboutUs",
+        "customerService/customerService"
       ]
     }
   ],

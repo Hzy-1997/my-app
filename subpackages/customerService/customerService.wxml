@@ -1,0 +1,31 @@
+<view class="page-header">
+  <!-- 在线客服 -->
+  <view class="online-service-main">
+    <view class="online-service-main_icon"></view>
+    <view class="online-service-title-box">
+      <view class="online-service-main_title">在线客服</view>
+      <view class="online-service-main_arrow">></view>
+    </view>
+  </view>
+  <!-- 客服电话 -->
+  <view class="hotline-card">
+    <view class="">
+      <view class="hotline-card_label"></view>
+      <view class="hotline-card_number"></view>
+      <view class="hotline-card__btn"></view>
+    </view>
+
+    <view class="service-time">
+      <view class="service-time-card_title"></view>
+      <view class="service-time-card_value"></view>
+    </view>
+  </view>
+
+  <view class="function-grid">
+    <view class="function-grid_item" wx:for="{{8}}" wx:key="item">
+      <view class="grid-item_icon">123</view>
+      <view class="grid-item_text">456</view>
+    </view>
+  </view>
+
+</view>

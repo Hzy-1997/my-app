@@ -260,6 +260,11 @@ Page({
           url: `/subpackages/parkingSpace/parkingSpace`
         })
         break;
+      case "10":
+        wx.navigateTo({
+          url: `/subpackages/customerService/customerService`
+        })
+        break;
 
       default:
         console.log('访客');

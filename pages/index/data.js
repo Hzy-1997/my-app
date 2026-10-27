@@ -87,10 +87,10 @@ export const categoryMenu = [{
     link: '/charging',
     icon: '../../assets/image/tingche.png'
   },
-  // {
-  //   id: "10",
-  //   name: '',
-  //   link: '/charging',
-  //   icon: '🔋'
-  // }
+  {
+    id: "10",
+    name: '游客服务',
+    link: '/charging',
+    icon: '../../assets/image/tingche.png'
+  }
 ]
