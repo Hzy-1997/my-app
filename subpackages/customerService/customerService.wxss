@@ -1,68 +1,137 @@
 .page-header {
-  border: 1px solid;
+  
   padding: 0rpx 30rpx;
 }
 
+.service-title {
+  margin-top: 155rpx;
+  font-weight: 600;
+  font-size: 50rpx;
+}
+
+.service-text {
+  font-weight: 600;
+  font-size: 40rpx;
+  margin: 10rpx 0;
+}
+
+
 .online-service-main {
-  width: 100vw;
-  height: 350rpx;
-  border: 1px solid;
+  /* width: 100%; */
+  height: 450rpx;
+  
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  /* background: #265438; */
+  background: linear-gradient(160deg, #3D7A52 0%, #2B5E3F 40%, #1F4A30 100%);
+  padding: 0rpx 30rpx;
+}
+
+.online-service-main-box {
+  margin-top: 460rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.online-service-title {
+  width: 100%;
+  font-size: 36rpx;
+  font-weight: 600;
+  margin: 20rpx 0rpx;
+}
+
+.online-service-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+  height: 150rpx;
+  color: #fff;
+  background: #CD6E33;
+  border-radius: 30rpx;
+  padding: 0rpx 30rpx;
+  box-sizing: border-box;
+}
+
+
+
+
+.online-service-tele-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 150rpx;
+}
+
+.online-service-tele-box .online-service-box {
+  margin-top: 30rpx;
+  background: #667D48;
+}
+
+.online-service-tele-box .online-service-main_arrow {
+  color: #667D48;
+
 }
 
 .online-service-main_icon {
-  width: 200rpx;
-  height: 200rpx;
-  border: 1px solid;
-}
-
-.online-service-title-box {
-  display: flex;
-  width: 200rpx;
-  border: 1px solid;
-  align-items: center;
-  justify-content: center;
+  width: 80rpx;
+  height: 80rpx;
+  
 }
 
 .online-service-main_title {
-  /* margin-top: 20rpx; */
+  margin-bottom: 10rpx;
   font-weight: 600;
-  font-size: 35rpx;
+  font-size: 34rpx;
+
+}
+
+.online-service-main_text {
+  font-size: 26rpx;
+  font-weight: 300;
+}
+
+.online-service-main_arrow {
+  width: 140rpx;
+  height: 60rpx;
+  border-radius: 30rpx;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ffff;
+  color: #CD6E33;
+  font-weight: 600;
 }
 
 
+.grid-service-box {}
 
 
-
-.hotline-card {
-  width: 100%;
-  border: 1px solid;
-  height: 200rpx;
-  margin-top: 350rpx;
+.grid-service-box .service-title {
+  font-size: 36rpx;
+  margin: 30rpx 0rpx;
 }
 
 
 .function-grid {
-  width: 100%;
-  max-height: 900rpx;
-  border: 1px solid;
   display: grid;
   grid-template-columns: auto auto;
-  /* grid-column-gap: 20px; */
   gap: 20px;
+  padding-bottom: 50rpx;
 }
 
 .function-grid_item {
-  border: 1px solid;
   height: 200rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: #fff;
+  border-radius: 20rpx;
 }

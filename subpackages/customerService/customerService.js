@@ -1,11 +1,18 @@
 // subpackages/customerService/customerService.js
+
+const app = getApp()
+
+import {
+  topBarHeight
+} from "../../utils/util"
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    navTitle: "游客服务"
   },
 
   /**
