@@ -3,6 +3,10 @@
 const app = getApp()
 
 import {
+  data
+} from "./data"
+
+import {
   topBarHeight
 } from "../../utils/util"
 
@@ -12,7 +16,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    navTitle: "游客服务"
+    navTitle: "游客服务",
+    data: data 
   },
 
   /**

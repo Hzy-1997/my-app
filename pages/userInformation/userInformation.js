@@ -135,6 +135,13 @@ Page({
 
   },
 
+  // 意见反馈
+  goFeedback(data) {
+    wx.navigateTo({
+      url: `/subpackages/feedback/feedback`,
+    })
+  },
+
   // 更改信息
   changeInformation(data) {
     wx.navigateTo({

@@ -1,0 +1,123 @@
+<!-- feedback.wxml -->
+<view class="container">
+  <van-toast id="van-toast" />
+  <!-- 内容区域 -->
+  <view class="content">
+
+    <!-- 1. 选择问题类型 -->
+    <view class="section">
+      <picker bind:change="bindPickerChange" value="{{index}}" range="{{columns}}">
+        <view class="picker">
+          <view class="label">
+            <text class="required">*</text> 选择问题类型
+          </view>
+          <view> {{columns[index]}}</view>
+          <view>></view>
+        </view>
+      </picker>
+    </view>
+
+    <!-- 2. 我要反馈 (文本域) -->
+    <view class="form-item column">
+      <view class="label">
+        <text class="required">*</text> 我要反馈
+      </view>
+      <view class="textarea-box">
+        <textarea class="textarea" placeholder="说说你的问题..." placeholder-class="placeholder-text" maxlength="300" bindinput="onInput" value="{{content}}"></textarea>
+        <view class="word-count">{{content.length}}/200</view>
+      </view>
+    </view>
+
+    <!-- 3. 上传附件 -->
+    <view class="form-item column">
+      <view class="label-row">
+        <view class="label">上传附件</view>
+      </view>
+      <view class="upload-area">
+        <!-- 图片预览列表 -->
+        <block wx:for="{{imageList}}" wx:key="*this">
+          <view class="img-item">
+            <image src="{{item}}" mode="aspectFill"></image>
+            <view class="delete-btn" catchtap="deleteImage" data-index="{{index}}">×</view>
+          </view>
+        </block>
+
+        <!-- 上传按钮 -->
+        <view class="upload-btn" bindtap="chooseImage" wx:if="{{imageList.length < 3}}">
+          <view class="camera-icon">📷</view> <!-- 实际开发建议用 iconfont 或 图片 -->
+        </view>
+
+        <!-- 提示文案 -->
+        <text class="upload-tip" wx:if="{{imageList.length === 0}}">最多可上传3张图片</text>
+      </view>
+    </view>
+
+    <!-- 4. 联系方式 -->
+    <view class="form-item column">
+      <view class="label-row">
+        <text class="label">联系方式</text>
+        <text class="sub-label">希望您能留下联系方式，方便我们快速回访</text>
+      </view>
+
+      <!-- 姓名输入 -->
+      <view class="input-box">
+        <text class="input-label">姓名</text>
+        <input class="input" placeholder="请填写您的姓名" placeholder-class="placeholder-text" bindinput="onNameInput" />
+      </view>
+
+      <!-- 手机号输入 -->
+      <view class="input-box phone-box">
+        <view class="area-code" bind:tap="showPopup">+86 ⌄</view>
+        <input class="input phone-input" type="number" placeholder="18783111203" placeholder-class="placeholder-text" bindinput="onPhoneInput" />
+      </view>
+
+
+      <!-- 姓名输入 -->
+      <view class="input-box">
+        <text class="input-label">邮箱</text>
+        <input class="input" placeholder="请填写您的邮箱" placeholder-class="placeholder-text" bindinput="onEmailInput" />
+      </view>
+    </view>
+
+  </view>
+
+  <!-- 底部固定区域 -->
+  <view class="footer">
+    <button class="submit-btn" bindtap="submitFeedback">我的反馈</button>
+  </view>
+</view>
+
+<van-popup show="{{ show }}" bind:close="onClose" position="bottom" custom-style="border-radius: 16px 16px 0 0; max-height: 80vh;">
+  <view class="country-picker">
+    <!-- 头部 -->
+    <view class="picker-header">
+      <view class="header-title">请选择国家/地区</view>
+      <van-icon name="cross" size="20px" color="#666" bind:click="onClose" />
+    </view>
+
+    <!-- 列表与索引区 -->
+    <view class="picker-body">
+      <!-- 左侧滚动列表 -->
+      <scroll-view class="list-scroll" scroll-y scroll-into-view="{{scrollIntoView}}" scroll-with-animation bindscroll="onListScroll" style="height: 100%;">
+        <block wx:for="{{groupedCountries}}" wx:for-item="group" wx:key="letter">
+          <view class="group-anchor" id="anchor-{{group.letter === '#' ? 'sharp' : group.letter}}">
+            <view class="group-letter">{{group.letter}}</view>
+            <view class="country-item" wx:for="{{group.list}}" wx:for-item="country" wx:key="code" bind:click="onSelectCountry" data-item="{{country}}">
+              <text class="country-name">{{country.name}}</text>
+              <text class="country-code">{{country.code}}</text>
+            </view>
+          </view>
+        </block>
+        <!-- 底部留白，防止最后一个字母被遮挡 -->
+        <view style="height: 40px;"></view>
+      </scroll-view>
+
+      <!-- 右侧字母索引 -->
+      <view class="index-bar" catchtouchmove="true">
+        <view wx:for="{{letters}}" wx:key="*this" class="index-item {{activeLetter === item ? 'active' : ''}} {{letterMap[item] ? '' : 'disabled'}}" bind:tap="onIndexClick" data-letter="{{item}}">
+          {{item}}
+        </view>
+      </view>
+    </view>
+  </view>
+</van-popup>

@@ -39,9 +39,12 @@
   <view class="grid-service-box">
     <view class="service-title">便民服务</view>
     <view class="function-grid">
-      <view class="function-grid_item" wx:for="{{11}}" wx:key="item">
-        <view class="grid-item_icon">123</view>
-        <view class="grid-item_text">456</view>
+      <view class="function-grid_item" wx:for="{{data}}" wx:key="item">
+        <view class="grid-item_icon">
+          <image src="" mode="" />
+        </view>
+        <view class="grid-item_title">{{item.title}}</view>
+        <view class="grid-item_text">{{item.text}}</view>
       </view>
     </view>
   </view>

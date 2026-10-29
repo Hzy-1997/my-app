@@ -40,7 +40,8 @@
         "licensePlate/licensePlate",
         "realname/realname",
         "aboutUs/aboutUs",
-        "customerService/customerService"
+        "customerService/customerService",
+        "feedback/feedback"
       ]
     }
   ],

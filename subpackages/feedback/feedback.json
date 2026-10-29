@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-picker": "@vant/weapp/picker/index",
+    "van-index-bar": "@vant/weapp/index-bar/index",
+    "van-index-anchor": "@vant/weapp/index-anchor/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-toast": "@vant/weapp/toast/index"
+  },
+  "navigationBarTitleText": "反馈"
+}

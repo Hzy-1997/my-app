@@ -1,10 +1,10 @@
 .page-header {
-  
+
   padding: 0rpx 30rpx;
 }
 
 .service-title {
-  margin-top: 155rpx;
+  margin-top: 195rpx;
   font-weight: 600;
   font-size: 50rpx;
 }
@@ -19,7 +19,7 @@
 .online-service-main {
   /* width: 100%; */
   height: 450rpx;
-  
+
   position: fixed;
   top: 0rpx;
   left: 0rpx;
@@ -49,7 +49,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   height: 150rpx;
   color: #fff;
   background: #CD6E33;
@@ -81,7 +81,7 @@
 .online-service-main_icon {
   width: 80rpx;
   height: 80rpx;
-  
+
 }
 
 .online-service-main_title {
@@ -127,11 +127,31 @@
 }
 
 .function-grid_item {
-  height: 200rpx;
+  height: 300rpx;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background: #fff;
   border-radius: 20rpx;
+}
+
+.grid-item_icon {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.grid-item_icon image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.grid-item_title {
+  margin-top: 10rpx;
+  font-weight: 600;
+}
+
+.grid-item_text {
+  font-weight: 300;
+  font-size: 28rpx;
 }

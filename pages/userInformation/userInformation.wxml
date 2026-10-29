@@ -54,12 +54,12 @@
     </view>
   </view>
 
-  <view class="service">
+  <view class="service" bind:tap="goFeedback">
     <view class="service_left">
       <view class="settings_icon">
         <image src="../../assets/image/kehufuwukefu.png" mode="" />
       </view>
-      <view>客户服务</view>
+      <view>意见与反馈</view>
     </view>
     <view>》</view>
   </view>
