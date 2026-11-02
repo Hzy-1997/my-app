@@ -1,0 +1,48 @@
+<view class="chat-page">
+  <view class="chat-container">
+    <scroll-view class="chat-tabs" scroll-y scroll-top="{{scrollTop}}">
+      <view class="chat-message-list">
+
+        <block wx:for="{{messages}}" wx:key="index">
+          <view class="chat-time-tips" wx:if="{{item.timeStr}}">
+            {{item.timeStr}}
+          </view>
+
+          <view id="msg-{{index}}" class="chat-message {{item.role === 'user' ? 'chat-message--user' : 'chat-message--agent'}}">
+            <!-- 客服头像 -->
+            <image wx:if="{{item.role === 'agent'}}" class="chat-message_avatar" src="../../assets/image/jiaotong.png" mode="aspectFill" />
+
+            <!-- ★ 普通文本气泡 -->
+            <view wx:if="{{item.type !== 'list'}}" class="chat-message_bubble">{{item.content}}</view>
+
+            <!-- ★ 多条问答卡片气泡 -->
+            <view wx:else class="chat-message_bubble chat-message_bubble--list">
+              <view class="faq-card" wx:for="{{item.list}}" wx:for-item="faq" wx:for-index="fidx" wx:key="fidx">
+                <view class="faq-card_question" wx:if="{{faq.question}}">
+                  <text class="faq-card_q-tag">问</text>
+                  <text class="faq-card_text">{{faq.question}}</text>
+                </view>
+                <view class="faq-card_answer">
+                  <text class="faq-card_a-tag">答</text>
+                  <text class="faq-card_text">{{faq.answer}}</text>
+                </view>
+              </view>
+            </view>
+
+            <!-- 用户头像 -->
+            <image wx:if="{{item.role === 'user'}}" class="chat-message_avatar" src="../../assets/image/yundong.png" mode="aspectFill" />
+          </view>
+        </block>
+
+      </view>
+    </scroll-view>
+
+    <view class="chat-footer">
+      <view class="field">
+        <van-field value="{{ inputValue }}" type="textarea" placeholder="请输入留言" autosize="{{ { maxHeight: 100, minHeight: 20 } }}" border="{{ false }}" custom-class="chat-footer_input" bind:change="onInput" bind:confirm="sendMessage" confirm-type="send" show-confirm-bar="{{ false }}" adjust-position="{{ true }}" cursor-spacing="10" fixed="{{ true }}" clearable="{{ false }}" />
+      </view>
+      <view class="send {{ inputValue ? 'send-active' : '' }}" bindtap="sendMessage">发送</view>
+    </view>
+
+  </view>
+</view>

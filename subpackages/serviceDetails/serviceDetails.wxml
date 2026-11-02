@@ -1,0 +1,82 @@
+<view class="page-container">
+  <van-toast id="van-toast" />
+  <view class="service-card" wx:for="{{dataList}}" wx:key="*this">
+    <!-- 图片区域 (包含图片和收藏按钮) -->
+    <view class="card-image-box">
+      <image class="card-img" src="{{gImgUrl+item.picture}}" mode=""></image>
+    </view>
+
+    <!-- 底部信息区域 -->
+    <view class="card-content">
+      <!-- 标题：游客服务处 -->
+      <view class="card-title">{{item.title}}</view>
+      <!-- 地址：北京环球城市大道 -->
+      <view class="card-address address">
+        <view class="icon-title">
+          <view class="card-address-icon">
+            <image class="image" src="../../assets/image/location.png" mode="" />
+          </view>
+          <view class="card-address-title">{{item.address}}</view>
+        </view>
+        <view class="card-address-go">
+          <image class="image" src="../../assets/image/rightSide.png" mode="" />
+        </view>
+      </view>
+
+      <!-- 新增的分割线 -->
+      <view class="divider"></view>
+
+      <view class="card-address">
+        <view class="icon-title">
+          <view class="card-address-title" style="color: #8a8a8a;">服务说明</view>
+        </view>
+        <view class="card-address-go" bind:tap="showPopup">
+          <image class="image" src="../../assets/image/below.png" mode="" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <van-popup show="{{ show }}" position="bottom" round closeable custom-style="height: 80%;" bind:close="onClose">
+    <scroll-view scroll-y="true" style="max-height: 1050rpx; margin-top: 80rpx; ">
+      <view class="info-card">
+        <!-- 收费标准区块 -->
+        <view class="section-block">
+          <!-- 区块标题：左侧带蓝色竖线 -->
+          <view class="section-title">
+            <view class="title-line"></view> <!-- 蓝色的竖线 -->
+            <view>收费标准</view>
+          </view>
+          <view class="section-content">
+            <view class="text-desc">...</view>
+          </view>
+        </view>
+
+        <!-- 注意事项区块 -->
+        <view class="section-block">
+          <view class="section-title">
+            <view class="title-line"></view>
+            <view>注意事项</view>
+          </view>
+          <view class="section-content">
+            <view class="text-desc">...</view>
+          </view>
+        </view>
+
+        <!-- 注意事项区块 -->
+        <view class="section-block">
+          <view class="section-title">
+            <view class="title-line"></view>
+            <view>设施介绍</view>
+          </view>
+          <view class="section-content">
+            <view class="text-desc">...</view>
+          </view>
+        </view>
+
+      </view>
+    </scroll-view>
+
+  </van-popup>
+</view>

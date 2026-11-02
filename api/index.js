@@ -7,6 +7,7 @@ import * as ComboApi from "./combination"
 import * as parkingApi from "./parking"
 import * as campsiteApi from "./campsite"
 import * as scenicBusApi from "./sightseeingBus"
+import * as serviceSuggestionsApi from "./serviceSuggestions"
 
 
 export {
@@ -18,4 +19,5 @@ export {
   parkingApi,
   campsiteApi,
   scenicBusApi,
+  serviceSuggestionsApi,
 };

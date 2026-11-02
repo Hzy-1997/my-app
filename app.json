@@ -41,7 +41,9 @@
         "realname/realname",
         "aboutUs/aboutUs",
         "customerService/customerService",
-        "feedback/feedback"
+        "feedback/feedback",
+        "serviceDetails/serviceDetails",
+        "intelligentService/intelligentService"
       ]
     }
   ],

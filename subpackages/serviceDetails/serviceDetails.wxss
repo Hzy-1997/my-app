@@ -1,0 +1,116 @@
+/* subpackages/serviceDetails/serviceDetails.wxss */
+
+
+.page-container {
+  padding: 20rpx;
+  background: #757575;
+}
+
+.service-card {
+  border-radius: 30rpx;
+  background: #ffff;
+  margin-bottom: 20rpx;
+}
+
+.card-image-box {
+  height: 300rpx;
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+}
+
+.card-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 30rpx 30rpx 0rpx 0rpx;
+}
+
+
+
+.card-content {
+  padding: 20rpx 0rpx;
+  border-radius: 0rpx 0rpx 30rpx 30rpx;
+}
+
+.card-title {
+  font-size: 34rpx;
+  color: #333333;
+  font-weight: bold;
+  letter-spacing: 6rpx;
+  /* 给文字加上同色的描边，变粗 */
+  -webkit-text-stroke: 0.5rpx #333333;
+  padding: 0rpx 20rpx;
+
+}
+
+.card-address {
+  font-size: 28rpx;
+  color: #757575;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-weight: bold;
+  padding: 0rpx 20rpx;
+}
+
+.address {
+  margin: 20rpx 0rpx;
+}
+
+
+
+.icon-title {
+  display: flex;
+}
+
+.card-address-icon {
+  margin-right: 15rpx;
+  width: 38rpx;
+  height: 38rpx;
+}
+
+.card-address-icon image {
+  width: 100%;
+  height: 100%;
+}
+
+.card-address-go {
+  width: 38rpx;
+  height: 38rpx;
+  margin-right: 20rpx;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+}
+
+.divider {
+  height: 1px;
+  background-color: #757575;
+  margin: 0rpx 20rpx 10rpx;
+}
+
+
+.info-card {
+  height: 1500rpx;
+}
+
+
+.section-block {
+  margin-top: 50rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.title-line {
+  margin: 0rpx 20rpx 0rpx 20rpx;
+  height: 20rpx;
+  width: 20rpx;
+  border-radius: 50%;
+  background: #0368D9;
+}

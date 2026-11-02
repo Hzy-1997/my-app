@@ -20,7 +20,7 @@
         <view class="online-service-main_title">智能客服</view>
         <view class="online-service-main_text">在线客服为您解答疑问</view>
       </view>
-      <view class="online-service-main_arrow">立即咨询</view>
+      <view class="online-service-main_arrow" bind:tap="consultNow">立即咨询</view>
     </view>
 
 
@@ -30,7 +30,7 @@
           <view class="online-service-main_title">服务热线</view>
           <view class="online-service-main_text">0827-8861279</view>
         </view>
-        <view class="online-service-main_arrow">一键拨打</view>
+        <view class="online-service-main_arrow" bind:tap="phoneCall">一键拨打</view>
       </view>
     </view>
   </view>
@@ -39,7 +39,7 @@
   <view class="grid-service-box">
     <view class="service-title">便民服务</view>
     <view class="function-grid">
-      <view class="function-grid_item" wx:for="{{data}}" wx:key="item">
+      <view class="function-grid_item" wx:for="{{data}}" wx:key="item" bind:tap="convenienceServices" data-id="{{item.id}}">
         <view class="grid-item_icon">
           <image src="" mode="" />
         </view>

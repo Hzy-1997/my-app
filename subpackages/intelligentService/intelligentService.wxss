@@ -1,0 +1,243 @@
+.chat-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f5f5f5;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+}
+
+.chat-header {
+  height: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 40rpx 0rpx;
+  background: #fff;
+  flex-shrink: 0;
+}
+
+.chat-header_title {
+  font-size: 35rpx;
+  font-weight: 600;
+}
+
+.chat-header_avatar {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+/* 消息列表 */
+.chat-tabs {
+  flex: 1;
+  overflow: hidden;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+
+/* 时间提示样式 */
+.chat-time-tips {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999;
+  margin: 20rpx 0 10rpx;
+}
+
+/* 顺带优化一下消息列表的 padding，防止第一条时间被顶部遮挡 */
+.chat-message-list {
+  padding-top: 10rpx;
+  padding-bottom: 160rpx;
+}
+
+/* 消息之间的间距稍微调整一下，因为上面多了时间 */
+.chat-message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+
+.chat-message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+
+.chat-message--user {
+  justify-content: flex-end;
+}
+
+.chat-message--agent {
+  justify-content: flex-start;
+}
+
+.chat-message_avatar {
+  width: 70rpx;
+  height: 70rpx;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.chat-message_bubble {
+  max-width: 70%;
+  padding: 20rpx 25rpx;
+  border-radius: 16rpx;
+  font-size: 28rpx;
+  line-height: 1.5;
+  word-break: break-all;
+  margin: 0 16rpx;
+}
+
+.chat-message--user .chat-message_bubble {
+  background: #4a90e2;
+  color: #fff;
+  border-top-right-radius: 4rpx;
+}
+
+.chat-message--agent .chat-message_bubble {
+  background: #fff;
+  color: #333;
+  border-top-left-radius: 4rpx;
+}
+
+
+/* 底部固定栏 */
+.chat-footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 20rpx 24rpx;
+  padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
+  background: #f7f7f7;
+  border-top: 1rpx solid #e5e5e5;
+  z-index: 99;
+  box-sizing: border-box;
+}
+
+/* 输入框外层容器 */
+.field {
+  flex: 1;
+  min-width: 0;
+  background: #ffffff;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  box-sizing: border-box;
+  margin-bottom: 20rpx;
+}
+
+.chat-footer_input {
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+.chat-footer_input .van-field__control {
+  padding: 0 !important;
+  line-height: 44rpx !important;
+  font-size: 30rpx !important;
+  min-height: 44rpx !important;
+  max-height: 120px !important;
+  box-sizing: border-box;
+}
+
+.send {
+  flex-shrink: 0;
+  margin-left: 20rpx;
+  margin-bottom: 14rpx;
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 28rpx;
+  font-size: 28rpx;
+  color: #fff;
+  background: #e5e5e5;
+  border-radius: 8rpx;
+  transition: background .2s;
+  text-align: center;
+}
+
+.send-active {
+  background: #07c160;
+}
+
+/* ===== 多条问答卡片 ===== */
+.chat-message_bubble--list {
+  background: transparent;
+  padding: 0;
+  max-width: 82%;
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.faq-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 20rpx 24rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06);
+  font-size: 28rpx;
+  line-height: 1.6;
+  color: #333;
+  animation: faqFadeIn 0.3s ease;
+}
+
+@keyframes faqFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6rpx);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.faq-card_question,
+.faq-card_answer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.faq-card_question {
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10rpx;
+}
+
+.faq-card_answer {
+  color: #555;
+}
+
+.faq-card_text {
+  flex: 1;
+  word-break: break-all;
+}
+
+.faq-card_q-tag,
+.faq-card_a-tag {
+  flex-shrink: 0;
+  width: 36rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  margin-right: 12rpx;
+  margin-top: 4rpx;
+}
+
+.faq-card_q-tag {
+  background: #e8f3ff;
+  color: #1677ff;
+}
+
+.faq-card_a-tag {
+  background: #f0f9eb;
+  color: #52c41a;
+}

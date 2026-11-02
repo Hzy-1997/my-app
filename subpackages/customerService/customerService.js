@@ -2,6 +2,8 @@
 
 const app = getApp()
 
+
+
 import {
   data
 } from "./data"
@@ -17,7 +19,7 @@ Page({
    */
   data: {
     navTitle: "游客服务",
-    data: data 
+    data: data
   },
 
   /**
@@ -74,5 +76,31 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  phoneCall() {
+    wx.makePhoneCall({
+      phoneNumber: '13800138000'
+    })
+  },
+
+  convenienceServices(i) {
+    console.log(i)
+    let {
+      id
+    } = i.currentTarget.dataset
+    wx.navigateTo({
+      url: `/subpackages/serviceDetails/serviceDetails?type=${id}`,
+    })
+  },
+
+  // AI客服
+  consultNow() {
+    wx.navigateTo({
+      url: `/subpackages/intelligentService/intelligentService`,
+    })
   }
+
+
+
 })

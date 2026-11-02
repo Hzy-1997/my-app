@@ -3,7 +3,10 @@
   <view class="top-bar" style="background-color: {{headerBgColor}}; height: {{totalTopBarHeight}}px; padding-top: {{statusBarHeight}}px;">
     <!-- 左侧返回按钮 - 绝对定位 -->
     <view class="back-btn" wx:if="{{backShow}}" bindtap="goBack">
-      <text class="back-icon" style="color:{{textColor}};">〈</text>
+      <view class="back-icon">
+        <image wx:if="{{textColor === 'rgba(255, 255, 255, 1)'}}" src="../../assets/image/leftSide-white.png" mode="" />
+        <image wx:else src="../../assets/image/leftSide-black.png" mode="" />
+      </view>
     </view>
     <!-- 中间标题 - 居中显示 -->
     <view class="title" wx:if="{{textShow}}">{{title}}</view>
