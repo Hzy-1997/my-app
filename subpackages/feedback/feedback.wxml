@@ -9,9 +9,11 @@
       <picker bind:change="bindPickerChange" value="{{index}}" range="{{columns}}">
         <view class="picker">
           <view class="label">
-            <text class="required">*</text> 选择问题类型
+            <text class="required">*</text> 问题类型
           </view>
-          <view> {{columns[index]}}</view>
+          <view style="color: {{ index >= 0 ? '' : '#ccc' }};">
+            {{ index >= 0 ? columns[index] : '请选择问题类型' }}
+          </view>
           <view>></view>
         </view>
       </picker>
@@ -37,7 +39,7 @@
         <!-- 图片预览列表 -->
         <block wx:for="{{imageList}}" wx:key="*this">
           <view class="img-item">
-            <image src="{{item}}" mode="aspectFill"></image>
+            <image src="{{gImgUrl + item}}" mode="aspectFill"></image>
             <view class="delete-btn" catchtap="deleteImage" data-index="{{index}}">×</view>
           </view>
         </block>
@@ -62,20 +64,20 @@
       <!-- 姓名输入 -->
       <view class="input-box">
         <text class="input-label">姓名</text>
-        <input class="input" placeholder="请填写您的姓名" placeholder-class="placeholder-text" bindinput="onNameInput" />
+        <input class="input" placeholder="请填写您的姓名" placeholder-class="placeholder-text" bindinput="onNameInput" value="{{name}}" />
       </view>
 
       <!-- 手机号输入 -->
       <view class="input-box phone-box">
         <view class="area-code" bind:tap="showPopup">+86 ⌄</view>
-        <input class="input phone-input" type="number" placeholder="18783111203" placeholder-class="placeholder-text" bindinput="onPhoneInput" />
+        <input class="input phone-input" type="number" placeholder="请填写您的手机号" placeholder-class="placeholder-text" bindinput="onPhoneInput" value="{{phone}}" />
       </view>
 
 
-      <!-- 姓名输入 -->
+      <!-- 邮箱输入 -->
       <view class="input-box">
         <text class="input-label">邮箱</text>
-        <input class="input" placeholder="请填写您的邮箱" placeholder-class="placeholder-text" bindinput="onEmailInput" />
+        <input class="input" placeholder="请填写您的邮箱" placeholder-class="placeholder-text" bindinput="onEmailInput" value="{{userEmail}}" />
       </view>
     </view>
 
@@ -102,7 +104,7 @@
         <block wx:for="{{groupedCountries}}" wx:for-item="group" wx:key="letter">
           <view class="group-anchor" id="anchor-{{group.letter === '#' ? 'sharp' : group.letter}}">
             <view class="group-letter">{{group.letter}}</view>
-            <view class="country-item" wx:for="{{group.list}}" wx:for-item="country" wx:key="code" bind:click="onSelectCountry" data-item="{{country}}">
+            <view class="country-item" wx:for="{{group.list}}" wx:for-item="country" wx:key="code" bind:tap="onSelectCountry" data-item="{{country}}">
               <text class="country-name">{{country.name}}</text>
               <text class="country-code">{{country.code}}</text>
             </view>

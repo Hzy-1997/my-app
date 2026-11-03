@@ -41,30 +41,18 @@ export const updateUserInfo = (data) => {
  * @param {String} filePath 本地临时文件路径
  * @returns {Promise} res.data.imgUrl 为 OSS 完整地址
  */
-export const uploadImg = (filePath) => {
+export const uploadImg = (filePath, category = 'common') => {
   return uploadFile({
-    url: "/public/uploadWxImg",
+    url: `/public/uploadWxImg?category=${category}`,
     filePath,
-    name: "file"
-  })
-}
-
-/**
- * 
- * 
- */
-// export const recognizeIdCard = (file) => {
-//   return uploadFile({
-//     url: "/wx/login/recognizeIdCard",
-//     method: "post",
-//     file: "file"
-//   })
-// }
+    name: 'file'
+  });
+};
 
 export const recognizeIdCard = (filePath) => {
   return uploadFile({
     url: "/wx/login/recognizeIdCard",
     filePath,
-    name: "file", 
+    name: "file",
   })
 }

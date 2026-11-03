@@ -276,7 +276,7 @@ Page({
       mask: true
     });
     try {
-      const res = await loginApi.uploadImg(avatarUrl);
+      const res = await loginApi.uploadImg(avatarUrl, "activity");
       const realUrl = res.data.imgUrl; // OSS 完整地址
       console.log('真实地址:', realUrl);
       const pathUrl = realUrl.split('.com')[1]

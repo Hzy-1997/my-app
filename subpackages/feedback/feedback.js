@@ -1,8 +1,19 @@
 // subpackages/feedback/feedback.js
 
 import {
+  cryptoUtil
+} from "../../utils/util"
+
+const app = getApp()
+
+import {
   rawCountryData
 } from "./data"
+
+import {
+  loginApi,
+  serviceSuggestionsApi,
+} from "../../api/index"
 
 import Toast from '@vant/weapp/toast/toast';
 
@@ -13,13 +24,16 @@ Page({
    */
   data: {
     rawCountryData: rawCountryData,
-    problemType: '',
+    gImgUrl: app.globalData.gImgUrl,
+    type: '',
     content: '',
     imageList: [],
     name: '',
     phone: '',
+    openld: "",
+    userEmail: "",
     columns: ['功能异常', '优化建议', '体验反馈', '景区问题', '其他问题'],
-    index: "",
+    index: -1,
     groupedCountries: [],
     letterList: [],
     show: false,
@@ -57,7 +71,6 @@ Page({
       letterMap,
       activeLetter: groupedCountries.length > 0 ? groupedCountries[0].letter : ''
     });
-
   },
 
   /**
@@ -71,6 +84,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+
+    loginApi.getUserInfo().then((res) => {
+      res.data = JSON.parse(cryptoUtil.decrypt(res.data))
+      this.setData({
+        openld: res.data.openld
+      })
+    })
 
   },
 
@@ -160,7 +180,8 @@ Page({
     } = e.detail
 
     this.setData({
-      index: value
+      index: value,
+      type: value
     })
   },
 
@@ -202,44 +223,25 @@ Page({
     });
   },
 
-  // 选择图片
-  chooseImage() {
-    const that = this;
-    wx.chooseMedia({
-      count: 3 - that.data.imageList.length,
-      mediaType: ['image'],
-      sourceType: ['album', 'camera'],
-      success(res) {
-        const tempFiles = res.tempFiles;
-        const newImages = tempFiles.map(item => item.tempFilePath);
-        that.setData({
-          imageList: that.data.imageList.concat(newImages)
-        });
-      }
-    });
-  },
-
-  // 删除图片
-  deleteImage(e) {
-    const index = e.currentTarget.dataset.index;
-    const list = this.data.imageList;
-    list.splice(index, 1);
+  onEmailInput(e) {
     this.setData({
-      imageList: list
+      userEmail: e.detail.value
     });
   },
 
   // 提交反馈
-  submitFeedback() {
+  async submitFeedback() {
     const {
-      problemType,
+      type,
       content,
       name,
-      phone
+      phone,
+      openld,
+      userEmail,
     } = this.data;
 
     // 简单校验
-    if (!problemType) {
+    if (!type) {
       return wx.showToast({
         title: '请选择问题类型',
         icon: 'none'
@@ -252,44 +254,60 @@ Page({
       });
     }
 
-    // 这里通常需要先调用 wx.uploadFile 上传图片，然后再调用接口提交表单
-    console.log('提交的数据：', {
-      type: problemType,
-      content,
-      name,
-      phone,
-      images: this.data.imageList
-    });
-
     wx.showLoading({
       title: '提交中...'
     });
 
-    // 模拟网络请求
-    setTimeout(() => {
-      wx.hideLoading();
+    let data = {
+      openld: openld,
+      type: Number(type) + 1,
+      content,
+      userName: name,
+      userPhone: cryptoUtil.encrypt(phone),
+      action: "create",
+      images: JSON.stringify(this.data.imageList)
+    }
+
+    let res = await serviceSuggestionsApi.feedbackOperation(data)
+
+    console.log(res)
+
+    if (res.code == 200) {
       wx.showToast({
         title: '提交成功',
         icon: 'success',
         duration: 2000,
-        success: () => {
-          // 提交成功后返回
-          setTimeout(() => {
-            wx.navigateBack();
-          }, 2000);
-        }
       });
-    }, 1000);
+
+      this.setData({
+        type: "",
+        content: "",
+        name: "",
+        phone: "",
+        userEmail: "",
+        imageList: [], // 改成 imageList，和页面保持一致
+        index: -1,
+      })
+
+      setTimeout(() => {
+        wx.navigateBack();
+      }, 2000);
+    } else {
+      wx.showToast({
+        title: '提交失败,系统出错',
+        icon: 'none'
+      });
+    }
   },
   /* =========== 弹窗相关 =========== */
   showPopup() {
     this.setData({
       show: true
     });
-    // 使用 setTimeout 等待弹窗动画完成后再计算高度
+
     setTimeout(() => {
       this.calculatePositions();
-    }, 400); // 稍微调大一点时间，确保 Vant 弹窗完全渲染
+    }, 400);
   },
 
   onClose() {
@@ -422,14 +440,20 @@ Page({
     // 这里可以处理你选中国家的业务逻辑，比如把区号填入输入框
   },
   chooseImage() {
+
     const that = this;
     wx.chooseMedia({
       count: 3 - that.data.imageList.length,
       mediaType: ['image'],
       sourceType: ['album', 'camera'],
-      success(res) {
+      async success(res) {
         const tempFiles = res.tempFiles;
-        const newImages = tempFiles.map(item => item.tempFilePath);
+        wx.showLoading({
+          title: '上传中...'
+        });
+        const data = await loginApi.uploadImg(tempFiles[0].tempFilePath, 'feedback');
+        const newImages = "/" + data.data.imgRoute
+        wx.hideLoading();
         that.setData({
           imageList: that.data.imageList.concat(newImages)
         });
