@@ -43,7 +43,9 @@
         "customerService/customerService",
         "feedback/feedback",
         "serviceDetails/serviceDetails",
-        "intelligentService/intelligentService"
+        "intelligentService/intelligentService",
+        "order/order",
+        "orderDetail/orderDetail"
       ]
     }
   ],

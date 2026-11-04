@@ -45,7 +45,7 @@
       </view>
     </view>
     <view class="order-grid">
-      <view class="order-grid_item" wx:for="{{orderData}}" wx:key="*this">
+      <view class="order-grid_item" wx:for="{{orderData}}" wx:key="*this" bind:tap="goOrderInfo">
         <view class="order-grid_item_icon">
           <image src="{{item.icon}}" mode="" />
         </view>

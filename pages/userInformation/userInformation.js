@@ -153,5 +153,11 @@ Page({
     wx.navigateTo({
       url: `/subpackages/aboutUs/aboutUs`,
     })
+  },
+
+  goOrderInfo() {
+    wx.navigateTo({
+      url: "/subpackages/order/order"
+    })
   }
 })

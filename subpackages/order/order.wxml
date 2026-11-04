@@ -1,0 +1,46 @@
+<view class="page">
+  <!-- Tab筛选 -->
+  <scroll-view scroll-x class="tabs-wrap">
+    <view
+      wx:for="{{tabList}}"
+      wx:key="index"
+      class="tab-item {{currentTab === item.value ? 'active' : ''}}"
+      bindtap="switchTab"
+      data-value="{{item.value}}"
+    >
+      {{item.label}}
+      <view wx:if="{{currentTab === item.value}}" class="tab-line"></view>
+    </view>
+  </scroll-view>
+
+  <!-- 订单列表 -->
+  <view class="order-list">
+    <view wx:for="{{orderList}}" wx:key="id" class="order-card">
+      <view class="card-top">
+        <text class="order-sn">预订订单号：{{item.orderNo}}</text>
+        <view class="status-tag status-{{item.status}}">
+          <view class="status-dot"></view>
+          {{item.statusText}}
+        </view>
+      </view>
+      <view class="card-body">
+        <image class="goods-img" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="goods-info">
+          <text class="goods-name">{{item.goodsName}}</text>
+          <text class="goods-time">{{item.createTime}}</text>
+        </view>
+        <text class="goods-price">¥{{item.amount}}</text>
+      </view>
+      <view class="card-bottom">
+        <view wx:if="{{item.status === 1}}" class="btn-row">
+          <button class="btn-outline" bindtap="cancelOrder" data-id="{{item.id}}">取消订单</button>
+          <button class="btn-solid" bindtap="goPay" data-id="{{item.id}}">去支付</button>
+        </view>
+        <view wx:else class="btn-row right">
+          <button class="btn-solid" bindtap="goDetail" data-id="{{item.id}}">查看详情</button>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{orderList.length === 0}}" class="empty">暂无订单</view>
+  </view>
+</view>
