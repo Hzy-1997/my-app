@@ -20,3 +20,12 @@ export const ticketInfor = (data) => {
     data
   })
 }
+
+// 获取票务订单
+export const ticketOrderDetail = (data) => {
+  return request({
+    url: "/wx/ticket/orderDetail",
+    method: "get",
+    data
+  })
+}

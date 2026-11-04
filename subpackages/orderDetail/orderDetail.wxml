@@ -1,4 +1,4 @@
-<view class="page">
+<view>
   <view class="box">
     <scroll-view scroll-y class="scroll-wrap">
       <!-- 状态卡片 -->

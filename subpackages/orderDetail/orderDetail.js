@@ -1,3 +1,9 @@
+import {
+  ticketingApi
+} from "../../api/index"
+
+
+
 Page({
   data: {
     statusMap: {
@@ -13,11 +19,13 @@ Page({
     const id = Number(options.id)
     this.getDetail(id)
   },
+
   getDetail(id) {
-    wx.showLoading({ title: '加载中' })
+    wx.showLoading({
+      title: '加载中'
+    })
     setTimeout(() => {
-      const mock = [
-        {
+      const mock = [{
           id: 1,
           orderNo: "OD202611040001",
           goodsName: "光雾山单人年卡",
@@ -96,37 +104,52 @@ Page({
       const item = mock.find(i => i.id === id)
       if (item) {
         item.statusText = this.data.statusMap[item.status]
-        this.setData({ detail: item })
+        this.setData({
+          detail: item
+        })
       }
       wx.hideLoading()
     }, 300)
   },
+
   goPay() {
-    wx.showToast({ title: "跳转支付", icon: "none" })
+    wx.showToast({
+      title: "跳转支付",
+      icon: "none"
+    })
   },
+
   cancelOrder() {
     wx.showModal({
       title: "提示",
       content: "确定取消订单？",
       success: res => {
         if (res.confirm) {
-          wx.showToast({ title: "已取消", icon: "success" })
+          wx.showToast({
+            title: "已取消",
+            icon: "success"
+          })
           this.getDetail(this.data.detail.id)
         }
       }
     })
   },
+
   applyRefund() {
     wx.showModal({
       title: "申请退款",
       content: "确认提交退款申请？",
       success: res => {
         if (res.confirm) {
-          wx.showToast({ title: "退款申请已提交", icon: "success" })
+          wx.showToast({
+            title: "退款申请已提交",
+            icon: "success"
+          })
         }
       }
     })
   },
+
   backList() {
     wx.navigateBack()
   }

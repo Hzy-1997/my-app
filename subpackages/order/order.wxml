@@ -1,24 +1,21 @@
 <view class="page">
   <!-- Tab筛选 -->
-  <scroll-view scroll-x class="tabs-wrap">
-    <view
-      wx:for="{{tabList}}"
-      wx:key="index"
-      class="tab-item {{currentTab === item.value ? 'active' : ''}}"
-      bindtap="switchTab"
-      data-value="{{item.value}}"
-    >
+
+  <view class="tabs-wrapper">
+    <view wx:for="{{tabList}}" wx:key="index" class="tab-item {{currentTab === item.value ? 'active' : ''}}" bindtap="switchTab" data-value="{{item.value}}">
       {{item.label}}
       <view wx:if="{{currentTab === item.value}}" class="tab-line"></view>
     </view>
-  </scroll-view>
+
+  </view>
+
 
   <!-- 订单列表 -->
   <view class="order-list">
     <view wx:for="{{orderList}}" wx:key="id" class="order-card">
       <view class="card-top">
-        <text class="order-sn">预订订单号：{{item.orderNo}}</text>
-        <view class="status-tag status-{{item.status}}">
+        <text class="order-sn">预订订单号：{{item.orderNumber}}</text>
+        <view class="status-tag status-{{item.payStatus}}">
           <view class="status-dot"></view>
           {{item.statusText}}
         </view>

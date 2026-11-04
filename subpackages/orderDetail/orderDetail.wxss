@@ -4,14 +4,14 @@ page {
 
 
 .box {
-  width: 100vw;
   height: 100vh;
-  border: 1px solid;
+  background: #08b8b0;
+  padding: 20rpx;
+
 }
 
 .scroll-wrap {
   flex: 1;
-  padding: 30rpx;
 }
 
 .spacer {
@@ -166,7 +166,7 @@ page {
 }
 
 .bottom-bar {
-  width: 100%;
+  width: 100vw;
   background-color: #fff;
   padding: 24rpx 30rpx;
   border-top: 1rpx solid #eee;
@@ -179,12 +179,13 @@ page {
   display: flex;
   gap: 20rpx;
   justify-content: flex-end;
+  margin-right: 80rpx;
 }
 
 button {
   margin: 0;
   font-size: 28rpx;
-  border-radius: 12rpx;
+  border-radius: 15rpx;
   padding: 0 30rpx;
   height: 64rpx;
   line-height: 64rpx;

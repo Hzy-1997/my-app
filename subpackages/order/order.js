@@ -1,8 +1,13 @@
+import {
+  ticketingApi
+} from "../../api/index"
+
+
+
 Page({
   data: {
     currentTab: 0,
-    tabList: [
-      {
+    tabList: [{
         label: '全部',
         value: 0
       },
@@ -80,32 +85,98 @@ Page({
         createTime: "2026-11-04 09:10"
       }
     ],
-    orderList: [] 
+    orderList: []
   },
 
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad() {
     this.filterOrder()
+  },
+
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   },
 
   switchTab(e) {
     const val = e.currentTarget.dataset.value
     this.setData({
-      currentTab: val
+      currentTab: Number(val)
     })
     this.filterOrder()
   },
 
-  filterOrder() {
-    let list = [...this.data.mockAllData]
-    if (this.data.currentTab !== 0) {
-      list = list.filter(i => i.status === this.data.currentTab)
+  async filterOrder() {
+
+    wx.showLoading({
+      title: '加载中',
+    })
+
+    let res = await ticketingApi.ticketOrderDetail({
+      payStatus: this.data.currentTab
+    })
+
+    if (res.code == 200) {
+      wx.hideLoading()
+
+      let list = [...this.data.mockAllData, ...res.data]
+      if (this.data.currentTab !== 0) {
+        list = list.filter(i => i.status === this.data.currentTab)
+      }
+      list.forEach(item => {
+        item.statusText = this.data.statusMap[item.status]
+      })
+      this.setData({
+        orderList: list
+      })
     }
-    list.forEach(item => {
-      item.statusText = this.data.statusMap[item.status]
-    })
-    this.setData({
-      orderList: list
-    })
   },
 
   goPay(e) {
