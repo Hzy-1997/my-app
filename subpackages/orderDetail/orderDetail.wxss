@@ -4,7 +4,7 @@ page {
 
 
 .box {
-  height: 100vh;
+  min-height: 100vh;
   background: #08b8b0;
   padding: 20rpx;
 
@@ -124,6 +124,33 @@ page {
   font-weight: 500;
   color: #111;
 }
+
+.qrcode {
+  height: 300rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.qrcode-title {
+  font-weight: 600;
+}
+
+.qrcode-img {
+  margin-top: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+image {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+
 
 .info-card {
   background: #ffffff;

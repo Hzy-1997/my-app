@@ -4,54 +4,66 @@
       <!-- 状态卡片 -->
       <view class="order-card">
         <view class="card-top">
-          <text class="order-sn">预订订单号：{{detail.orderNo}}</text>
-          <view class="status-tag status-{{detail.status}}">
+          <text class="order-sn"> </text>
+          <view class="status-tag status-{{detail.payStatus}}">
             <view class="status-dot"></view>
             {{detail.statusText}}
           </view>
         </view>
         <view class="card-body">
-          <image class="goods-img" src="{{detail.cover}}" mode="aspectFill"></image>
+          <image class="goods-img" src="{{gImgUrl +detail.ticket.homeImg}}" mode="aspectFill"></image>
           <view class="goods-info">
-            <text class="goods-name">{{detail.goodsName}}</text>
-            <text class="goods-time">下单时间：{{detail.createTime}}</text>
+            <text class="goods-name">{{detail.title}}</text>
+            <text class="goods-time">下单时间：{{detail.createdAt}}</text>
           </view>
-          <text class="goods-price">¥{{detail.amount}}</text>
+          <text class="goods-price">¥{{detail.orderAmount}}</text>
         </view>
+      </view>
+
+      <view class="qrcode" wx:if="{{detail.payStatus === 2 || detail.payStatus ===3}}">
+        <view class="qrcode-title">凭「券码或券号」核销订单</view>
+        <view class="qrcode-img">
+          <image src="{{imageSrc}}"></image>
+        </view>
+
       </view>
 
       <!-- 订单信息 -->
       <view class="info-card">
         <view class="info-title">订单信息</view>
         <view class="info-row">
-          <text class="label">支付时间</text>
-          <text class="value">{{detail.payTime || '-'}}</text>
+          <text class="label">创建时间</text>
+          <text class="value">{{detail.createdAt || '-'}}</text>
         </view>
         <view class="info-row">
           <text class="label">支付方式</text>
-          <text class="value">{{detail.payWay || '-'}}</text>
+          <text class="value">{{detail.payWay || '微信支付'}}</text>
         </view>
         <view class="info-row">
-          <text class="label">实付金额</text>
-          <text class="value price">¥{{detail.amount}}</text>
+          <text class="label">预订单号</text>
+          <text class="value">{{detail.orderNumber}}</text>
+        </view>
+        <view class="info-row">
+          <text class="label">付款金额</text>
+          <text class="value price">¥{{detail.orderAmount}}</text>
         </view>
       </view>
 
       <!-- 核销信息（已支付/已完成才显示） -->
-      <view class="info-card" wx:if="{{detail.status === 2 || detail.status ===3}}">
+      <view class="info-card" wx:if="{{detail.payStatus === 2 || detail.payStatus ===3}}">
         <view class="info-title">核销信息</view>
         <view class="info-row">
           <text class="label">核销码</text>
-          <text class="value">{{detail.verifyCode}}</text>
+          <text class="value">{{detail.orderNumber}}</text>
         </view>
         <view class="info-row">
           <text class="label">有效期</text>
-          <text class="value">{{detail.validDate}}</text>
+          <text class="value">{{detail.validDate || '——'}}</text>
         </view>
       </view>
 
       <!-- 退款信息 -->
-      <view class="info-card" wx:if="{{detail.status === 4}}">
+      <view class="info-card" wx:if="{{detail.payStatus === 4}}">
         <view class="info-title">退款信息</view>
         <view class="info-row">
           <text class="label">退款时间</text>
@@ -59,12 +71,12 @@
         </view>
         <view class="info-row">
           <text class="label">退款原因</text>
-          <text class="value">{{detail.refundReason}}</text>
+          <text class="value">{{detail.statusText}}</text>
         </view>
       </view>
 
       <!-- ✅ 新增：使用说明（适合景区年卡） -->
-      <view class="info-card tips-card" wx:if="{{detail.status === 2 || detail.status ===3}}">
+      <view class="info-card tips-card" wx:if="{{detail.payStatus === 2 || detail.payStatus ===3}}">
         <view class="info-title">使用说明</view>
         <view class="tips-item">• 入园请出示核销码，一人一卡，仅限本人使用</view>
         <view class="tips-item">• 年卡有效期内不限次数入园，不含景区二次消费项目</view>

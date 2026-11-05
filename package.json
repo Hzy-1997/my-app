@@ -4,6 +4,8 @@
     "@vant/weapp": "^1.11.7",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.23",
-    "mp-html": "^2.5.2"
+    "mp-html": "^2.5.2",
+    "qrcode": "^1.5.4",
+    "wx-base64-qrcode": "^1.0.4"
   }
 }

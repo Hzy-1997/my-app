@@ -1,3 +1,5 @@
+const app = getApp()
+
 import {
   ticketingApi
 } from "../../api/index"
@@ -6,6 +8,7 @@ import {
 
 Page({
   data: {
+    gImgUrl: app.globalData.gImgUrl,
     currentTab: 0,
     tabList: [{
         label: '全部',
@@ -39,53 +42,10 @@ Page({
       4: '已退款',
       5: '已取消'
     },
-    mockAllData: [{
-        id: 1,
-        orderNo: "OD202611040001",
-        goodsName: "光雾山单人年卡",
-        cover: "https://picsum.photos/id/237/400/400",
-        amount: 198,
-        status: 1,
-        createTime: "2026-11-04 09:10"
-      },
-      {
-        id: 2,
-        orderNo: "OD202611040002",
-        goodsName: "光雾山双人年卡",
-        cover: "https://picsum.photos/id/239/400/400",
-        amount: 368,
-        status: 2,
-        createTime: "2026-11-04 09:10"
-      },
-      {
-        id: 3,
-        orderNo: "OD202611040003",
-        goodsName: "光雾山家庭年卡",
-        cover: "https://picsum.photos/id/240/400/400",
-        amount: 520,
-        status: 3,
-        createTime: "2026-11-04 09:10"
-      },
-      {
-        id: 4,
-        orderNo: "OD202611040004",
-        goodsName: "光雾山单人年卡",
-        cover: "https://picsum.photos/id/241/400/400",
-        amount: 198,
-        status: 4,
-        createTime: "2026-11-04 09:10"
-      },
-      {
-        id: 5,
-        orderNo: "OD202611040005",
-        goodsName: "光雾山单人年卡",
-        cover: "https://picsum.photos/id/242/400/400",
-        amount: 198,
-        status: 5,
-        createTime: "2026-11-04 09:10"
-      }
-    ],
-    orderList: []
+    mockAllData: [],
+    orderList: [],
+    page: 1,
+    pageSize: 10,
   },
 
   /**
@@ -134,8 +94,12 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom() {
-
+  onReachBottom(e) {
+    console.log("触底", e)
+    this.setData({
+      page: this.data.page + 1
+    })
+    this.filterOrder()
   },
 
   /**
@@ -148,7 +112,9 @@ Page({
   switchTab(e) {
     const val = e.currentTarget.dataset.value
     this.setData({
-      currentTab: Number(val)
+      currentTab: Number(val),
+      page: 1,
+      orderList: [],
     })
     this.filterOrder()
   },
@@ -160,18 +126,19 @@ Page({
     })
 
     let res = await ticketingApi.ticketOrderDetail({
-      payStatus: this.data.currentTab
+      payStatus: this.data.currentTab,
+      page: this.data.page
     })
 
     if (res.code == 200) {
       wx.hideLoading()
 
-      let list = [...this.data.mockAllData, ...res.data]
+      let list = [...this.data.orderList, ...res.data]
       if (this.data.currentTab !== 0) {
-        list = list.filter(i => i.status === this.data.currentTab)
+        list = list.filter(i => i.payStatus === this.data.currentTab)
       }
       list.forEach(item => {
-        item.statusText = this.data.statusMap[item.status]
+        item.statusText = this.data.statusMap[item.payStatus]
       })
       this.setData({
         orderList: list

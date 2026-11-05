@@ -6,7 +6,6 @@
       {{item.label}}
       <view wx:if="{{currentTab === item.value}}" class="tab-line"></view>
     </view>
-
   </view>
 
 
@@ -14,22 +13,22 @@
   <view class="order-list">
     <view wx:for="{{orderList}}" wx:key="id" class="order-card">
       <view class="card-top">
-        <text class="order-sn">预订订单号：{{item.orderNumber}}</text>
+        <text class="order-sn">订单号:{{item.orderNumber}}</text>
         <view class="status-tag status-{{item.payStatus}}">
           <view class="status-dot"></view>
           {{item.statusText}}
         </view>
       </view>
       <view class="card-body">
-        <image class="goods-img" src="{{item.cover}}" mode="aspectFill"></image>
+        <image class="goods-img" src="{{gImgUrl+ item.ticket.homeImg}}" mode="aspectFill"></image>
         <view class="goods-info">
-          <text class="goods-name">{{item.goodsName}}</text>
-          <text class="goods-time">{{item.createTime}}</text>
+          <text class="goods-name">{{item.title}}</text>
+          <text class="goods-time">{{item.createdAt}}</text>
         </view>
-        <text class="goods-price">¥{{item.amount}}</text>
+        <text class="goods-price">¥{{item.orderAmount}}</text>
       </view>
       <view class="card-bottom">
-        <view wx:if="{{item.status === 1}}" class="btn-row">
+        <view wx:if="{{item.payStatus === 1}}" class="btn-row">
           <button class="btn-outline" bindtap="cancelOrder" data-id="{{item.id}}">取消订单</button>
           <button class="btn-solid" bindtap="goPay" data-id="{{item.id}}">去支付</button>
         </view>

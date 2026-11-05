@@ -36,7 +36,6 @@ page {
   padding-bottom: 12rpx;
   position: relative;
   box-sizing: border-box;
-
 }
 
 .tab-item.active {
@@ -75,7 +74,7 @@ page {
 }
 
 .order-sn {
-  font-size: 28rpx;
+  font-size: 26rpx;
   color: #666;
 }
 
@@ -109,11 +108,11 @@ page {
 }
 
 .status-3 {
-  color: #9b6ade;
+  color: #4caf50;
 }
 
 .status-3 .status-dot {
-  background-color: #9b6ade;
+  background-color: #4caf50;
 }
 
 .status-4 {
@@ -200,7 +199,10 @@ button {
 
 .empty {
   text-align: center;
-  padding: 100rpx 0;
+  padding: 400rpx 0;
   color: #999;
   font-size: 28rpx;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
