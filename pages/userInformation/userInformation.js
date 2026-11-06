@@ -155,9 +155,12 @@ Page({
     })
   },
 
-  goOrderInfo() {
+  goOrderInfo(e) {
+    let {
+      index
+    } = e.currentTarget.dataset
     wx.navigateTo({
-      url: "/subpackages/order/order"
+      url: `/subpackages/order/order?index=${index}`
     })
   }
 })

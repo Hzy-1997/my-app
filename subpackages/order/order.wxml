@@ -20,7 +20,14 @@
         </view>
       </view>
       <view class="card-body">
-        <image class="goods-img" src="{{gImgUrl+ item.ticket.homeImg}}" mode="aspectFill"></image>
+        <image class="goods-img" wx:if="{{value==1}}" src="{{gImgUrl+ item.ticket.homeImg}}" mode="aspectFill"></image>
+        <image class="goods-img" wx:if="{{value==2}}" src="{{gImgUrl+ item.roomType.image}}" mode="aspectFill"></image>
+        <image class="goods-img" wx:if="{{value==3}}" src="{{gImgUrl+ item.package.coverImage}}" mode="aspectFill"></image>
+        <image class="goods-img" wx:if="{{value==4}}" src="{{gImgUrl+ item.ticket.homeImg}}" mode="aspectFill"></image>
+        <image class="goods-img" wx:if="{{value==5}}" src="{{gImgUrl+ item.ticket.homeImg}}" mode="aspectFill"></image>
+        <image class="goods-img" wx:if="{{value==6}}" src="{{gImgUrl+ item.ticket.homeImg}}" mode="aspectFill"></image>
+        <image class="goods-img" wx:if="{{value==7}}" src="{{gImgUrl+ item.ticket.homeImg}}" mode="aspectFill"></image>
+        <image class="goods-img" wx:if="{{value==8}}" src="{{gImgUrl+ item.ticket.homeImg}}" mode="aspectFill"></image>
         <view class="goods-info">
           <text class="goods-name">{{item.title}}</text>
           <text class="goods-time">{{item.createdAt}}</text>

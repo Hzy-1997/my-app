@@ -1,7 +1,9 @@
 const app = getApp()
 
 import {
-  ticketingApi
+  ticketingApi,
+  hotelApi,
+  ComboApi
 } from "../../api/index"
 
 
@@ -46,12 +48,16 @@ Page({
     orderList: [],
     page: 1,
     pageSize: 10,
+    value: 1,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad() {
+  onLoad(options) {
+    this.setData({
+      value: options.index
+    })
     this.filterOrder()
   },
 
@@ -125,20 +131,61 @@ Page({
       title: '加载中',
     })
 
-    let res = await ticketingApi.ticketOrderDetail({
+    let res = {}
+    let parameter = {
       payStatus: this.data.currentTab,
       page: this.data.page
-    })
+    }
+
+    switch (Number(this.data.value)) {
+      case 1:
+        /* 票务订单 */
+        res = await ticketingApi.ticketOrderDetail(parameter)
+        break;
+      case 2:
+        /* 酒店订单 */
+        res = await hotelApi.hotelOrderDetail(parameter)
+        break;
+      case 3:
+        /* 套餐订单 */
+        res = await ComboApi.getComboOrderInfo(parameter)
+        break;
+      case 4:
+        /* 营地订单 */
+        break;
+      case 5:
+        /* 活动订单 */
+        break;
+      case 6:
+        /* 班车订单 */
+        break;
+      case 7:
+        /* 停车订单 */
+        break;
+      case 8:
+        /* 票务订单 */
+        break;
+      default:
+        /* 其他 */
+    }
+
+
+
 
     if (res.code == 200) {
       wx.hideLoading()
 
-      let list = [...this.data.orderList, ...res.data]
+      let dataList = Array.isArray(res.data) ?
+        res.data :
+        (res.data?.list ?? []);
+
+      let list = [...this.data.orderList, ...dataList]
       if (this.data.currentTab !== 0) {
         list = list.filter(i => i.payStatus === this.data.currentTab)
       }
       list.forEach(item => {
         item.statusText = this.data.statusMap[item.payStatus]
+        item
       })
       this.setData({
         orderList: list
