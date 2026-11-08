@@ -3,7 +3,10 @@ const app = getApp()
 import {
   ticketingApi,
   hotelApi,
-  ComboApi
+  ComboApi,
+  parkingApi,
+  campsiteApi,
+  scenicBusApi
 } from "../../api/index"
 
 
@@ -58,7 +61,7 @@ Page({
     this.setData({
       value: options.index
     })
-    this.filterOrder()
+
   },
 
 
@@ -73,7 +76,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.filterOrder()
   },
 
   /**
@@ -152,15 +155,18 @@ Page({
         break;
       case 4:
         /* 营地订单 */
+        res = await campsiteApi.getCampOrderInfo(parameter)
         break;
       case 5:
         /* 活动订单 */
         break;
       case 6:
         /* 班车订单 */
+        res = await scenicBusApi.getScenicBusOrderInfo(parameter)
         break;
       case 7:
         /* 停车订单 */
+        res = await parkingApi.getParkingOrderInfo(parameter)
         break;
       case 8:
         /* 票务订单 */
@@ -217,10 +223,9 @@ Page({
     })
   },
   goDetail(e) {
-    console.log(123)
-    const id = e.currentTarget.dataset.id
+    const idOn = e.currentTarget.dataset.on
     wx.navigateTo({
-      url: `/subpackages/orderDetail/orderDetail?id=${id}`
+      url: `/subpackages/orderDetail/orderDetail?idOn=${idOn}&type=${this.data.value}`
     })
   }
 })

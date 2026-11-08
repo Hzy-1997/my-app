@@ -4,14 +4,21 @@
       <!-- 状态卡片 -->
       <view class="order-card">
         <view class="card-top">
-          <text class="order-sn"> </text>
+          <text class="order-sn">预订单号: {{detail.orderNumber}}</text>
           <view class="status-tag status-{{detail.payStatus}}">
             <view class="status-dot"></view>
             {{detail.statusText}}
           </view>
         </view>
         <view class="card-body">
-          <image class="goods-img" src="{{gImgUrl +detail.ticket.homeImg}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==1}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==2}}" src="{{gImgUrl+ detail.roomType.image}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==3}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==4}}" src="{{gImgUrl+ detail.campsite.image}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==5}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==6}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==7}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==8}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
           <view class="goods-info">
             <text class="goods-name">{{detail.title}}</text>
             <text class="goods-time">下单时间：{{detail.createdAt}}</text>
@@ -20,12 +27,84 @@
         </view>
       </view>
 
-      <view class="qrcode" wx:if="{{detail.payStatus === 2 || detail.payStatus ===3}}">
+      <view class="qrcode" wx:if="{{type == 1 || type == 6 &&  (detail.payStatus === 2 || detail.payStatus === 3) }}">
         <view class="qrcode-title">凭「券码或券号」核销订单</view>
         <view class="qrcode-img">
           <image src="{{imageSrc}}"></image>
         </view>
+      </view>
 
+      <view class="contents" wx:if="{{type == 2 && (detail.payStatus === 2 || detail.payStatus === 3 || type === 1 || type === 3 || type === 6)}}">
+        <view class="contents-title">{{typeMap[type]}}</view>
+
+        <view class="infoRow">
+          <view class="infoItem">
+            <text class="itemLabel">入住日期</text>
+            <text class="itemValue">2026-11-05</text>
+          </view>
+          <view class="infoItem">
+            <text class="itemLabel">离店日期</text>
+            <text class="itemValue">2026-11-07</text>
+          </view>
+        </view>
+
+        <view class="infoRow">
+          <view class="infoItem">
+            <text class="itemLabel">入住人员</text>
+            <text class="itemValue">张三</text>
+          </view>
+          <view class="infoItem">
+            <text class="itemLabel">联系电话</text>
+            <text class="itemValue">138****8888</text>
+          </view>
+        </view>
+        <view class="infoRow">
+          <view class="infoItem">
+            <text class="itemLabel">房间数量</text>
+            <text class="itemValue">1间</text>
+          </view>
+          <view class="infoItem">
+            <text class="itemLabel">房间信息</text>
+            <text class="itemValue">1张床 大床* 130m2 可住2人</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="contents" wx:if="{{type == 4 && (detail.payStatus === 2 || detail.payStatus === 3 || type === 1 || type === 3 || type === 6)}}">
+        <view class="detail-list">
+
+          <view class="detail-item">
+            <view class="detail-label">日期</view>
+            <view class="detail-value">{{detail.session.startDate}}</view>
+          </view>
+
+          <view class="detail-item">
+            <view class="detail-label">场次</view>
+            <view class="detail-value">{{detail.session.sessionName}} ({{detail.session.startDate}}—{{detail.session.endDate }})</view>
+          </view>
+
+          <view class="detail-item">
+            <view class="detail-label">票档</view>
+            <view class="detail-value">
+              {{detail.ticketType.ticketName}}
+            </view>
+          </view>
+
+        </view>
+
+
+      </view>
+
+      <view class="contents" wx:if="{{type == 4 && (detail.payStatus === 2 || detail.payStatus === 3 || type === 1 || type === 3 || type === 6)}}">
+        <view class="contents-title">{{typeMap[type]}}</view>
+
+        <view class="row-content {{index !== userList.length - 1 ? 'has-border' : ''}}" wx:for="{{detail.participants}}" wx:key="item">
+          <view class="user-info">
+            <view class="user-name">{{item.camperName}}</view>
+            <view class="id-label">身份证</view>
+          </view>
+          <view class="id-number">123456</view>
+        </view>
       </view>
 
       <!-- 订单信息 -->
@@ -40,11 +119,11 @@
           <text class="value">{{detail.payWay || '微信支付'}}</text>
         </view>
         <view class="info-row">
-          <text class="label">预订单号</text>
-          <text class="value">{{detail.orderNumber}}</text>
+          <text class="label">订单状态</text>
+          <text class="status-{{detail.payStatus}}">{{detail.statusText}}</text>
         </view>
         <view class="info-row">
-          <text class="label">付款金额</text>
+          <text class="label">订单金额</text>
           <text class="value price">¥{{detail.orderAmount}}</text>
         </view>
       </view>
@@ -78,12 +157,10 @@
       <!-- ✅ 新增：使用说明（适合景区年卡） -->
       <view class="info-card tips-card" wx:if="{{detail.payStatus === 2 || detail.payStatus ===3}}">
         <view class="info-title">使用说明</view>
-        <view class="tips-item">• 入园请出示核销码，一人一卡，仅限本人使用</view>
-        <view class="tips-item">• 年卡有效期内不限次数入园，不含景区二次消费项目</view>
-        <view class="tips-item">• 年卡一经核销，不支持退款；未核销可按规则申请退款</view>
-        <view class="tips-item">• 景区开放时间以官方公告为准，恶劣天气会临时闭园</view>
+        <view class="tips-item" wx:for="{{tipsCard[type-1]}}" wx:key="*this">
+          • {{item}}
+        </view>
       </view>
-
       <view class="spacer"></view>
     </scroll-view>
     <!-- 底部操作栏 -->

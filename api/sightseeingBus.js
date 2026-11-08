@@ -20,3 +20,13 @@ export const scenicBusDetail = (data) => {
     data
   })
 }
+
+
+// 观光车订单
+export const getScenicBusOrderInfo = (data) => {
+  return request({
+    url: "/wx/scenicBus/orderInfo",
+    method: "get",
+    data
+  })
+}

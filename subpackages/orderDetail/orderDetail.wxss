@@ -112,6 +112,11 @@ page {
   font-size: 32rpx;
   color: #111;
   margin-bottom: 10rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .goods-time {
@@ -149,6 +154,61 @@ image {
   width: 180rpx;
   height: 180rpx;
 }
+
+
+.contents {
+  /* height: 260rpx; */
+  background: #ffffff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.contents-title {
+  font-weight: 600;
+  margin-bottom: 30rpx;
+}
+
+.infoRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+/* 单个信息项（标签+内容） */
+.infoItem {
+  flex: 1;
+  /* 平分宽度 */
+  display: flex;
+  align-items: center;
+  /* 防止内容太长撑破布局 */
+  overflow: hidden;
+  gap: 10rpx;
+}
+
+.itemLabel {
+  font-size: 28rpx;
+  color: #888888;
+  width: 130rpx;
+  flex-shrink: 0;
+}
+
+.itemValue {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+
+
+
 
 
 
@@ -235,4 +295,89 @@ button {
   color: #666;
   line-height: 1.8;
   margin-bottom: 8rpx;
+}
+
+/* 右侧内容区域（包含左右两部分） */
+.row-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-bottom: 20rpx;
+  border-bottom: 1rpx solid #c7c5c5;
+  margin-bottom: 20rpx;
+}
+
+.row-content:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* 姓名与身份证标签（上下排列） */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+  margin-right: 40rpx;
+}
+
+.user-name {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+  text-align: center;
+}
+
+.id-label {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* 身份证号码 */
+.id-number {
+  font-size: 28rpx;
+  color: #999999;
+  letter-spacing: 1rpx;
+  padding-top: 4rpx;
+}
+
+/* 外层容器，控制整体内边距 */
+.detail-list {
+  background-color: #ffffff; /* 假设页面是白底 */
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx; /* 每个浅灰色条块之间的间距 */
+}
+
+/* 单个条目：浅灰背景、圆角 */
+.detail-item {
+  display: flex;
+  align-items: flex-start; /* 顶部对齐，确保多行文本时左侧标签不被垂直居中 */
+  background-color: #f5f6f8; /* 浅灰偏蓝的背景色 */
+  padding: 16rpx 20rpx;
+  border-radius: 12rpx;
+}
+
+/* 左侧标签 */
+.detail-label {
+  width: 80rpx; /* 固定宽度，保证上下行的内容左对齐 */
+  flex-shrink: 0; /* 防止被右侧长文字挤压变形 */
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+  line-height: 1.5; /* 增加行高让文字看起来更舒展 */
+}
+
+/* 右侧内容 */
+.detail-value {
+  flex: 1; /* 占据剩余所有空间 */
+  font-size: 28rpx;
+  color: #888888; /* 稍微浅一点的灰色 */
+  line-height: 1.5;
+  word-break: break-all; /* 防止长英文字符或数字撑破容器 */
+}
+
+/* 价格单独加粗或变色 (可选) */
+.price {
+  color: #888888; /* 截图里价格也是灰的，如果需要加深可以改这里 */
+  /* font-weight: bold; */
 }

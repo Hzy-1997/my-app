@@ -38,3 +38,12 @@ export const parkingAppointment = (data) => {
     data
   })
 }
+
+// 车位订单
+export const getParkingOrderInfo = (data) => {
+  return request({
+    url: "/wx/parking/orderInfo",
+    method: "get",
+    data
+  })
+}

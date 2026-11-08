@@ -2,8 +2,21 @@ const app = getApp()
 
 import QR from 'wx-base64-qrcode'
 
+
 import {
-  ticketingApi
+  statusMap,
+  typeMap,
+  tipsCard,
+} from "./data"
+
+
+import {
+  ticketingApi,
+  hotelApi,
+  ComboApi,
+  parkingApi,
+  campsiteApi,
+  scenicBusApi
 } from "../../api/index"
 
 
@@ -12,37 +25,95 @@ Page({
   data: {
     gImgUrl: app.globalData.gImgUrl,
     imageSrc: '',
-    statusMap: {
-      1: '待支付',
-      2: '已支付',
-      3: '已完成',
-      4: '已退款',
-      5: '已取消'
-    },
-    detail: null
-  },
-  onLoad(options) {
-    const id = Number(options.id)
-    this.getDetail(id)
+    statusMap,
+    typeMap,
+    tipsCard,
+    detail: null,
+    type: 0
   },
 
-  async getDetail(id) {
+  onLoad(options) {
+    const idOn = options.idOn
+    const type = Number(options.type)
+    console.log(idOn)
+    this.setData({
+      type: type
+    })
+    this.getDetail(idOn)
+  },
+
+  async getDetail(idOn) {
     wx.showLoading({
       title: '加载中'
     })
 
-    let res = await ticketingApi.ticketOrderDetail({
-      id: id
-    })
+    let res = {}
+
+    console.log(this.data.type)
+    console.log(idOn)
+
+    switch (Number(this.data.type)) {
+      case 1:
+        /* 票务订单 */
+        res = await ticketingApi.ticketOrderDetail({
+          orderNumber: idOn
+        })
+        break;
+      case 2:
+        /* 酒店订单 */
+        res = await hotelApi.hotelOrderDetail({
+          orderNumber: idOn
+        })
+        break;
+      case 3:
+        /* 套餐订单 */
+        res = await ComboApi.getComboOrderInfo({
+          orderNumber: idOn
+        })
+        break;
+      case 4:
+        /* 营地订单 */
+        res = await campsiteApi.getCampOrderInfo({
+          orderNumber: idOn
+        })
+        break;
+      case 5:
+        /* 活动订单 */
+        break;
+      case 6:
+        /* 班车订单 */
+        res = await scenicBusApi.getScenicBusOrderInfo({
+          orderNumber: idOn
+        })
+        break;
+      case 7:
+        /* 停车订单 */
+        res = await parkingApi.getParkingOrderInfo({
+          orderNumber: idOn
+        })
+        break;
+      case 8:
+        /* 票务订单 */
+        break;
+      default:
+        /* 其他 */
+    }
+
 
     console.log(res)
 
     if (res.code == 200) {
-      let data = res.data[0]
+      let data = Array.isArray(res.data) ? res.data[0] : res.data
       data.statusText = this.data.statusMap[data.payStatus]
-      const size = 100; //宽高
 
-      const base64Data = QR.createQrCodeImg('any str code', size) // base64的数据
+      let base64Data = ""
+      const size = 100; //宽高
+      if (data.verificationCode) {
+        base64Data = QR.createQrCodeImg(data.verificationCode, size)
+      } else if (data.transactionNumber) {
+        base64Data = QR.createQrCodeImg(data.transactionNumber, size)
+      }
+
 
       this.setData({
         detail: data,

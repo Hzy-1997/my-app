@@ -29,3 +29,12 @@ export const campsiteSessionDetail = (data) => {
     data
   })
 }
+
+// 营地订单
+export const getCampOrderInfo = (data) => {
+  return request({
+    url: "/wx/campsite/campOrderInfo",
+    method: "get",
+    data
+  })
+}

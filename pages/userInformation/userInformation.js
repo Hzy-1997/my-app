@@ -123,7 +123,6 @@ Page({
   // 获取用户信息
   async getUserInfo() {
     let res = await loginApi.getUserInfo()
-    console.log(res)
     if (res.code != 200) {
       this.login()
       return
