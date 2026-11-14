@@ -342,42 +342,73 @@ button {
 
 /* 外层容器，控制整体内边距 */
 .detail-list {
-  background-color: #ffffff; /* 假设页面是白底 */
+  background-color: #ffffff;
+  /* 假设页面是白底 */
   display: flex;
   flex-direction: column;
-  gap: 16rpx; /* 每个浅灰色条块之间的间距 */
+  gap: 16rpx;
+  /* 每个浅灰色条块之间的间距 */
 }
 
 /* 单个条目：浅灰背景、圆角 */
 .detail-item {
   display: flex;
-  align-items: flex-start; /* 顶部对齐，确保多行文本时左侧标签不被垂直居中 */
-  background-color: #f5f6f8; /* 浅灰偏蓝的背景色 */
+  align-items: flex-start;
+  /* 顶部对齐，确保多行文本时左侧标签不被垂直居中 */
+  background-color: #f5f6f8;
+  /* 浅灰偏蓝的背景色 */
   padding: 16rpx 20rpx;
   border-radius: 12rpx;
 }
 
 /* 左侧标签 */
 .detail-label {
-  width: 80rpx; /* 固定宽度，保证上下行的内容左对齐 */
-  flex-shrink: 0; /* 防止被右侧长文字挤压变形 */
+  width: 80rpx;
+  /* 固定宽度，保证上下行的内容左对齐 */
+  flex-shrink: 0;
+  /* 防止被右侧长文字挤压变形 */
   font-size: 28rpx;
   color: #333333;
   font-weight: 500;
-  line-height: 1.5; /* 增加行高让文字看起来更舒展 */
+  line-height: 1.5;
+  /* 增加行高让文字看起来更舒展 */
 }
 
 /* 右侧内容 */
 .detail-value {
-  flex: 1; /* 占据剩余所有空间 */
+  flex: 1;
   font-size: 28rpx;
-  color: #888888; /* 稍微浅一点的灰色 */
+  color: #888888;
   line-height: 1.5;
-  word-break: break-all; /* 防止长英文字符或数字撑破容器 */
+  word-break: break-all;
 }
 
-/* 价格单独加粗或变色 (可选) */
 .price {
-  color: #888888; /* 截图里价格也是灰的，如果需要加深可以改这里 */
-  /* font-weight: bold; */
+  color: #888888;
+}
+
+.scroll-view_H {
+  white-space: nowrap;
+  width: 100%;
+  height: 400rpx;
+}
+
+.scroll-view_H .scroll-view-box {
+  display: inline-block;
+  width: 600rpx;
+  height: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+  margin-right: 20rpx;
+}
+
+.ticket-title {
+  margin: 30rpx 0rpx;
+}
+
+.ticket-content {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid; */
+  align-items: center;
 }

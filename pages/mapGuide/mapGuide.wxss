@@ -45,3 +45,25 @@
   /* 蓝色背景 */
   color: #fff;
 }
+
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-around;
+  z-index: 2;
+  width: 100vw;
+  height: 100rpx;
+  background: #458C8D;
+  box-sizing: border-box;
+}
+
+.top-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}

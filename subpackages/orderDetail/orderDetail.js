@@ -114,6 +114,15 @@ Page({
         base64Data = QR.createQrCodeImg(data.transactionNumber, size)
       }
 
+      if (data.items) {
+        data.items.map((it) => {
+          it.qrImg = QR.createQrCodeImg(it.verifyCode, size)
+        })
+      }
+
+
+      console.log("数据", data)
+
 
       this.setData({
         detail: data,

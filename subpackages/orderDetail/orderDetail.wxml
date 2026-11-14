@@ -17,7 +17,7 @@
           <image class="goods-img" wx:if="{{type==4}}" src="{{gImgUrl+ detail.campsite.image}}" mode="aspectFill"></image>
           <image class="goods-img" wx:if="{{type==5}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
           <image class="goods-img" wx:if="{{type==6}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
-          <image class="goods-img" wx:if="{{type==7}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
+          <image class="goods-img" wx:if="{{type==7}}" src="{{gImgUrl+ detail.parking.image}}" mode="aspectFill"></image>
           <image class="goods-img" wx:if="{{type==8}}" src="{{gImgUrl+ detail.ticket.homeImg}}" mode="aspectFill"></image>
           <view class="goods-info">
             <text class="goods-name">{{detail.title}}</text>
@@ -70,6 +70,20 @@
         </view>
       </view>
 
+      <view class="contents" wx:if="{{type == 3 && (detail.payStatus === 2 || detail.payStatus === 3 || type === 1 || type === 3 || type === 6)}}">
+        <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll">
+          <view class="scroll-view-box" wx:for="{{detail.items}}" wx:key="item">
+            <view class="qrcode-title">凭「券码或券号」核销订单</view>
+            <view class="ticket-content">
+              <view class="ticket-title">{{item.itemName}}</view>
+              <view class="ticket-qrcode">
+                <image src="{{item.qrImg}}" mode="aspectFit" />
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+
       <view class="contents" wx:if="{{type == 4 && (detail.payStatus === 2 || detail.payStatus === 3 || type === 1 || type === 3 || type === 6)}}">
         <view class="detail-list">
 
@@ -89,10 +103,7 @@
               {{detail.ticketType.ticketName}}
             </view>
           </view>
-
         </view>
-
-
       </view>
 
       <view class="contents" wx:if="{{type == 4 && (detail.payStatus === 2 || detail.payStatus === 3 || type === 1 || type === 3 || type === 6)}}">

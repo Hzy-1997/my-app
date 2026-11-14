@@ -83,6 +83,8 @@ Page({
       }
     ],
 
+
+
     // ================= 层级 2：中观 6个片区 =================
     // 场景：用户点击大区，或者手动放大到 14-15 级时显示
     level2Markers: [{
@@ -185,7 +187,35 @@ Page({
 
     // ================= 层级 3：微观演出点 =================
     // 原始数据池，不会直接渲染，而是经过算法计算后再渲染
-    level3Markers: []
+    level3Markers: [],
+
+    // 顶部菜单
+    topMenuList: [{
+      id: 1,
+      icon: "",
+      title: "玩乐"
+    }, {
+      id: 2,
+      icon: "",
+      title: "演出"
+    }, {
+      id: 3,
+      icon: "",
+      title: "餐饮"
+    }, {
+      id: 4,
+      icon: "",
+      title: "商店"
+    }, {
+      id: 5,
+      icon: "",
+      title: "服务"
+    }, {
+      id: 6,
+      icon: "",
+      title: "停车"
+    }, ]
+
   },
 
   // ================= 页面生命周期：加载 =================
@@ -286,7 +316,7 @@ Page({
     // 【强制拆解开关】
     // 如果地图缩放到了 19 级以上，或者用户点击了聚合点（isMaxZoom 为 true）
     // 就直接跳过聚合计算，把所有的点原封不动地返回，强制散开！
-    if (currentScale >= 19 || this.data.isMaxZoom) {
+    if (currentScale >= 18 || this.data.isMaxZoom) {
       return rawMarkers.map(single => {
         return {
           id: single.id,
@@ -391,6 +421,7 @@ Page({
     // 通过接口获取真实的缩放级别，比直接读取 e.detail.scale 更准
     mapCtx.getScale({
       success: (res) => {
+        console.log("层级", res.scale)
         const realScale = res.scale;
         // 如果两次缩放的差值极小，就不触发重绘，防止卡顿
         if (Math.abs(realScale - this.lastScale) < 0.2) return;
@@ -402,17 +433,16 @@ Page({
         this.lastScale = realScale;
 
         // 如果用户手动缩小了地图（小于 19 级），说明退出了极限状态，解除强制拆解
-        if (realScale < 19) {
+        if (realScale < 18) {
           this.setData({
             isMaxZoom: false
           });
         }
 
         // 只有在层级发生跨越，或者当前处于第 3 层级时，才重新计算聚合
+        // 【关键】手势缩放后地图已经在 realScale，这里绝不能再 setData 把 scale 写回地图，
+        // 否则 scale 属性会被重新推给地图组件，触发一次多余的缩放动画，看起来就是“回弹”
         if (oldLevel !== newLevel || newLevel === 3) {
-          this.setData({
-            scale: realScale
-          });
           this.renderMarkers(realScale);
         }
       }
@@ -443,7 +473,8 @@ Page({
     // 情况 1：点击的是 层级 1 或 层级 2（带有 isArea 属性）
     if (target.isArea) {
       // 决定下一跳的缩放级别：如果是大区就进到片区(14)，如果是片区就进到演出点(17)
-      let nextScale = this.data.scale <= 13 ? 14 : 17;
+      // 手势缩放后 data.scale 不再回写（始终是旧值），必须用 lastScale 判断真实层级
+      let nextScale = this.lastScale <= 13 ? 14 : 17;
 
       this.setData({
         latitude: target.latitude,
@@ -455,11 +486,12 @@ Page({
 
       // 延迟 400 毫秒，等地图飞行动画做完后，再渲染新一层级的点
       setTimeout(() => this.renderMarkers(nextScale), 400);
+
     }
     // 情况 2：点击的是自研聚合出来的“聚合点”（ID >= 9000）
     else if (markerId >= 9000) {
-      // 直接拉到微信允许的最大缩放级别 20 级
-      const maxScale = 20;
+      // 直接拉到微信允许的最大缩放级别 18 级
+      const maxScale = 18;
 
       // 先把状态置为极限状态，让 renderMarkers 走强制拆解逻辑
       this.setData({
@@ -490,5 +522,13 @@ Page({
         showCancel: false
       });
     }
+  },
+
+  menuType(e) {
+    let {
+      type
+    } = e.currentTarget.dataset
+
+    console.log(type)
   },
 });

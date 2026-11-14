@@ -180,7 +180,6 @@ Page({
 
     if (res.code == 200) {
       wx.hideLoading()
-
       let dataList = Array.isArray(res.data) ?
         res.data :
         (res.data?.list ?? []);
