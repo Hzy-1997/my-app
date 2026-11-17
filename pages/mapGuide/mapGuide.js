@@ -1,4 +1,27 @@
 // pages/mapGuide/mapGuide.js
+
+// ================= 工具函数：判断点是否在多边形内部（射线法） =================
+function isPointInPolygon(point, polygon) {
+  let x = point.longitude;
+  let y = point.latitude;
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    let xi = polygon[i].longitude,
+      yi = polygon[i].latitude;
+    let xj = polygon[j].longitude,
+      yj = polygon[j].latitude;
+    let intersect = ((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+// ================= 顶部导航 Tab 布局常量（单位 rpx，需与 wxss 中 .top-menu 的宽度、边距保持一致） =================
+const TAB_WIDTH = 120; // 单个标签宽度
+const TAB_MARGIN = 10; // 标签左右外边距
+const TAB_STEP = TAB_WIDTH + TAB_MARGIN * 2; // 每个标签占据的步长：140rpx
+const LINE_WIDTH = 50; // 下划线宽度
+
 Page({
   data: {
     // ================= 基础地图配置 =================
@@ -13,21 +36,21 @@ Page({
     // ================= 景区边界多边形配置 =================
     polygons: [{
       points: [{
-          latitude: 31.790,
-          longitude: 119.305
-        },
-        {
-          latitude: 31.790,
-          longitude: 119.320
-        },
-        {
-          latitude: 31.785,
-          longitude: 119.320
-        },
-        {
-          latitude: 31.785,
-          longitude: 119.305
-        }
+        latitude: 31.790,
+        longitude: 119.305
+      },
+      {
+        latitude: 31.790,
+        longitude: 119.320
+      },
+      {
+        latitude: 31.785,
+        longitude: 119.320
+      },
+      {
+        latitude: 31.785,
+        longitude: 119.305
+      }
       ],
       strokeWidth: 2, // 边框宽度
       strokeColor: "#1E90FF", // 边框颜色
@@ -35,224 +58,258 @@ Page({
     }],
 
     // ================= 层级 1：宏观 3个大区 =================
-    // 场景：用户刚进小程序，或者把地图缩得很小的时候显示
     level1Markers: [{
-        id: 101,
-        latitude: 31.790,
-        longitude: 119.310,
-        title: '核心大区',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 40,
-        height: 40,
-        callout: {
-          content: '核心大区',
-          display: 'ALWAYS',
-          padding: 8
-        }
-      },
-      {
-        id: 102,
-        latitude: 31.785,
-        longitude: 119.320,
-        title: '东部大区',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 40,
-        height: 40,
-        callout: {
-          content: '东部大区',
-          display: 'ALWAYS',
-          padding: 8
-        }
-      },
-      {
-        id: 103,
-        latitude: 31.795,
-        longitude: 119.305,
-        title: '西部大区',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 40,
-        height: 40,
-        callout: {
-          content: '西部大区',
-          display: 'ALWAYS',
-          padding: 8
-        }
+      id: 101,
+      latitude: 31.790,
+      longitude: 119.310,
+      title: '核心大区',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 40,
+      height: 40,
+      callout: {
+        content: '核心大区',
+        display: 'ALWAYS',
+        padding: 8
       }
+    },
+    {
+      id: 102,
+      latitude: 31.785,
+      longitude: 119.320,
+      title: '东部大区',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 40,
+      height: 40,
+      callout: {
+        content: '东部大区',
+        display: 'ALWAYS',
+        padding: 8
+      }
+    },
+    {
+      id: 103,
+      latitude: 31.795,
+      longitude: 119.305,
+      title: '西部大区',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 40,
+      height: 40,
+      callout: {
+        content: '西部大区',
+        display: 'ALWAYS',
+        padding: 8
+      }
+    }
     ],
 
-
-
     // ================= 层级 2：中观 6个片区 =================
-    // 场景：用户点击大区，或者手动放大到 14-15 级时显示
     level2Markers: [{
-        id: 201,
-        parentId: 101,
-        latitude: 31.791,
-        longitude: 119.311,
-        title: '核心-广场',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 35,
-        height: 35,
-        callout: {
-          content: '核心-广场',
-          display: 'BYCLICK',
-          padding: 8
-        }
-      },
-      {
-        id: 202,
-        parentId: 101,
-        latitude: 31.789,
-        longitude: 119.312,
-        title: '核心-剧院',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 35,
-        height: 35,
-        callout: {
-          content: '核心-剧院',
-          display: 'BYCLICK',
-          padding: 8
-        }
-      },
-      {
-        id: 206,
-        parentId: 102,
-        latitude: 31.786,
-        longitude: 119.321,
-        title: '东区-水幕',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 35,
-        height: 35,
-        callout: {
-          content: '东区-水幕',
-          display: 'BYCLICK',
-          padding: 8
-        }
-      },
-      {
-        id: 207,
-        parentId: 102,
-        latitude: 31.784,
-        longitude: 119.322,
-        title: '东区-花海',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 35,
-        height: 35,
-        callout: {
-          content: '东区-花海',
-          display: 'BYCLICK',
-          padding: 8
-        }
-      },
-      {
-        id: 211,
-        parentId: 103,
-        latitude: 31.794,
-        longitude: 119.306,
-        title: '西区-草坪',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 35,
-        height: 35,
-        callout: {
-          content: '西区-草坪',
-          display: 'BYCLICK',
-          padding: 8
-        }
-      },
-      {
-        id: 212,
-        parentId: 103,
-        latitude: 31.796,
-        longitude: 119.307,
-        title: '西区-舞台',
-        isArea: true,
-        iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
-        width: 35,
-        height: 35,
-        callout: {
-          content: '西区-舞台',
-          display: 'BYCLICK',
-          padding: 8
-        }
+      id: 201,
+      parentId: 101,
+      latitude: 31.791,
+      longitude: 119.311,
+      title: '核心-广场',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 35,
+      height: 35,
+      callout: {
+        content: '核心-广场',
+        display: 'BYCLICK',
+        padding: 8
       }
+    },
+    {
+      id: 202,
+      parentId: 101,
+      latitude: 31.789,
+      longitude: 119.312,
+      title: '核心-剧院',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 35,
+      height: 35,
+      callout: {
+        content: '核心-剧院',
+        display: 'BYCLICK',
+        padding: 8
+      }
+    },
+    {
+      id: 206,
+      parentId: 102,
+      latitude: 31.786,
+      longitude: 119.321,
+      title: '东区-水幕',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 35,
+      height: 35,
+      callout: {
+        content: '东区-水幕',
+        display: 'BYCLICK',
+        padding: 8
+      }
+    },
+    {
+      id: 207,
+      parentId: 102,
+      latitude: 31.784,
+      longitude: 119.322,
+      title: '东区-花海',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 35,
+      height: 35,
+      callout: {
+        content: '东区-花海',
+        display: 'BYCLICK',
+        padding: 8
+      }
+    },
+    {
+      id: 211,
+      parentId: 103,
+      latitude: 31.794,
+      longitude: 119.306,
+      title: '西区-草坪',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 35,
+      height: 35,
+      callout: {
+        content: '西区-草坪',
+        display: 'BYCLICK',
+        padding: 8
+      }
+    },
+    {
+      id: 212,
+      parentId: 103,
+      latitude: 31.796,
+      longitude: 119.307,
+      title: '西区-舞台',
+      isArea: true,
+      iconPath: 'https://mapapi.qq.com/web/lbs/javascriptGL/demo/img/markerDefault.png',
+      width: 35,
+      height: 35,
+      callout: {
+        content: '西区-舞台',
+        display: 'BYCLICK',
+        padding: 8
+      }
+    }
     ],
 
     // ================= 层级 3：微观演出点 =================
     // 原始数据池，不会直接渲染，而是经过算法计算后再渲染
     level3Markers: [],
 
-    // 顶部菜单
+    // 顶部菜单 (修复了原先 id 重复的问题)
     topMenuList: [{
       id: 1,
-      icon: "",
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
       title: "玩乐"
     }, {
       id: 2,
-      icon: "",
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
       title: "演出"
     }, {
       id: 3,
-      icon: "",
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
       title: "餐饮"
     }, {
       id: 4,
-      icon: "",
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
       title: "商店"
     }, {
       id: 5,
-      icon: "",
-      title: "服务"
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
+      title: "公共服务"
     }, {
       id: 6,
-      icon: "",
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
       title: "停车"
-    }, ]
+    }, {
+      id: 7,
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
+      title: "商店"
+    }, {
+      id: 8,
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
+      title: "厕所"
+    }, {
+      id: 9,
+      icon: "@",
+      selectedIcon: "#",
+      status: true,
+      title: "停车"
+    },],
 
+    isActive: 1,
+    scrollLeft: 0, // 导航栏横向滚动距离（px）
+    lineOffset: 0, // 下划线位置（px），由 calcLineOffset 计算
   },
 
   // ================= 页面生命周期：加载 =================
   onLoad() {
+    // rpx 与 px 的换算比例（750rpx = 屏幕宽度），用于计算下划线位置和导航栏滚动距离
+    const { windowWidth } = wx.getSystemInfoSync();
+    this.rpxScale = windowWidth / 750;
+    this.windowWidth = windowWidth;
+
     let tempLevel3 = [];
 
     // 定义6个片区的中心点坐标
     const areaCenters = [{
-        areaId: 201,
-        lat: 31.791,
-        lng: 119.311
-      },
-      {
-        areaId: 202,
-        lat: 31.789,
-        lng: 119.312
-      },
-      {
-        areaId: 206,
-        lat: 31.786,
-        lng: 119.321
-      },
-      {
-        areaId: 207,
-        lat: 31.784,
-        lng: 119.322
-      },
-      {
-        areaId: 211,
-        lat: 31.794,
-        lng: 119.306
-      },
-      {
-        areaId: 212,
-        lat: 31.796,
-        lng: 119.307
-      }
+      areaId: 201,
+      lat: 31.791,
+      lng: 119.311
+    },
+    {
+      areaId: 202,
+      lat: 31.789,
+      lng: 119.312
+    },
+    {
+      areaId: 206,
+      lat: 31.786,
+      lng: 119.321
+    },
+    {
+      areaId: 207,
+      lat: 31.784,
+      lng: 119.322
+    },
+    {
+      areaId: 211,
+      lat: 31.794,
+      lng: 119.306
+    },
+    {
+      areaId: 212,
+      lat: 31.796,
+      lng: 119.307
+    }
     ];
 
     // 模拟生成 60 个演出点，随机散布在 6 个片区中心点附近
@@ -261,7 +318,6 @@ Page({
       tempLevel3.push({
         id: 1000 + i,
         areaId: area.areaId,
-        // (Math.random() - 0.5) * 0.006 是为了让点位在中心点附近产生随机偏移，避免完全重叠
         latitude: area.lat + (Math.random() - 0.5) * 0.006,
         longitude: area.lng + (Math.random() - 0.5) * 0.006,
         title: `演出点 ${i}`,
@@ -271,39 +327,79 @@ Page({
         height: 25,
         callout: {
           content: `演出点 ${i}`,
-          display: 'ALWAYS', // 文字常显
+          display: 'ALWAYS',
           padding: 8,
           borderRadius: 6
         }
       });
     }
 
-    // 将生成的 60 个点存入 data
     this.setData({
       level3Markers: tempLevel3
     });
 
-    // 记录上一次的缩放级别，防止频繁触发
+    // 初始化下划线位置（onLoad 里的 setData 会参与首次渲染，不会闪动画）
+    const initIndex = Math.max(0, this.data.topMenuList.findIndex(t => t.id === this.data.isActive));
+    this.setData({
+      lineOffset: this.calcLineOffset(initIndex)
+    });
+
     this.lastScale = this.data.scale;
-    // 首次渲染地图
     this.renderMarkers(this.data.scale);
   },
 
+  // ================= 页面初次渲染完成后：测量导航栏真实布局 =================
+  // onLoad 里按常量公式放置的只是初值；这里量一次真实位置并以此为准
+  // （Vant 也是这么做的：实际渲染的宽度/间距和 rpx 公式有细微出入时，误差会随标签序号累积）
+  onReady() {
+    const query = wx.createSelectorQuery();
+    query.selectAll('.top-menu').boundingClientRect(); // 所有标签
+    query.select('.navbar').boundingClientRect(); // 滚动容器
+    query.select('.navbar').scrollOffset(); // 当前滚动距离（此时应为 0，保险起见取真实值）
+    query.select('.tabs-line').boundingClientRect(); // 下划线真实宽度
+    query.exec((res) => {
+      const [tabRects, navRect, navOffset, lineRect] = res;
+      if (!tabRects || !tabRects.length || !navRect) return; // 测不到就沿用公式兜底
+
+      const scrolled = navOffset ? navOffset.scrollLeft : 0;
+      // 每个标签在“滚动内容坐标系”里的真实左边缘与宽度（px）
+      this.navTabs = tabRects.map((r) => ({
+        left: r.left - navRect.left + scrolled,
+        width: r.width
+      }));
+      // 真实的一个标签位宽度（用前两个标签的间距推算）
+      this.navStepPx = this.navTabs.length > 1 ?
+        this.navTabs[1].left - this.navTabs[0].left :
+        TAB_STEP * this.rpxScale;
+      // 视口宽、下划线宽，以测量为准
+      this.navViewportWidth = navRect.width;
+      this.navLineWidth = lineRect ? lineRect.width : LINE_WIDTH * this.rpxScale;
+      // 内容总宽用标签自身推算：最后一个标签的右边缘 + 一个边距（与首标签的左边距一致）
+      // 注意：不能用 .nav-inner 的宽度——块级布局下它只等于可视宽度，会把最大滚动距离算成 0，导致滚动失效
+      const lastTab = this.navTabs[this.navTabs.length - 1];
+      this.navContentWidth = lastTab.left + lastTab.width + this.navTabs[0].left;
+
+      // 用真实位置修正当前选中标签的下划线
+      const activeIndex = this.data.topMenuList.findIndex((t) => t.id === this.data.isActive);
+      if (activeIndex > -1) {
+        this.setData({
+          lineOffset: this.calcLineOffset(activeIndex)
+        });
+      }
+    });
+  },
+
   // ================= 核心渲染逻辑 =================
-  // 根据当前的缩放级别(scale)，决定渲染哪个层级的 Marker
   renderMarkers(scale) {
     if (scale <= 13) {
-      // 第一层：大区
       this.setData({
         markers: this.data.level1Markers
       });
     } else if (scale <= 15) {
-      // 第二层：片区
       this.setData({
         markers: this.data.level2Markers
       });
     } else {
-      // 第三层：演出点（重点：这里不走直接渲染，而是调用自研聚合算法）
       const clusteredMarkers = this.calculateClusters(this.data.level3Markers, scale);
       this.setData({
         markers: clusteredMarkers
@@ -313,9 +409,6 @@ Page({
 
   // ================= 【核心算法】自研点聚合计算 =================
   calculateClusters(rawMarkers, currentScale) {
-    // 【强制拆解开关】
-    // 如果地图缩放到了 19 级以上，或者用户点击了聚合点（isMaxZoom 为 true）
-    // 就直接跳过聚合计算，把所有的点原封不动地返回，强制散开！
     if (currentScale >= 18 || this.data.isMaxZoom) {
       return rawMarkers.map(single => {
         return {
@@ -330,27 +423,19 @@ Page({
       });
     }
 
-    // 正常聚合计算逻辑：
-    // 缩放越大，半径越小。当放大到 18 级时，Math.pow(0.6, 2) = 0.36，半径会变得极小。
     const clusterRadius = 0.002 * Math.pow(0.6, currentScale - 16);
-    let clusters = []; // 用来存储聚合簇的临时数组
+    let clusters = [];
 
-    // 遍历所有 60 个点，进行距离归类
     rawMarkers.forEach(point => {
       let added = false;
-
-      // 检查当前点是否落在已有的聚合簇内
       for (let i = 0; i < clusters.length; i++) {
         const c = clusters[i];
         const dLat = point.latitude - c.centerLat;
         const dLng = point.longitude - c.centerLng;
-        // 勾股定理计算两个经纬度之间的近似直线距离
         const distance = Math.sqrt(dLat * dLat + dLng * dLng);
 
         if (distance < clusterRadius) {
-          // 距离足够近，加入该聚合簇
           c.points.push(point);
-          // 重新计算聚合簇的中心点（取所有点的平均值）
           c.centerLat = (c.centerLat * (c.points.length - 1) + point.latitude) / c.points.length;
           c.centerLng = (c.centerLng * (c.points.length - 1) + point.longitude) / c.points.length;
           added = true;
@@ -358,7 +443,6 @@ Page({
         }
       }
 
-      // 如果没找到合适的簇，就自己新建一个簇（哪怕里面只有自己 1 个点）
       if (!added) {
         clusters.push({
           centerLat: point.latitude,
@@ -368,11 +452,9 @@ Page({
       }
     });
 
-    // 将计算好的聚合簇，转换成地图需要的 marker 格式
     let finalMarkers = clusters.map((cluster, index) => {
       const count = cluster.points.length;
 
-      // 如果这个簇里只有一个点，就按普通点位渲染
       if (count === 1) {
         const single = cluster.points[0];
         return {
@@ -384,11 +466,8 @@ Page({
           height: single.height,
           callout: single.callout
         };
-      }
-      // 如果簇里有多个点，渲染成聚合样式
-      else {
+      } else {
         return {
-          // 【注意】聚合点分配专属的 ID，从 9000 开始，方便点击时与普通点区分
           id: 9000 + index,
           latitude: cluster.centerLat,
           longitude: cluster.centerLng,
@@ -396,7 +475,6 @@ Page({
           width: 35,
           height: 35,
           callout: {
-            // 把数量和一个代表点的名字拼起来，常显
             content: `【${count}个】${cluster.points[0].title}`,
             display: 'ALWAYS',
             padding: 6,
@@ -412,36 +490,56 @@ Page({
     return finalMarkers;
   },
 
-  // ================= 监听地图手势缩放 =================
+  // ================= 监听地图手势缩放与拖动 =================
   onRegionChange(e) {
-    // 只处理缩放结束的事件，拖动地图不管
+    const mapCtx = wx.createMapContext('showMap', this);
+
+    // ----- 1. 处理拖动结束（边界回弹检测） -----
+    if (e.type === 'end' && e.causedBy === 'drag') {
+      setTimeout(() => {
+        mapCtx.getCenterLocation({
+          success: (res) => {
+            const polygon = this.data.polygons[0].points;
+            const inBounds = isPointInPolygon(res, polygon);
+
+            if (!inBounds) {
+              wx.showToast({
+                title: '已到达边界',
+                icon: 'none',
+                duration: 1500
+              });
+
+              // 【核心修改】：平滑滑动回中心点
+              mapCtx.moveToLocation({
+                latitude: 31.7868,
+                longitude: 119.3098
+              });
+            }
+          }
+        });
+      }, 300);
+      return;
+    }
+
+    // ----- 2. 处理缩放结束 -----
     if (e.type !== 'end' || e.causedBy !== 'scale') return;
 
-    const mapCtx = wx.createMapContext('showMap', this);
-    // 通过接口获取真实的缩放级别，比直接读取 e.detail.scale 更准
     mapCtx.getScale({
       success: (res) => {
-        console.log("层级", res.scale)
         const realScale = res.scale;
-        // 如果两次缩放的差值极小，就不触发重绘，防止卡顿
         if (Math.abs(realScale - this.lastScale) < 0.2) return;
 
         const oldLevel = this.getLevelByScale(this.lastScale);
         const newLevel = this.getLevelByScale(realScale);
 
-        // 更新记录的状态
         this.lastScale = realScale;
 
-        // 如果用户手动缩小了地图（小于 19 级），说明退出了极限状态，解除强制拆解
         if (realScale < 18) {
           this.setData({
             isMaxZoom: false
           });
         }
 
-        // 只有在层级发生跨越，或者当前处于第 3 层级时，才重新计算聚合
-        // 【关键】手势缩放后地图已经在 realScale，这里绝不能再 setData 把 scale 写回地图，
-        // 否则 scale 属性会被重新推给地图组件，触发一次多余的缩放动画，看起来就是“回弹”
         if (oldLevel !== newLevel || newLevel === 3) {
           this.renderMarkers(realScale);
         }
@@ -451,71 +549,69 @@ Page({
 
   // ================= 辅助方法：根据缩放级别划分层级 =================
   getLevelByScale(scale) {
-    if (scale <= 13) return 1; // 大区
-    if (scale <= 15) return 2; // 片区
-    return 3; // 演出点
+    if (scale <= 13) return 1;
+    if (scale <= 15) return 2;
+    return 3;
   },
 
   // ================= 统一点击事件处理 =================
   onMarkerTap(e) {
     if (!e.detail.markerId) return;
 
-    // 【防抖处理】：如果用户在 600 毫秒内连续点击，只算一次，防止代码死循环或地图卡死
     const now = Date.now();
     if (this.lastClickTime && now - this.lastClickTime < 600) return;
     this.lastClickTime = now;
 
     const markerId = e.detail.markerId;
-    // 从当前渲染的 markers 中找到被点击的那个
     const target = this.data.markers.find(m => m.id === markerId);
 
     if (!target) return;
-    // 情况 1：点击的是 层级 1 或 层级 2（带有 isArea 属性）
+
+    // 情况 1：点击的是 层级 1 或 层级 2
     if (target.isArea) {
-      // 决定下一跳的缩放级别：如果是大区就进到片区(14)，如果是片区就进到演出点(17)
-      // 手势缩放后 data.scale 不再回写（始终是旧值），必须用 lastScale 判断真实层级
       let nextScale = this.lastScale <= 13 ? 14 : 17;
 
+      // 使用 moveToLocation 平滑移动到目标区域
+      const mapCtx = wx.createMapContext('showMap', this);
+
+      // 先设置状态
       this.setData({
-        latitude: target.latitude,
-        longitude: target.longitude,
         scale: nextScale,
-        isMaxZoom: false // 重置极限状态
+        isMaxZoom: false
       });
       this.lastScale = nextScale;
 
-      // 延迟 400 毫秒，等地图飞行动画做完后，再渲染新一层级的点
-      setTimeout(() => this.renderMarkers(nextScale), 400);
-
-    }
-    // 情况 2：点击的是自研聚合出来的“聚合点”（ID >= 9000）
-    else if (markerId >= 9000) {
-      // 直接拉到微信允许的最大缩放级别 18 级
-      const maxScale = 18;
-
-      // 先把状态置为极限状态，让 renderMarkers 走强制拆解逻辑
-      this.setData({
-        scale: maxScale,
-        latitude: target.latitude,
-        longitude: target.longitude,
-        isMaxZoom: true
-      });
-      this.lastScale = maxScale;
-
-      // 调用地图上下文，平滑移动视野中心到该点，并提供视觉上的“放大”冲击力
-      const mapCtx = wx.createMapContext('showMap', this);
+      // 平滑移动视野
       mapCtx.moveToLocation({
         latitude: target.latitude,
         longitude: target.longitude,
         success: () => {
-          // 动画完成后，立刻重新渲染，把强制拆解后的点铺上去
+          setTimeout(() => this.renderMarkers(nextScale), 400);
+        }
+      });
+
+    }
+    // 情况 2：点击的是自研聚合出来的“聚合点”
+    else if (markerId >= 9000) {
+      const maxScale = 18;
+      const mapCtx = wx.createMapContext('showMap', this);
+
+      this.setData({
+        scale: maxScale,
+        isMaxZoom: true
+      });
+      this.lastScale = maxScale;
+
+      mapCtx.moveToLocation({
+        latitude: target.latitude,
+        longitude: target.longitude,
+        success: () => {
           this.renderMarkers(maxScale);
         }
       });
     }
-    // 情况 3：点击的是普通的演出点（具体的一个点）
+    // 情况 3：点击的是普通的演出点
     else {
-      // 弹窗展示详情
       wx.showModal({
         title: '演出详情',
         content: target.callout.content,
@@ -524,11 +620,81 @@ Page({
     }
   },
 
-  menuType(e) {
-    let {
-      type
-    } = e.currentTarget.dataset
 
-    console.log(type)
+  // 标签切换
+  menuType(e) {
+    const type = Number(e.currentTarget.dataset.type);
+    const index = Number(e.currentTarget.dataset.index); // wx:for 的下标，用于定位标签位置
+
+    if (type === this.data.isActive) return; // 点的是当前已选中的标签，不处理
+
+    this.setData({
+      isActive: type,
+      // 下划线滑到新标签下方：transform 值变化会触发 CSS transition 补间动画
+      lineOffset: this.calcLineOffset(index)
+    });
+
+    this.scrollNavTo(index);
   },
+
+  // ================= 计算下划线的位置（单位 px） =================
+  calcLineOffset(index) {
+    // 优先用 onReady 里量到的真实布局：下划线中心 = 标签左边缘 + 标签宽度的一半
+    // （文字在标签里是居中的，所以线对准标签中心，就正好在文字下方居中）
+    const tab = this.navTabs && this.navTabs[index];
+    if (tab) {
+      return tab.left + tab.width / 2 - (this.navLineWidth || LINE_WIDTH * this.rpxScale) / 2;
+    }
+    // 兜底公式（onReady 测量完成前 / 测量失败时使用）
+    const leftRpx = index * TAB_STEP + TAB_MARGIN + (TAB_WIDTH - LINE_WIDTH) / 2;
+    return leftRpx * this.rpxScale;
+  },
+
+  // ================= 导航栏滚动到选中标签对应的位置 =================
+  scrollNavTo(index) {
+    // 优先用 onReady 量到的真实布局（步长/视口宽/内容宽），公式仅作兜底
+    const stepPx = this.navStepPx || TAB_STEP * this.rpxScale; // 一个标签位的像素宽度
+    const viewportWidth = this.navViewportWidth || this.windowWidth; // 可视区域宽度
+    const contentWidth = this.navContentWidth || this.data.topMenuList.length * stepPx; // 标签总宽度
+    const maxScroll = Math.max(0, contentWidth - viewportWidth); // 最大可滚动距离
+
+    // 滚动规则（和你描述的一致）：
+    // 点第 1~2 个不滚，点第 3~4 个往左滚 1 个标签位，点第 5~6 个滚 2 个，点第 7~8 个滚 3 个……
+    // 点靠右的标签时把后面的露出来；反之点靠左的标签 scrollLeft 变小，自然往右滑回来
+    let target = Math.floor(index / 2) * stepPx;
+
+    // 在原规则基础上，保证点击的“下一个标签”也完整露出来
+    // （比如点倒数第 2 个“厕所”时，最后一个“停车”要完整展示，而不是只露一条边）
+    const nextTab = this.navTabs && this.navTabs[index + 1];
+    if (nextTab) {
+      const needed = nextTab.left + nextTab.width + this.navTabs[0].left - viewportWidth;
+      if (needed > target) target = needed;
+    }
+
+    if (target > maxScroll) target = maxScroll; // 最多滚到最后一个标签贴右边界
+
+    // 用户手动滑动过导航栏时，data.scrollLeft 与实际位置不一致，以 bindscroll 记录的实际位置为准
+    const current = this.navScrollLeft != null ? this.navScrollLeft : this.data.scrollLeft;
+    if (Math.abs(target - current) < 0.5) return; // 已经在目标位置
+
+    if (Math.abs(this.data.scrollLeft - target) < 0.5) {
+      // scroll-left 属性值不变化就不会触发滚动，先写回实际位置强制制造一次变化
+      this.setData({
+        scrollLeft: current
+      }, () => {
+        this.setData({
+          scrollLeft: target
+        });
+      });
+    } else {
+      this.setData({
+        scrollLeft: target
+      });
+    }
+  },
+
+  // ================= 记录导航栏实际滚动位置（手动滑动后点击逻辑依然准确） =================
+  onNavbarScroll(e) {
+    this.navScrollLeft = e.detail.scrollLeft;
+  }
 });
