@@ -18,8 +18,8 @@ export const navMenu = [{
     icon: '🏨'
   },
   {
-    id: "4",
-    name: '活动',
+    id: "4",  
+    name: '演出',
     link: '/activities',
     icon: '🎪'
   },

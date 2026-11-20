@@ -8,7 +8,8 @@
     "pages/userInformation/userInformation",
     "pages/touristGuide/touristGuide",
     "pages/campsitePage/campsitePage",
-    "pages/mapGuide/mapGuide"
+    "pages/mapGuide/mapGuide",
+    "pages/performance/performance"
   ],
   "permission": {
     "scope.userLocation": {

@@ -185,9 +185,8 @@ Page({
         })
         break;
       case '4':
-        wx.showToast({
-          title: `${item.name}页面开发中`,
-          icon: 'none'
+        wx.navigateTo({
+          url: '/pages/performance/performance',
         })
         break;
       case '5':
