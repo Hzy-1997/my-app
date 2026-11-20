@@ -30,7 +30,7 @@ Page({
     imageList: [],
     name: '',
     phone: '',
-    openld: "",
+    openId: "",
     userEmail: "",
     columns: ['功能异常', '优化建议', '体验反馈', '景区问题', '其他问题'],
     index: -1,
@@ -88,7 +88,7 @@ Page({
     loginApi.getUserInfo().then((res) => {
       res.data = JSON.parse(cryptoUtil.decrypt(res.data))
       this.setData({
-        openld: res.data.openld
+        openId: res.data.openId
       })
     })
 
@@ -236,7 +236,7 @@ Page({
       content,
       name,
       phone,
-      openld,
+      openId,
       userEmail,
     } = this.data;
 
@@ -259,7 +259,7 @@ Page({
     });
 
     let data = {
-      openld: openld,
+      openId: openId,
       type: Number(type) + 1,
       content,
       userName: name,
