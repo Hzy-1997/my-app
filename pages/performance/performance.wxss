@@ -1,1 +1,98 @@
 /* pages/performance/performance.wxss */
+
+.body {
+  padding: 0rpx 20rpx;
+}
+
+.head {
+  width: 100%;
+  margin-top: 200rpx;
+}
+
+.banner-bg {
+  height: 380rpx;
+  border-radius: 15rpx;
+}
+
+.scrollBox {
+  margin-top: 25rpx;
+  border: 1px solid;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  width: max-content;
+  padding: 20rpx;
+
+
+}
+
+.show-card {
+  flex-shrink: 0;
+  width: 190rpx;
+  margin-right: 20rpx;
+  background: #21211F;
+  border-radius: 12rpx;
+}
+
+.show-card:last-child {
+  margin-right: 0;
+}
+
+.card-coverBox {
+  width: 100%;
+  height: 150rpx;
+  border-radius: 10rpx 10rpx 0rpx 0rpx;
+  background: #fff;
+  border-radius: 12rpx;
+}
+
+.card-info {
+  padding: 10rpx;
+  color: #ffff;
+  border-radius: 0rpx 0rpx 10rpx 10rpx;
+}
+
+.card-name {
+  font-weight: 600;
+}
+
+.card-tag {
+  font-size: 26rpx;
+  width: 100rpx;
+  padding: 2rpx 8rpx;
+  border-radius: 15rpx;
+  background: #9A612C;
+  margin: 10rpx 0rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-time {
+  font-size: 26rpx;
+}
+
+
+
+.stats-box {
+  /* border: 1px solid; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30rpx;
+}
+
+.stats-card {
+  width: 340rpx;
+  height: 150rpx;
+  border: 1px solid;
+  border-radius: 20rpx;
+}
+
+.stats-title {
+  font-size: 35rpx;
+  font-weight: 600;
+}

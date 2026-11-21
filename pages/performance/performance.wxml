@@ -1,2 +1,54 @@
-<!--pages/performance/performance.wxml-->
-<text>pages/performance/performance.wxml</text>
+<view class="body">
+  <!-- 自定义顶部导航栏 -->
+  <nav-bar id="nav-bar" title="{{navTitle}}" always-show-title="{{true}}" />
+
+  <view class="head">
+    <view class="banner">
+      <view class="banner-bg">
+        <!-- <image class="banner-ig" src="..." mode="aspectFill" /> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="scrollBox">
+    <view>特色王牌演出</view>
+    <scroll-view class="card-scroll" scroll-x="true" style="width: 100%">
+      <view class="card-list">
+        <view class="show-card" wx:for="{{10}}" wx:key="item">
+          <view class="card-coverBox">
+            <!-- <image class="card-cover" src="..." mode="aspectFill" /> -->
+          </view>
+          <view class="card-info">
+            <view class="card-name">红军歌谣汇</view>
+            <view class="card-tag">王牌演出</view>
+            <view class="card-time">19:00开演</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="stats-box">
+    <!-- 左侧深色卡片 -->
+    <view class="stats-card stats-card-dark">
+      <text class="stats-title">经典演出</text>
+      <view class="stats-desc">
+        <text class="icon-play"></text>
+        <text>约出x0歌谣汇</text>
+      </view>
+      <!-- <image class="stats-bg-icon" src="..." /> -->
+    </view>
+    <!-- 右侧金色卡片 -->
+    <view class="stats-card stats-card-gold">
+      <text class="stats-title">互动演出</text>
+      <view class="stats-desc">
+        <text class="icon-play"></text>
+        <text>今日个互动演出</text>
+      </view>
+      <!-- <image class="stats-bg-icon" src="..." /> -->
+    </view>
+  </view>
+
+
+
+</view>

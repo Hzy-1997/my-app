@@ -14,7 +14,7 @@
 page,
 .container {
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   background: #F7F7F7;
   /* border: 1px solid springgreen; */
 }
