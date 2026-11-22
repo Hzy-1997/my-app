@@ -1,0 +1,90 @@
+<view class="container">
+  <!-- 顶部海报区域 -->
+  <view class="hero-section">
+    <!-- 请替换为您自己的海报图片 -->
+    <image class="hero-img" src="https://via.placeholder.com/750x600/5c1e1e/ffffff?text=Interactive+Hero" mode="aspectFill"></image>
+    <view class="hero-text-overlay">
+      <view class="hero-title">互动演出怎么玩？</view>
+      <view class="hero-subtitle">扫码、任务、协作与纪念，把观看变成体验</view>
+    </view>
+  </view>
+
+  <!-- 内容区 -->
+  <view class="content-body">
+    <!-- 简介 -->
+    <view class="intro-text">
+      互动演出的特别之处，在于它把“看节目”变成“进入节目”。观众不是被动接收信息，而是通过轻量任务、现场反馈与集体协作，成为巴中故事的讲述者之一。
+    </view>
+
+    <!-- 互动设计背景 -->
+    <view class="section">
+      <view class="section-title">互动设计背景</view>
+      <view class="section-text">
+        巴中互动演出的设计逻辑，是把复杂内容拆成可理解、可完成的小节点。每个任务都服务于同一个目标：让观众更具体地认识巴中历史、巴山民俗与夜游场景，而不是为了互动而互动。
+      </view>
+    </view>
+
+    <!-- 扫码开启场景 -->
+    <view class="section">
+      <view class="section-title">扫码开启场景</view>
+      <view class="card-row">
+        <image class="card-img" src="https://via.placeholder.com/200x140/000000/ffffff?text=Image" mode="aspectFill"></image>
+        <view class="card-text">
+          扫码入口通常连接任务说明，简单选择与现场反馈。观众进入后，可以先观察任务目标，再根据现场提示逐步参与。这种低门槛方式，让第一次接触的游客也能自然进入状态。
+        </view>
+      </view>
+    </view>
+
+    <!-- 任务挑战场景 -->
+    <view class="section">
+      <view class="section-title">任务挑战场景</view>
+      <view class="card-row">
+        <image class="card-img" src="https://via.placeholder.com/200x140/000000/ffffff?text=Image" mode="aspectFill"></image>
+        <view class="card-text">
+          任务挑战并不追求高强度游戏感，而是强调学习与参与。红色问答帮助观众回忆历史，亲子任务推动家庭交流，现场挑战则把观众的注意力重新拉回舞台与环境。
+        </view>
+      </view>
+    </view>
+
+    <!-- 共同点亮场景 -->
+    <view class="section">
+      <view class="section-title">共同点亮场景</view>
+      <view class="card-row">
+        <image class="card-img" src="https://via.placeholder.com/200x140/000000/ffffff?text=Image" mode="aspectFill"></image>
+        <view class="card-text">
+          共同点亮是互动演出的情绪高潮。当多人任务结果聚集在同一画面中，观众会意识到自己的行动与其他人连接在一起，“这种连接感”正是互动记忆的核心。
+        </view>
+      </view>
+    </view>
+
+    <!-- 互动节目氛围 -->
+    <view class="section">
+      <view class="section-title">互动节目氛围</view>
+      <view class="tags-container">
+        <view class="tag-box">
+          <view class="tag-title">少年强国说</view>
+          <view class="tag-desc">少年表达适合关注参与者的语言、情绪与现场氛围。</view>
+        </view>
+        <view class="tag-box">
+          <view class="tag-title">巴山故事会</view>
+          <view class="tag-desc">故事讲述适合关注叙事节奏、人物表达与观众代入感。</view>
+        </view>
+        <view class="tag-box">
+          <view class="tag-title">互动问答夜</view>
+          <view class="tag-desc">问答互动适合关注题目设计、现场反馈与知识理解。</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 场景关键词解释 -->
+    <view class="section">
+      <view class="section-title">场景关键词解释</view>
+      <view class="section-text keyword-text">
+        <view class="keyword-item"><text class="keyword-bold">轻参与：</text>用简单任务进入体验，不设置高门槛。</view>
+        <view class="keyword-item"><text class="keyword-bold">强代入：</text>观众进入故事场景，而不是站在外面观看。</view>
+        <view class="keyword-item"><text class="keyword-bold">共互动：</text>多人任务连接成集体体验。</view>
+        <view class="keyword-item"><text class="keyword-bold">有记忆：</text>任务结果与现场感受共同留下纪念。</view>
+      </view>
+    </view>
+  </view>
+</view>

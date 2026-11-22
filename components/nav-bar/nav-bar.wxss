@@ -60,3 +60,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.asv {
+  color: #fff;
+}

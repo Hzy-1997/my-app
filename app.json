@@ -46,7 +46,9 @@
         "serviceDetails/serviceDetails",
         "intelligentService/intelligentService",
         "order/order",
-        "orderDetail/orderDetail"
+        "orderDetail/orderDetail",
+        "traditional/traditional",
+        "interactive/interactive"
       ]
     }
   ],

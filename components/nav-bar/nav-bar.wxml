@@ -9,6 +9,6 @@
       </view>
     </view>
     <!-- 中间标题 - 居中显示 -->
-    <view class="title" wx:if="{{textShow}}">{{title}}</view>
+    <view class="title {{styleColor == true ? 'asv':''}} " wx:if="{{textShow}}">{{title}}</view>
   </view>
 </view>

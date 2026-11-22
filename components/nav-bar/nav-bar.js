@@ -20,7 +20,12 @@ Component({
     alwaysShowTitle: {
       type: Boolean,
       value: false
-    }
+    },
+    // 是否展示返回按钮
+    styleShowColor: {
+      type: Boolean,
+      value: false
+    },
   },
 
   /**
@@ -32,6 +37,7 @@ Component({
     headerBgColor: 'rgba(255, 255, 255, 0)', // 初始完全透明
     textColor: 'rgba(255, 255, 255, 1)',
     textShow: false,
+    styleColor: false
   },
 
   lifetimes: {
@@ -39,9 +45,16 @@ Component({
       this.initNavBar();
       if (this.data.alwaysShowTitle) {
         this.setData({
-          textShow: true
+          textShow: true,
         });
       }
+
+      if (this.data.styleShowColor) {
+        this.setData({
+          styleColor: true,
+        });
+      }
+
     }
   },
 

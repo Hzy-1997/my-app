@@ -1,0 +1,88 @@
+<view class="container">
+  <!-- 顶部导航 -->
+  <!-- 顶部海报区域 -->
+  <view class="hero-section">
+    <!-- 请替换为您自己的海报图片 -->
+    <image class="hero-img" src="https://via.placeholder.com/750x600/3e2723/ffffff?text=Hero+Image" mode="aspectFill"></image>
+    <view class="hero-text-overlay">
+      <view class="hero-title">走进巴中光雾山经典演出</view>
+      <view class="hero-subtitle">在红叶、夜色与山歌里，读懂一段巴山故事</view>
+    </view>
+  </view>
+
+  <!-- 内容区 -->
+  <view class="content-body">
+    <!-- 简介 -->
+    <view class="intro-text">
+      巴中光雾山的舞台，不只是一次观看，更是一场关于红色记忆、巴山民俗与山水实景的沉浸体验。当红叶遇上夜色，当山歌遇上古戏台，巴中故事便在观众面前缓缓展开。
+    </view>
+
+    <!-- 历史文化背景 -->
+    <view class="section">
+      <view class="section-title">历史文化背景</view>
+      <view class="section-text">
+        这里曾是川陕革命老区的重要中心，红军歌谣、革命标语、民间歌舞与乡土记忆，长期在巴山深处流传。经典演出将这些零散的声音与故事组织成舞台叙事，让历史不再停留在文字里，而是化为旋律、队形与灯光。
+      </view>
+    </view>
+
+    <!-- 红色记忆场景 -->
+    <view class="section">
+      <view class="section-title">红色记忆场景</view>
+      <view class="card-row">
+        <image class="card-img" src="https://via.placeholder.com/200x140/000000/ffffff?text=Image" mode="aspectFill"></image>
+        <view class="card-text">
+          红军歌谣汇、革命故事讲述与群像表演共同构成红色记忆场景。观众会重新进入那个年代的情绪与场景，舞台上的群不只是表演，更像是一群人对历史的回望。
+        </view>
+      </view>
+    </view>
+
+    <!-- 巴山民俗场景 -->
+    <view class="section">
+      <view class="section-title">巴山民俗场景</view>
+      <view class="card-row">
+        <image class="card-img" src="https://via.placeholder.com/200x140/000000/ffffff?text=Image" mode="aspectFill"></image>
+        <view class="card-text">
+          巴山夜宴、民间歌舞、非遗表达与乡土叙事，让经典演出拥有浓郁的巴中气息。服饰、音乐、队形与舞台道具背后，是当地生活方式、审美习惯与情感表达的延续。
+        </view>
+      </view>
+    </view>
+
+    <!-- 山水实景场景 -->
+    <view class="section">
+      <view class="section-title">山水实景场景</view>
+      <view class="card-row">
+        <image class="card-img" src="https://via.placeholder.com/200x140/000000/ffffff?text=Image" mode="aspectFill"></image>
+        <view class="card-text">
+          光雾山的红叶、峡谷、夜色与古戏台，为经典演出提供了天然舞台。灯光顺着山势展开，音乐在夜空中，观众看到的不只节目，更是巴中艺术与人文共同形成的大场景。
+        </view>
+      </view>
+    </view>
+
+    <!-- 经典节目氛围 -->
+    <view class="section">
+      <view class="section-title">经典节目氛围</view>
+      <view class="tags-container">
+        <view class="tag-box">
+          <view class="tag-title">红军歌谣汇</view>
+          <view class="tag-desc">熟悉旋律把历史重新唱到观众面前，适合带着长辈与孩子一起感受。</view>
+        </view>
+        <view class="tag-box">
+          <view class="tag-title">巴山夜宴</view>
+          <view class="tag-desc">巴山夜宴 | 夜色宴席里藏着巴山沉浸式的情感表达。</view>
+        </view>
+        <view class="tag-box">
+          <view class="tag-title">少年强国说</view>
+          <view class="tag-desc">少年视角让红色记忆更贴近当下，达年轻人对家国与时代的理解。</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 观看提示 -->
+    <view class="section">
+      <view class="section-title">观看提示</view>
+      <view class="section-text">
+        观看经典演出，建议先了解巴中红色历史与巴山民俗背景；演出中可关注灯光、音乐、队形与山水环境的融合；经典节目适合全家观看，尤其适合青少年历史教育。
+      </view>
+    </view>
+  </view>
+</view>
