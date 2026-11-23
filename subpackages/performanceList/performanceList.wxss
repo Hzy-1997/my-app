@@ -24,7 +24,7 @@
 .performance-card {
   border: 1px solid;
   margin-bottom: 25rpx;
-  height: 430rpx;
+  height: 450rpx;
   border-radius: 20rpx;
   position: relative;
 }
@@ -32,6 +32,7 @@
 .performance-card_img {
   height: 300rpx;
   border: 1px solid;
+  border-radius: 20rpx 20rpx 0rpx 0rpx;
 }
 
 .performance-card_img image {
@@ -67,8 +68,23 @@
   font-size: 34rpx;
 }
 
-.performance-card_time-label {
+.performance-card_tag {
+  margin: 5rpx 0rpx;
+  display: flex;
+}
+
+.performance-card_tag view {
   margin-right: 15rpx;
+  border: 1px solid;
+  padding: 5rpx;
+  width: 70rpx;
+  height: 25rpx;
+  text-align: center;
+  line-height: 25rpx;
+  border-radius: 30rpx;
+  font-size: 24rpx;
+  color: #fff;
+  background: chocolate;
 }
 
 .performance-card_time-row {
@@ -79,12 +95,24 @@
   margin-left: 10rpx;
   width: 500rpx;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+}
+
+.performance-card_time-list view {
+  font-size: 28rpx;
+  line-height: 1.2;
+  padding: 0rpx 12rpx;
+  border-right: 1px solid #999;
+  color: #333;
+}
+
+.performance-card_time-list view:last-child {
+  border-right: none;
+  padding-right: 0;
 }
 
 
-/*  按时间展示 */
 .timeline-container {
   margin-top: 95rpx;
 

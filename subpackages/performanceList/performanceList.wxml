@@ -8,22 +8,35 @@
   <view class="performance-list" wx:if="{{category ==1}}">
     <scroll-view scroll-y="true" style="height: 1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
       <!-- 单个卡片 -->
-      <view class="performance-card" wx:for="{{10}}" wx:key="item">
+      <view class="performance-card" wx:for="{{performanceList}}" wx:key="item">
         <view class="performance-card_cover">
           <view class="performance-card_img">
             <!-- <image src="..." mode="aspectFill" /> -->
           </view>
-          <view class="performance-card_badge">
-            <view class="badge-time">15:30</view>
+          <view class="performance-card_badge" wx:if="{{item.csThere}}">
+            <view class="badge-time">{{item.nextShowTime}}</view>
             <view class="badge-label">下一场</view>
+          </view>
+          <view class="performance-card_badge" wx:elif="{{item.programTime.length === 0}}">
+            <view class="badge-time"></view>
+            <view class="badge-label">待开放</view>
+          </view>
+          <view class="performance-card_badge" wx:else>
+            <view class="badge-time"></view>
+            <view class="badge-label">已结束</view>
           </view>
         </view>
 
         <view class="performance-card_info">
-          <view class="performance-card_title">最棒的礼物</view>
+          <view class="performance-card_title">{{item.title}}</view>
+          <view class="performance-card_tag">
+            <view wx:for="{{item.tags}}" wx:key="item">{{item}}</view>
+          </view>
           <view class="performance-card_time-row">
             <view class="performance-card_time-label">演出时间:</view>
-            <view class="performance-card_time-list">15:30 | 16:45 | 18:00</view>
+            <view class="performance-card_time-list">
+              <view wx:for="{{item.programTime}}" wx:key="item"> {{item}}</view>
+            </view>
           </view>
         </view>
       </view>
@@ -33,7 +46,7 @@
 
 
   <!-- 按时间展示 -->
-  <view class="timeline-container" wx:else>
+  <!-- <view class="timeline-container" wx:else>
     <scroll-view scroll-y="true" style="height: 1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
       <view class="timeline-list">
         <view class="timeline-item" wx:for="{{5}}" wx:key="index">
@@ -60,6 +73,55 @@
                   <view class="show-card_action-btn text-blue">详情 »</view>
                   <view class="show-card_action-btn">☆ 开演提醒</view>
                   <view class="show-card_action-btn">➤ 导航</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view> -->
+
+  <view class="timeline-container" wx:else>
+    <scroll-view scroll-y="true" style="height: 1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+      <view class="timeline-list">
+   <view></view>
+        <view class="timeline-item" wx:for="{{timelineData}}" wx:key="time" wx:for-item="group">
+          <view class="timeline-item_axis">
+            <view class="timeline-item_dot"></view>
+            <view class="timeline-item_line"></view>
+          </view>
+
+          <view class="timeline-item_content">
+            <view class="timeline-item_time-badge">
+              <text>{{group.time}}</text>
+            </view>
+
+            <!-- 这一列里有多少节目就渲染多少张卡片 -->
+            <view class="show-card" wx:for="{{group.list}}" wx:key="id" wx:for-item="item">
+              <view class="show-card_cover">
+                <image src="{{item.coverImage}}" mode="aspectFill"></image>
+              </view>
+
+              <view class="show-card_main">
+                <view class="show-card_title">{{item.title}}</view>
+
+                <view class="show-card_desc">
+                  <view class="show-card_time">
+                    时间：{{item.showTime}}~{{item.duration}}
+                  </view>
+                  <view class="show-card_capacity">
+                    {{item.locationDesc}} 可容纳{{item.capacity}}人
+                  </view>
+                  <view class="show-card_notice" wx:if="{{item.notice}}">
+                    {{item.notice}}
+                  </view>
+                </view>
+
+                <view class="show-card_footer">
+                  <view class="show-card_action-btn text-blue" bindtap="goDetail" data-id="{{item.id}}">详情 »</view>
+                  <view class="show-card_action-btn" bindtap="setReminder" data-id="{{item.id}}">☆ 开演提醒</view>
+                  <view class="show-card_action-btn" bindtap="goNavigation" data-id="{{item.id}}">➤ 导航</view>
                 </view>
               </view>
             </view>

@@ -12,42 +12,15 @@ Page({
   data: {
     performanceList: [],
     type: 1,
-    category: 2,
-    timelineData: [{
-        id: 1,
-        startTime: '10:30',
-        title: '红庙学校',
-        timeRange: '10:20~10:48',
-        capacity: 180,
-        cover: 'https://via.placeholder.com/140', // 换成你的真实图片
-        notice: '较难排队 谢绝学龄前儿童观看'
-      },
-      {
-        id: 2,
-        startTime: '10:40',
-        title: '薛怀义',
-        timeRange: '10:30~11:02',
-        capacity: 300,
-        cover: 'https://via.placeholder.com/140',
-        notice: '较难排队 不适合未成年人观看'
-      },
-      {
-        id: 3,
-        startTime: '10:50',
-        title: '老院子',
-        timeRange: '10:40~11:08',
-        capacity: 200,
-        cover: 'https://via.placeholder.com/140',
-        notice: ''
-      }
-    ]
+    category: 1,
+    timelineData: [],
+    programTime: [],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(options)
     this.setData({
       type: options.type
     })
@@ -107,23 +80,41 @@ Page({
   // 获取演出列表
   async getPerformanceList() {
     wx.showLoading({
-      title: '加载中',
+      title: '加载中'
     })
 
     try {
-      let res = await performanceApi.strategyListApi({
+      const res = await performanceApi.strategyListApi({
         page: 1,
         pageSize: 10,
-        // performanceTypes: this.data.type
         performanceTypes: 1
       })
-      this.setData({
-        performanceList: res.data.rows
-      })
-      console.log(res.data.rows)
-      wx.hideLoading()
 
+      const rows = res.data.rows || []
+
+      console.log('原始rows', rows)
+      console.log('今天getDay()', new Date().getDay())
+      console.log('schedules里的weekDay', rows.map(r => (r.schedules || []).map(s => s.weekDay)))
+
+      // 1. 按节目展示用
+      const performanceList = this.buildPerformanceList(rows)
+
+      // 2. 按时间展示用
+      const timelineData = this.buildTimelineData(performanceList)
+
+      console.log('programTime', performanceList.map(p => ({ id: p.id, programTime: p.programTime })))
+      console.log('timelineData', timelineData)
+
+
+      this.setData({
+        performanceList,
+        timelineData
+      })
+
+      wx.hideLoading()
     } catch (error) {
+      console.log(error)
+      wx.hideLoading()
       wx.showToast({
         title: '系统错误',
         icon: 'error',
@@ -131,6 +122,97 @@ Page({
       })
     }
   },
+
+  // 按节目展示的数据处理
+  buildPerformanceList(rows) {
+    const now = new Date()
+    const currentHour = now.getHours().toString().padStart(2, '0')
+    const currentMinute = now.getMinutes().toString().padStart(2, '0')
+    const currentTimeStr = `${currentHour}:${currentMinute}`
+    const day = now.getDay()
+
+    return rows.map(row => {
+      const currentShowTimes = []
+
+      if (row.schedules && row.schedules.length > 0) {
+        row.schedules.forEach(schedule => {
+          if (schedule.weekDay == day) {
+            if (!currentShowTimes.includes(schedule.showTime)) {
+              currentShowTimes.push(schedule.showTime)
+            }
+          }
+        })
+      }
+
+      currentShowTimes.sort()
+
+      const validTimes = currentShowTimes.filter(time => time > currentTimeStr)
+
+      return {
+        ...row,
+        csThere: validTimes.length > 0,
+        nextShowTime: validTimes.length > 0 ? validTimes[0] : '',
+        programTime: currentShowTimes
+      }
+    })
+  },
+
+  // 按时间展示的数据处理
+  buildTimelineData(rows) {
+    const now = new Date()
+    const currentHour = now.getHours().toString().padStart(2, '0')
+    const currentMinute = now.getMinutes().toString().padStart(2, '0')
+    const currentTimeStr = `${currentHour}:${currentMinute}`
+
+    // 1. 先拍平成「场次」
+    const scheduleList = []
+
+    rows.forEach(row => {
+      const times = row.programTime || []
+
+      times.forEach((time, index) => {
+        scheduleList.push({
+          time,
+          performance: row,
+          scheduleIndex: index
+        })
+      })
+    })
+
+    // 2. 全部展示，已开始的场次标记 isPast
+    // 3. 按时间排序
+    scheduleList.sort((a, b) => {
+      if (a.time < b.time) return -1
+      if (a.time > b.time) return 1
+      return a.performance.id - b.performance.id
+    })
+
+    // 4. 按时间分组
+    const timelineData = []
+
+    scheduleList.forEach(item => {
+      let group = timelineData.find(g => g.time === item.time)
+
+      if (!group) {
+        group = {
+          time: item.time,
+          list: []
+        }
+        timelineData.push(group)
+      }
+
+      group.list.push({
+        ...item.performance,
+        showTime: item.time,
+        scheduleIndex: item.scheduleIndex,
+        isPast: item.time < currentTimeStr
+      })
+    })
+
+    return timelineData
+  },
+
+
   // 底部按钮点击事件
   goDetail(e) {
     const id = e.currentTarget.dataset.id;
