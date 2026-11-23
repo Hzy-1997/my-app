@@ -48,7 +48,9 @@
         "order/order",
         "orderDetail/orderDetail",
         "traditional/traditional",
-        "interactive/interactive"
+        "interactive/interactive",
+        "performanceList/performanceList",
+        "performanceDetails/performanceDetails"
       ]
     }
   ],

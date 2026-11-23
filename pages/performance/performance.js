@@ -11,6 +11,8 @@ Page({
   data: {
     navTitle: "演绎演出",
     acePerformance: [],
+    classicNum: "",
+    interactionNum: "",
   },
 
   /**
@@ -78,18 +80,56 @@ Page({
 
     let data = res.data.rows
     let list = []
+    let quantityA = 0
+    let quantityB = 0
+
     data.map((item) => {
       item.name = item.title.split("·")[0]
       if (item.isSmartRecommended) {
         console.log(item)
         list.push(item)
       }
+      if (item.performanceTypes == 1) {
+        quantityA = quantityA + 1
+      } else {
+        quantityB = quantityB + 1
+      }
     })
 
     this.setData({
-      acePerformance: list
+      acePerformance: list,
+      classicNum: quantityA,
+      interactionNum: quantityB,
     })
   },
+
+
+  //王牌演出详情
+  performanceDetails(e) {
+    console.log(e)
+    let {
+      item
+    } = e.currentTarget.dataset
+    wx.navigateTo({
+      url: `/subpackages/performanceDetails/performanceDetails?id=${item.id}`
+    })
+  },
+
+  // 经典演出
+  classicList() {
+    wx.navigateTo({
+      url: `/subpackages/performanceList/performanceList?type=1`
+    })
+  },
+
+  // 互动演出
+  interactionList() {
+    wx.navigateTo({
+      url: `/subpackages/performanceList/performanceList?type=2`
+    })
+  },
+
+
 
 
 

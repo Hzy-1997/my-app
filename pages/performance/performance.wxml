@@ -12,14 +12,14 @@
     <view class="scrollBoxTitle">特色王牌演出</view>
     <scroll-view class="card-scroll" scroll-x="true" style="width: 100%">
       <view class="card-list">
-        <view class="show-card" wx:for="{{acePerformance}}" wx:key="item">
+        <view class="show-card" wx:for="{{acePerformance}}" wx:key="item" bind:tap="performanceDetails" data-item="{{item}}">
           <view class="card-coverBox">
             <!-- <image class="card-cover" src="..." mode="aspectFill" /> -->
           </view>
           <view class="card-info">
-            <view class="card-name">{{item}}</view>
+            <view class="card-name">{{item.name}}</view>
             <view class="card-tag">王牌演出</view>
-            <view class="card-time">19:00开演</view>
+            <view class="card-time">{{item.schedules[0].showTime}}开演</view>
           </view>
         </view>
       </view>
@@ -28,8 +28,8 @@
 
   <view class="stats-box">
     <!-- 左侧深色卡片 -->
-    <view class="stats-card stats-card-dark">
-      <view class="stats-title">经典演出</view>
+    <view class="stats-card stats-card-dark" bind:tap="classicList">
+      <view class="stats-title">{{classicNum}}个经典演出</view>
       <view class="stats-desc">
         <view class="icon-play"></view>
         <view>约出x0歌谣汇</view>
@@ -37,8 +37,8 @@
       <!-- <image class="stats-bg-icon" src="..." /> -->
     </view>
     <!-- 右侧金色卡片 -->
-    <view class="stats-card stats-card-gold">
-      <view class="stats-title">互动演出</view>
+    <view class="stats-card stats-card-gold" bind:tap="interactionList">
+      <view class="stats-title">{{interactionNum}}个互动演出</view>
       <view class="stats-desc">
         <view class="icon-play"></view>
         <view>今日个互动演出</view>
