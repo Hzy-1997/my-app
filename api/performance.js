@@ -11,3 +11,12 @@ export const strategyListApi = (data) => {
     data
   })
 }
+
+// 节目详细
+export const performanceDetail = (data) => {
+  return request({
+    url: "/performance/performanceDetail",
+    method: "get",
+    data
+  })
+}

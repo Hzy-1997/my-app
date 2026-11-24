@@ -8,7 +8,7 @@
   <view class="performance-list" wx:if="{{category ==1}}">
     <scroll-view scroll-y="true" style="height: 1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
       <!-- 单个卡片 -->
-      <view class="performance-card" wx:for="{{performanceList}}" wx:key="item">
+      <view class="performance-card" wx:for="{{performanceList}}" wx:key="item" bind:tap="goDetail" data-id="{{item.id}}">
         <view class="performance-card_cover">
           <view class="performance-card_img">
             <!-- <image src="..." mode="aspectFill" /> -->
@@ -44,48 +44,11 @@
   </view>
 
 
-
   <!-- 按时间展示 -->
-  <!-- <view class="timeline-container" wx:else>
-    <scroll-view scroll-y="true" style="height: 1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-      <view class="timeline-list">
-        <view class="timeline-item" wx:for="{{5}}" wx:key="index">
-          <view class="timeline-item_axis">
-            <view class="timeline-item_dot"></view>
-            <view class="timeline-item_line"></view>
-          </view>
-          <view class="timeline-item_content">
-            <view class="timeline-item_time-badge">
-              <text>10:40</text>
-            </view>
-            <view class="show-card">
-              <view class="show-card_cover">
-                <image src="https://via.placeholder.com/150x200" mode="aspectFill"></image>
-              </view>
-              <view class="show-card_main">
-                <view class="show-card_title">老院子</view>
-                <view class="show-card_desc">
-                  <view class="show-card_time">时间：10:40~11:08</view>
-                  <view class="show-card_capacity">坐定式观演 可容纳300人</view>
-                  <view class="show-card_notice">谢绝学龄前儿童观看</view>
-                </view>
-                <view class="show-card_footer">
-                  <view class="show-card_action-btn text-blue">详情 »</view>
-                  <view class="show-card_action-btn">☆ 开演提醒</view>
-                  <view class="show-card_action-btn">➤ 导航</view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </scroll-view>
-  </view> -->
-
   <view class="timeline-container" wx:else>
     <scroll-view scroll-y="true" style="height: 1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
       <view class="timeline-list">
-   <view></view>
+        <view></view>
         <view class="timeline-item" wx:for="{{timelineData}}" wx:key="time" wx:for-item="group">
           <view class="timeline-item_axis">
             <view class="timeline-item_dot"></view>
@@ -98,7 +61,7 @@
             </view>
 
             <!-- 这一列里有多少节目就渲染多少张卡片 -->
-            <view class="show-card" wx:for="{{group.list}}" wx:key="id" wx:for-item="item">
+            <view class="show-card" wx:for="{{group.list}}" wx:key="id" wx:for-item="item" bind:tap="goDetail" data-id="{{item.id}}">
               <view class="show-card_cover">
                 <image src="{{item.coverImage}}" mode="aspectFill"></image>
               </view>
@@ -108,7 +71,7 @@
 
                 <view class="show-card_desc">
                   <view class="show-card_time">
-                    时间：{{item.showTime}}~{{item.duration}}
+                    演出时长：{{item.duration}}
                   </view>
                   <view class="show-card_capacity">
                     {{item.locationDesc}} 可容纳{{item.capacity}}人

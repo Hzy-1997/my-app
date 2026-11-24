@@ -1,2 +1,76 @@
-<!--subpackages/performanceDetails/performanceDetails.wxml-->
-<text>subpackages/performanceDetails/performanceDetails.wxml</text>
+<view>
+
+  <nav-bar id="nav-bar" title="{{navTitle}}" />
+  <view class="detail-container">
+    <!-- 自定义顶部导航栏 -->
+
+    <view class="container_img">
+      <image src="" mode="" />
+    </view>
+
+    <!-- 顶部标题区 -->
+    <view class="header">
+      <view class="title">{{program.title}}</view>
+      <view class="subtitle" wx:if="{{program.subtitle}}">{{program.subtitle}}</view>
+
+      <view class="tag-row" wx:if="{{program.tags && program.tags.length}}">
+        <view class="tag" wx:for="{{program.tags}}" wx:key="*this">{{item}}</view>
+        <view class="tag" wx:if="{{program.duration}}">{{program.duration}}</view>
+        <view class="tag" wx:if="{{program.suitableAge}}">{{program.suitableAge}}</view>
+      </view>
+    </view>
+
+    <!-- 活动时间 -->
+    <view class="section" wx:if="{{program.schedules && program.schedules.length}}">
+      <view class="section-title">活动时间</view>
+      <view class="schedule-item" wx:for="{{program.schedules}}" wx:key="id">
+        <view> 场次{{index + 1}}：{{item.showTime}}</view>
+        <view class="remind">
+          <view class="image" wx:if="{{item.isAppointment ==1}}">
+            <image src="../../assets/image/starA.png" mode="" />
+          </view>
+          <view class="image" wx:else>
+            <image src="../../assets/image/starB.png" mode="" />
+          </view>
+          开演提醒
+        </view>
+      </view>
+    </view>
+
+    <!-- 活动地点 -->
+    <view class="section" wx:if="{{program.locationDesc}}">
+      <view class="section-title">活动地点</view>
+      <view class="section-content">{{program.locationDesc}}</view>
+    </view>
+
+    <!-- 适合人群 -->
+    <view class="section" wx:if="{{program.suitableCrowd && program.suitableCrowd.length}}">
+      <view class="section-title">适合人群</view>
+      <view class="section-content">
+        {{program.suitableCrowd}}
+      </view>
+    </view>
+
+    <!-- 注意事项 -->
+    <!-- <view class="section" wx:if="{{program.notice}}">
+      <view class="section-title">注意事项</view>
+      <view class="section-content">{{program.notice}}</view>
+    </view> -->
+
+    <!-- 节目简介 -->
+    <view class="section html" wx:if="{{program.introduction}}">
+      <view class="section-title">节目简介</view>
+      <!-- <view class="section-content">{{program.introduction}}</view> -->
+      <mp-html content="{{program.introduction}}" />
+    </view>
+
+    <!-- 底部占位，避免按钮遮挡内容 -->
+    <!-- <view class="bottom-spacing"></view> -->
+  </view>
+
+  <!-- 底部预约按钮 -->
+  <!-- <view class="footer" wx:if="{{program.isReservationRequired}}">
+    <button class="reserve-btn" bindtap="goReserve">预约报名</button>
+  </view> -->
+
+</view>

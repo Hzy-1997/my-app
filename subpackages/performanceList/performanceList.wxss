@@ -24,7 +24,7 @@
 .performance-card {
   border: 1px solid;
   margin-bottom: 25rpx;
-  height: 450rpx;
+  height: 460rpx;
   border-radius: 20rpx;
   position: relative;
 }

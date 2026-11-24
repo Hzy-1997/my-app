@@ -102,7 +102,10 @@ Page({
       // 2. 按时间展示用
       const timelineData = this.buildTimelineData(performanceList)
 
-      console.log('programTime', performanceList.map(p => ({ id: p.id, programTime: p.programTime })))
+      console.log('programTime', performanceList.map(p => ({
+        id: p.id,
+        programTime: p.programTime
+      })))
       console.log('timelineData', timelineData)
 
 
@@ -220,6 +223,9 @@ Page({
       title: '查看详情 ' + id,
       icon: 'none'
     });
+    wx.navigateTo({
+      url: `/subpackages/performanceDetails/performanceDetails?id=${id}`
+    })
   },
 
   setReminder(e) {
@@ -248,12 +254,5 @@ Page({
     this.setData({
       category: id == 1 ? 1 : 2
     })
-
-
-
-
   }
-
-
-
 })
