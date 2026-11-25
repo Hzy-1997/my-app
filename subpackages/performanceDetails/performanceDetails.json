@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "nav-bar": "/components/nav-bar/nav-bar",
-    "mp-html": "mp-html"
+    "mp-html": "mp-html",
+    "van-popup": "@vant/weapp/popup/index"
   },
   "navigationStyle": "custom"
 }

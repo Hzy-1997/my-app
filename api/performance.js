@@ -20,3 +20,14 @@ export const performanceDetail = (data) => {
     data
   })
 }
+
+
+// 预约提醒
+
+export const reminder = (data) => {
+  return request({
+    url: "/wx/subscribe/reminder",
+    method: "post",
+    data
+  })
+}

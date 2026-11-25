@@ -149,7 +149,7 @@ Page({
 
       currentShowTimes.sort()
 
-      const validTimes = currentShowTimes.filter(time => time > currentTimeStr)
+      const validTimes = currentShowTimes.filter(time => time > currentTimeStr) 
 
       return {
         ...row,

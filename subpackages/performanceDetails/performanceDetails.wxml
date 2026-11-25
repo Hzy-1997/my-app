@@ -12,7 +12,6 @@
     <view class="header">
       <view class="title">{{program.title}}</view>
       <view class="subtitle" wx:if="{{program.subtitle}}">{{program.subtitle}}</view>
-
       <view class="tag-row" wx:if="{{program.tags && program.tags.length}}">
         <view class="tag" wx:for="{{program.tags}}" wx:key="*this">{{item}}</view>
         <view class="tag" wx:if="{{program.duration}}">{{program.duration}}</view>
@@ -25,7 +24,7 @@
       <view class="section-title">活动时间</view>
       <view class="schedule-item" wx:for="{{program.schedules}}" wx:key="id">
         <view> 场次{{index + 1}}：{{item.showTime}}</view>
-        <view class="remind">
+        <view class="remind" bind:tap="showPopup" data-date="{{item.showTime}}">
           <view class="image" wx:if="{{item.isAppointment ==1}}">
             <image src="../../assets/image/starA.png" mode="" />
           </view>
@@ -72,5 +71,29 @@
   <!-- <view class="footer" wx:if="{{program.isReservationRequired}}">
     <button class="reserve-btn" bindtap="goReserve">预约报名</button>
   </view> -->
+
+  <van-popup show="{{ show }}" position="bottom" closeable bind:close="onClose" round custom-style="padding-bottom: env(safe-area-inset-bottom);">
+    <view class="remindBox">
+
+      <!-- 预约场次区域 -->
+      <view class="session-info">
+        <view class="session-label">当前预约场次</view>
+        <view class="session-value active time">{{ time }}</view>
+      </view>
+
+      <!-- 提醒时间选择区域 -->
+      <view class="remindTitle">选择你要提醒的时间</view>
+
+      <view class="remindTime">
+        <view class="time {{ selectedIndex === index ? 'active' : '' }}" wx:for="{{ reminderArray }}" wx:key="*this" data-index="{{ index }}" bind:tap="handleSelectTime">
+          开始前{{ item }}分钟
+        </view>
+      </view>
+
+      <!-- 底部确定按钮 -->
+      <view class="btn" bind:tap="startReminding">确定</view>
+
+    </view>
+  </van-popup>
 
 </view>

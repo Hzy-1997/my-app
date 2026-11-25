@@ -3,10 +3,9 @@ page {
   color: #1f2430;
 }
 
-.detail-container {}
 
 .container_img {
-  border: 1px solid;
+  height: 450rpx;
 }
 
 .header {
@@ -124,4 +123,85 @@ page {
 
 .reserve-btn::after {
   border: none;
+}
+
+/* 弹窗内容容器 */
+.remindBox {
+  padding: 40rpx;
+  background-color: #ffffff;
+  border-top-left-radius: 24rpx;
+  border-top-right-radius: 24rpx;
+}
+
+/* 预约场次 */
+.session-info {
+  margin-bottom: 40rpx;
+  font-size: 30rpx;
+}
+
+.session-label {
+  color: #333;
+  font-weight: bold;
+  margin: 20rpx 0rpx;
+}
+
+.session-value {
+  color: #666;
+  text-align: center;
+}
+
+/* 标题 */
+.remindTitle {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 24rpx;
+  font-weight: 500;
+}
+
+/* 时间选项容器 */
+.remindTime {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  /* 替代 margin，更优雅的排版 */
+  margin-bottom: 60rpx;
+}
+
+/* 单个时间选项默认样式 */
+.time {
+  padding: 16rpx 32rpx;
+  background-color: #f5f5f5;
+  color: #666;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  /* 胶囊形状 */
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+/* 时间选项选中样式 (与您的截图保持一致) */
+.time.active {
+  background-color: #eef1ff;
+  color: #5b6bf0;
+  border: 1px solid #5b6bf0;
+  font-weight: 500;
+}
+
+/* 确定按钮 */
+.btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background-color: #5b6bf0;
+  color: #ffffff;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 12rpx;
+  margin-top: 20rpx;
+}
+
+/* 按钮点击态 */
+.btn:active {
+  opacity: 0.8;
 }
