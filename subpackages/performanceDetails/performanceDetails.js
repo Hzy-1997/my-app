@@ -162,12 +162,26 @@ Page({
   //   });
   // },
 
-
   showPopup(e) {
-    console.log(e)
+    const showTime = e.currentTarget.dataset.date;
+
+    const now = new Date();
+    const pad = (n) => String(n).padStart(2, '0');
+    const currentTime = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
+    // 当前时间 >= 节目时间 → 已开始/已结束
+    if (currentTime >= showTime) {
+      wx.showToast({
+        title: '该场次已开始或已结束',
+        icon: 'none'
+      });
+      // return;
+    }
+
+
     this.setData({
       show: true,
-      time: e.currentTarget.dataset.date
+      time: showTime
     });
   },
 
@@ -191,46 +205,105 @@ Page({
   },
 
   // 开演提醒
+  // async startReminding() {
+  //   const {
+  //     reminderArray,
+  //     selectedIndex,
+  //     time
+  //   } = this.data;
+
+  //   const selectedMinutes = Number(reminderArray[selectedIndex]);
+  //   const now = new Date();
+  //   const pad = (n) => String(n).padStart(2, '0');
+  //   const dateStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  //   const t1 = this.addMinutesToTime(dateStr, time, selectedMinutes);
+
+  //   let data = {
+  //     projectId: this.data.program.id,
+  //     projectStartTime: `${dateStr} ${time}:00`,
+  //     reminderTime: t1,
+  //     reminderType: '开演提醒',
+  //     reminderTimeType: selectedMinutes,
+  //     reminderContent: `您预约的场次将于 ${dateStr} ${time}:00 开始，请提前做好准备。`
+  //   }
+
+  //   console.log('计算后的提醒时间:', data);
+
+  //   let res = await performanceApi.reminder(data)
+
+  //   console.log(res)
+  //   wx.requestSubscribeMessage({
+  //     tmplIds: ['yMeLNPKJYKIT3klh_KbyaiX7G2xIGeHBQsiKBnogXsc'],
+  //     success(res) {
+  //       console.log(res)
+  //       this.onClose();
+  //     }
+  //   })
+  // },
+
+
   async startReminding() {
     const {
       reminderArray,
       selectedIndex,
       time
     } = this.data;
-
     const selectedMinutes = Number(reminderArray[selectedIndex]);
     const now = new Date();
     const pad = (n) => String(n).padStart(2, '0');
     const dateStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
     const t1 = this.addMinutesToTime(dateStr, time, selectedMinutes);
 
-    let data = {
-      projectId: this.data.program.id,
-      projectStartTime: `${dateStr} ${time}:00`,
-      reminderTime: t1,
-      reminderType: '开演提醒',
-      reminderTimeType: selectedMinutes,
-      reminderContent: `您预约的场次将于 ${dateStr} ${time}:00 开始，请提前做好准备。`
-    }
-
-    console.log('计算后的提醒时间:', data);
-
-    let res = await performanceApi.reminder(data)
-
-    console.log(res)
+    const TMPL_ID = 'yMeLNPKJYKIT3klh_KbyaiX7G2xIGeHBQsiKBnogXsc';
 
 
-    return;
+
+    // 先让用户授权
     wx.requestSubscribeMessage({
-      tmplIds: ['yMeLNPKJYKIT3klh_KbyaiX7G2xIGeHBQsiKBnogXsc'],
-      success(res) {
-        console.log(res)
-        this.onClose();
+      tmplIds: [TMPL_ID],
+      success: async (res) => {
+        console.log('订阅结果:', res);
+
+        // 关键：判断用户是否真的同意
+        if (res[TMPL_ID] !== 'accept') {
+          wx.showToast({
+            title: '需要开启提醒才能预约',
+            icon: 'none'
+          });
+          return;
+        }
+
+        // 用户同意后，再创建提醒
+        let data = {
+          projectId: this.data.program.id,
+          projectStartTime: `${dateStr} ${time}:00`,
+          reminderTime: t1,
+          reminderType: '开演提醒',
+          reminderTimeType: selectedMinutes,
+          reminderContent: `您预约的场次将于 ${dateStr} ${time}:00 开始，请提前做好准备。`
+        };
+
+        try {
+          let res2 = await performanceApi.reminder(data);
+          console.log('提醒创建结果:', res2);
+          this.onClose();
+        } catch (err) {
+          console.error('提醒创建失败:', err);
+          wx.showToast({
+            title: '提醒创建失败',
+            icon: 'none'
+          });
+        }
+      },
+      fail: (err) => {
+        console.error('订阅调用失败:', err);
+        wx.showToast({
+          title: '订阅失败',
+          icon: 'none'
+        });
       }
-    })
+    });
   },
-
-
 
   /**
    * 在指定日期时间上加分钟
@@ -242,12 +315,10 @@ Page({
   addMinutesToTime(dateStr, timeStr, minutes) {
     const baseStr = `${dateStr} ${timeStr}:00`;
     const dateObj = new Date(baseStr.replace(/-/g, '/'));
-    dateObj.setMinutes(dateObj.getMinutes() + minutes);
+    dateObj.setMinutes(dateObj.getMinutes() - minutes);
 
     const pad = (n) => String(n).padStart(2, '0');
     return `${dateObj.getFullYear()}-${pad(dateObj.getMonth() + 1)}-${pad(dateObj.getDate())} ${pad(dateObj.getHours())}:${pad(dateObj.getMinutes())}:00`;
   }
-
-
 
 })
