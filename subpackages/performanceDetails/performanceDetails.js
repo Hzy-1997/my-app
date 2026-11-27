@@ -12,7 +12,7 @@ Page({
     id: 1,
     program: {},
     navTitle: "演绎详情",
-    show: true,
+    show: false,
     time: "",
     reminderArray: [10, 30, 40, 60],
     selectedIndex: 0,
@@ -26,7 +26,7 @@ Page({
       id: options.id
     })
 
-    this.performanceDetail()
+
   },
 
   /**
@@ -40,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.performanceDetail()
   },
 
   /**
@@ -87,9 +87,7 @@ Page({
   },
 
   // 获取节目
-
   async performanceDetail() {
-
     wx.showLoading({
       title: '加载中'
     })
@@ -99,23 +97,22 @@ Page({
         id: this.data.id
       })
 
-      // 处理时间
-      if (res.data.reminders.length > 0) {
-        res.data.reminders.map((item) => {
-          item.time = item.projectStartTime.split('T')[1].substring(0, 5)
-        })
+      // 处理时间（后端返回 "YYYY-MM-DD HH:mm:ss" 北京时间字符串，直接截取时分）
+      if (res.data.reminders && res.data.reminders.length > 0) {
+        res.data.reminders.forEach((item) => {
+          item.isAppointment = Number(item.isAppointment); // 统一成数字
+          item.time1 = item.projectStartTime;
+          item.time2 = item.projectStartTime.substring(11, 16);
+        });
       }
 
       // 是否有预约
-      if (res.data.reminders.length > 0 || res.data.schedules > 0) {
+      if (res.data.schedules && res.data.schedules.length > 0) {
         res.data.schedules.forEach((element) => {
-          res.data.reminders.map((item) => {
-            if (element.showTime == item.time) {
-              element.isAppointment = 1
-            } else {
-              element.isAppointment = 2
-            }
-          })
+          const matched = (res.data.reminders || []).some(
+            (item) => item.time2 === element.showTime && Number(item.isAppointment) === 1
+          );
+          element.isAppointment = matched ? 1 : 2;
         });
       }
 
@@ -165,19 +162,29 @@ Page({
   showPopup(e) {
     const showTime = e.currentTarget.dataset.date;
 
+    // ✅ 已预约的场次不允许再操作
+    const current = (this.data.program.schedules || []).find(
+      (item) => item.showTime === showTime
+    );
+    if (current && current.isAppointment === 1) {
+      wx.showToast({
+        title: '该场次已预约，请勿重复预约',
+        icon: 'none'
+      });
+      return;
+    }
+
     const now = new Date();
     const pad = (n) => String(n).padStart(2, '0');
     const currentTime = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
 
-    // 当前时间 >= 节目时间 → 已开始/已结束
     if (currentTime >= showTime) {
       wx.showToast({
         title: '该场次已开始或已结束',
         icon: 'none'
       });
-      // return;
+      return;
     }
-
 
     this.setData({
       show: true,
@@ -203,43 +210,6 @@ Page({
       selectedIndex: index
     });
   },
-
-  // 开演提醒
-  // async startReminding() {
-  //   const {
-  //     reminderArray,
-  //     selectedIndex,
-  //     time
-  //   } = this.data;
-
-  //   const selectedMinutes = Number(reminderArray[selectedIndex]);
-  //   const now = new Date();
-  //   const pad = (n) => String(n).padStart(2, '0');
-  //   const dateStr = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
-  //   const t1 = this.addMinutesToTime(dateStr, time, selectedMinutes);
-
-  //   let data = {
-  //     projectId: this.data.program.id,
-  //     projectStartTime: `${dateStr} ${time}:00`,
-  //     reminderTime: t1,
-  //     reminderType: '开演提醒',
-  //     reminderTimeType: selectedMinutes,
-  //     reminderContent: `您预约的场次将于 ${dateStr} ${time}:00 开始，请提前做好准备。`
-  //   }
-
-  //   console.log('计算后的提醒时间:', data);
-
-  //   let res = await performanceApi.reminder(data)
-
-  //   console.log(res)
-  //   wx.requestSubscribeMessage({
-  //     tmplIds: ['yMeLNPKJYKIT3klh_KbyaiX7G2xIGeHBQsiKBnogXsc'],
-  //     success(res) {
-  //       console.log(res)
-  //       this.onClose();
-  //     }
-  //   })
-  // },
 
 
   async startReminding() {
@@ -276,17 +246,40 @@ Page({
         // 用户同意后，再创建提醒
         let data = {
           projectId: this.data.program.id,
-          projectStartTime: `${dateStr} ${time}:00`,
-          reminderTime: t1,
+          projectStartTime: `${dateStr} ${time}:00`, // 项目开始时间
+          reminderTime: t1, //提醒时间 
           reminderType: '开演提醒',
           reminderTimeType: selectedMinutes,
-          reminderContent: `您预约的场次将于 ${dateStr} ${time}:00 开始，请提前做好准备。`
+          reminderContent: `预约场次将于${time}开始，请提前准备`
         };
-
+        console.log("预约提醒参数", data)
         try {
           let res2 = await performanceApi.reminder(data);
           console.log('提醒创建结果:', res2);
-          this.onClose();
+
+          // ✅ 前端假更新：把当前场次标记为已预约
+          const schedules = this.data.program.schedules.map((item) => {
+            if (item.showTime === time) {
+              return {
+                ...item,
+                isAppointment: 1
+              };
+            }
+            return item;
+          });
+
+          this.setData({
+            'program.schedules': schedules,
+            show: false, // 关闭弹窗
+            time: '',
+          });
+
+          wx.showToast({
+            title: '预约成功',
+            icon: 'success'
+          });
+
+          // this.onClose(); // 用上面 setData 关弹窗即可，onClose 也行
         } catch (err) {
           console.error('提醒创建失败:', err);
           wx.showToast({

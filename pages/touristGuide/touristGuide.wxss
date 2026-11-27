@@ -44,21 +44,21 @@ page {
   width: 410rpx;
 }
 
-.venue-card__name {
+.venue-card_name {
   display: flex;
   align-items: center;
 }
 
-.venue-card__name .name {
+.venue-card_name .name {
   font-weight: 900;
   font-size: 28rpx;
-  max-width: 300rpx;
+  max-width: 280rpx;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.venue-card__name .status {
+.venue-card_name .status {
   margin-left: 10rpx;
   font-size: 18rpx;
   padding: 0rpx 10rpx;
@@ -81,14 +81,14 @@ page {
   background: #fdf0f0;
 }
 
-.venue-card__hours {
+.venue-card_hours {
   display: flex;
   color: dimgray;
   font-size: 26rpx;
   margin: 6rpx 0rpx 6rpx;
 }
 
-.venue-card__hours .businessTi {
+.venue-card_hours .businessTi {
   margin-right: 10rpx;
 }
 
@@ -97,11 +97,11 @@ page {
   margin: 20rpx 0rpx;
 }
 
-.venue-card__tag {
+.venue-card_tag {
   display: flex;
 }
 
-.venue-card__tag text {
+.venue-card_tag text {
   background: #fef7c3;
   padding: 5rpx;
   font-size: 23rpx;
@@ -110,7 +110,7 @@ page {
   margin-right: 10rpx;
 }
 
-.venue-card__action {
+.venue-card_action {
   position: absolute;
   bottom: 0;
   width: 370rpx;
@@ -119,7 +119,7 @@ page {
   padding-bottom: 6rpx;
 }
 
-.venue-card__action::after {
+.venue-card_action::after {
   content: '';
   position: absolute;
   bottom: 0;

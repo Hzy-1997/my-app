@@ -15,13 +15,13 @@ export const navMenu = [{
     id: "3",
     name: '酒店',
     link: '/hotels',
-    icon: '🏨'
+    icon: '../../assets/image/hotel.png'
   },
   {
-    id: "4",  
-    name: '演出',
+    id: "4",
+    name: '观光车',
     link: '/activities',
-    icon: '🎪'
+    icon: '../../assets/image/banche.png'
   },
   // {
   //   id: "5",
@@ -35,9 +35,10 @@ export const navMenu = [{
 // 对象二：分类功能区
 export const categoryMenu = [{
     id: "1",
-    name: '运动',
-    link: '/sports',
-    icon: '../../assets/image/yundong.png'
+    // name: '运动',
+    name: '演出',
+    link: '',
+    icon: '../../assets/image/performance.png'
   },
   {
     id: "2",
@@ -47,15 +48,16 @@ export const categoryMenu = [{
   },
   {
     id: "3",
-    name: '营地',
+    // name: '营地',
+    name: '运动',
     link: '/camps',
-    icon: '../../assets/image/yingdi.png'
+    icon: '../../assets/image/yundong.png'
   },
   {
     id: "4",
-    name: '观光车',
+    name: '营地',
     link: '/shuttle',
-    icon: '../../assets/image/banche.png'
+    icon: '../../assets/image/yingdi.png '
   },
   {
     id: "5",

@@ -1,52 +1,59 @@
 <view class="page">
   <view class="category">
-    <view class="type" bind:tap="displayCategory" data-id="1">按节目展示</view>
-    <view class="type" bind:tap="displayCategory" data-id="2">按时间展示</view>
+    <view class="type {{category === 1 ? 'active' : ''}}" bind:tap="displayCategory" data-id="1">按节目展示</view>
+    <view class="type {{category === 2 ? 'active' : ''}}" bind:tap="displayCategory" data-id="2">按时间展示</view>
   </view>
 
   <!-- 按节目展示 -->
   <view class="performance-list" wx:if="{{category ==1}}">
-    <scroll-view scroll-y="true" style="height: 1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
-      <!-- 单个卡片 -->
-      <view class="performance-card" wx:for="{{performanceList}}" wx:key="item" bind:tap="goDetail" data-id="{{item.id}}">
-        <view class="performance-card_cover">
-          <view class="performance-card_img">
-            <!-- <image src="..." mode="aspectFill" /> -->
-          </view>
-          <view class="performance-card_badge" wx:if="{{item.csThere}}">
-            <view class="badge-time">{{item.nextShowTime}}</view>
-            <view class="badge-label">下一场</view>
-          </view>
-          <view class="performance-card_badge" wx:elif="{{item.programTime.length === 0}}">
-            <view class="badge-time"></view>
-            <view class="badge-label">待开放</view>
-          </view>
-          <view class="performance-card_badge" wx:else>
-            <view class="badge-time"></view>
-            <view class="badge-label">已结束</view>
-          </view>
+    <view class="performance-card" wx:for="{{performanceList}}" wx:key="item" bind:tap="goDetail" data-id="{{item.id}}">
+      <view class="performance-card_cover">
+        <view class="performance-card_img">
+          <!-- <image src="..." mode="aspectFill" /> -->
         </view>
+        <view class="performance-card_badge" wx:if="{{item.csThere}}">
+          <view class="badge-time">{{item.nextShowTime}}</view>
+          <view class="badge-label">下一场</view>
+        </view>
+        <view class="performance-card_badge" wx:elif="{{item.programTime.length === 0}}">
+          <view class="badge-time"></view>
+          <view class="badge-label">待开放</view>
+        </view>
+        <view class="performance-card_badge" wx:else>
+          <view class="badge-time"></view>
+          <view class="badge-label">已结束</view>
+        </view>
+      </view>
 
-        <view class="performance-card_info">
-          <view class="performance-card_title">{{item.title}}</view>
-          <view class="performance-card_tag">
-            <view wx:for="{{item.tags}}" wx:key="item">{{item}}</view>
+      <view class="performance-card_info">
+        <view class="performance-card_title">{{item.title}}</view>
+        <view class="performance-card_tag">
+          <view wx:for="{{item.tags}}" wx:key="item">{{item}}</view>
+        </view>
+        <view class="performance-card_time-row">
+          <view class="performance-card_time-label">演出时间:</view>
+
+          <view class="performance-card_time-list" wx:if="{{item.programTime.length >0 }}">
+            <view wx:for="{{item.programTime}}" wx:key="item"> {{item}}</view>
           </view>
-          <view class="performance-card_time-row">
-            <view class="performance-card_time-label">演出时间:</view>
-            <view class="performance-card_time-list">
-              <view wx:for="{{item.programTime}}" wx:key="item"> {{item}}</view>
-            </view>
+          <view class="performance-card_time-list" wx:else>
+            <view>暂无节目演出</view>
           </view>
         </view>
       </view>
-    </scroll-view>
+    </view>
+    <!-- 把底部提示移出来，这样两个分类下都能看到 -->
+    <view class="bottomDisplay">
+      <view class="loading-text" wx:if="{{isLoading}}">正在加载...</view>
+      <view class="no-more" wx:if="{{!hasMore && performanceList.length > 0}}">没有更多了~</view>
+      <view class="no-more" wx:if="{{performanceList.length === 0 && !isLoading}}">暂无演出数据</view>
+    </view>
   </view>
 
 
   <!-- 按时间展示 -->
   <view class="timeline-container" wx:else>
-    <scroll-view scroll-y="true" style="height: 1300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+    <scroll-view scroll-y="true" style="height: 1300rpx;" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
       <view class="timeline-list">
         <view></view>
         <view class="timeline-item" wx:for="{{timelineData}}" wx:key="time" wx:for-item="group">
@@ -61,12 +68,12 @@
             </view>
 
             <!-- 这一列里有多少节目就渲染多少张卡片 -->
-            <view class="show-card" wx:for="{{group.list}}" wx:key="id" wx:for-item="item" bind:tap="goDetail" data-id="{{item.id}}">
+            <view class="show-card" wx:for="{{group.list}}" wx:key="id" wx:for-item="item">
               <view class="show-card_cover">
                 <image src="{{item.coverImage}}" mode="aspectFill"></image>
               </view>
 
-              <view class="show-card_main">
+              <view class="show-card_main" bind:tap="goDetail" data-id="{{item.id}}">
                 <view class="show-card_title">{{item.title}}</view>
 
                 <view class="show-card_desc">
@@ -82,9 +89,9 @@
                 </view>
 
                 <view class="show-card_footer">
-                  <view class="show-card_action-btn text-blue" bindtap="goDetail" data-id="{{item.id}}">详情 »</view>
-                  <view class="show-card_action-btn" bindtap="setReminder" data-id="{{item.id}}">☆ 开演提醒</view>
-                  <view class="show-card_action-btn" bindtap="goNavigation" data-id="{{item.id}}">➤ 导航</view>
+                  <view class="show-card_action-btn" catch:tap="setReminder" data-id="{{item.id}}"> </view>
+                  <view class="show-card_action-btn gps" catch:tap="goNavigation" data-id="{{item.id}}">➤ 导航</view>
+                  <view class="show-card_action-btn text-blue" catch:tap="goDetail" data-id="{{item.id}}">详情 »</view>
                 </view>
               </view>
             </view>

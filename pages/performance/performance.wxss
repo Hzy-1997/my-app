@@ -88,7 +88,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 40rpx 0rpx;
+  margin: 10rpx 0rpx;
 }
 
 .stats-card {
@@ -102,7 +102,7 @@
 }
 
 .stats-title {
-  margin: 30rpx 0rpx 0rpx 20rpx;
+  margin: 20rpx 0rpx 0rpx 20rpx;
   font-size: 35rpx;
   font-weight: 600;
   margin-bottom: 10rpx;

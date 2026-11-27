@@ -45,16 +45,19 @@
     <!-- 适合人群 -->
     <view class="section" wx:if="{{program.suitableCrowd && program.suitableCrowd.length}}">
       <view class="section-title">适合人群</view>
-      <view class="section-content">
-        {{program.suitableCrowd}}
+      <view class="section-tags">
+        <view class="section-tag" wx:for="{{program.suitableCrowd}}" wx:key="index">{{item}}</view>
       </view>
     </view>
 
     <!-- 注意事项 -->
-    <!-- <view class="section" wx:if="{{program.notice}}">
-      <view class="section-title">注意事项</view>
-      <view class="section-content">{{program.notice}}</view>
-    </view> -->
+    <view class="section" wx:if="{{program.notice}}">
+  <view class="section-title">注意事项</view>
+  <view class="section-notice">
+    <text class="section-notice-icon">!</text>
+    <text class="section-notice-text">{{program.notice}}</text>
+  </view>
+</view>
 
     <!-- 节目简介 -->
     <view class="section html" wx:if="{{program.introduction}}">

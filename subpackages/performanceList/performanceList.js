@@ -5,123 +5,97 @@ import {
 } from "../../api/index"
 
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     performanceList: [],
     type: 1,
     category: 1,
     timelineData: [],
     programTime: [],
+    page: 1,
+    pageSize: 10,
+
+    hasMore: true, // 是否还有更多数据
+    isLoading: false, // 是否正在加载中，防止重复请求
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad(options) {
     this.setData({
-      type: options.type
+      type: options.type || 1
     })
     this.getPerformanceList()
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
+  // 页面上拉触底事件
+  onReachBottom(e) {
+    // 如果没有更多数据，或者正在加载中，直接拦截
+    if (!this.data.hasMore || this.data.isLoading) return;
 
+    this.setData({
+      page: this.data.page + 1
+    })
+    this.getPerformanceList()
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  },
-
 
   // 获取演出列表
   async getPerformanceList() {
+
+    if (this.data.isLoading) return;
+    this.setData({
+      isLoading: true
+    })
     wx.showLoading({
-      title: '加载中'
+      title: '加载中',
+      mask: true
     })
 
     try {
       const res = await performanceApi.strategyListApi({
-        page: 1,
-        pageSize: 10,
-        performanceTypes: 1
+        page: this.data.page,
+        pageSize: this.data.category == 1 ? this.data.pageSize : 999,
+        performanceTypes: this.data.type
       })
 
       const rows = res.data.rows || []
 
-      console.log('原始rows', rows)
-      console.log('今天getDay()', new Date().getDay())
-      console.log('schedules里的weekDay', rows.map(r => (r.schedules || []).map(s => s.weekDay)))
+      // 1. 判断是否还有更多数据
+      // 如果当前返回的数据量少于请求的 pageSize，说明到底了
+      const currentPageSize = this.data.category == 1 ? this.data.pageSize : 999;
+      if (rows.length < currentPageSize) {
+        this.setData({
+          hasMore: false
+        })
+      }
 
-      // 1. 按节目展示用
-      const performanceList = this.buildPerformanceList(rows)
+      // 2. 处理节目列表
+      const newPerformanceList = this.buildPerformanceList(rows)
 
-      // 2. 按时间展示用
-      const timelineData = this.buildTimelineData(performanceList)
+      // 3. 合并总列表 (修复重点)
+      const totalList = [...this.data.performanceList, ...newPerformanceList]
 
-      console.log('programTime', performanceList.map(p => ({
-        id: p.id,
-        programTime: p.programTime
-      })))
-      console.log('timelineData', timelineData)
+      // 4. 基于总列表生成时间轴 (修复重点)
+      const timelineData = this.buildTimelineData(totalList)
 
+      console.log(totalList)
 
       this.setData({
-        performanceList,
-        timelineData
+        performanceList: totalList,
+        timelineData,
       })
 
-      wx.hideLoading()
     } catch (error) {
-      console.log(error)
-      wx.hideLoading()
+      // 如果报错，把页码退回去
+      this.setData({
+        page: this.data.page > 1 ? this.data.page - 1 : 1
+      })
       wx.showToast({
         title: '系统错误',
         icon: 'error',
         duration: 2000
+      })
+    } finally {
+      wx.hideLoading()
+      this.setData({
+        isLoading: false
       })
     }
   },
@@ -129,14 +103,12 @@ Page({
   // 按节目展示的数据处理
   buildPerformanceList(rows) {
     const now = new Date()
-    const currentHour = now.getHours().toString().padStart(2, '0')
-    const currentMinute = now.getMinutes().toString().padStart(2, '0')
-    const currentTimeStr = `${currentHour}:${currentMinute}`
-    const day = now.getDay()
+    const currentTimeStr = this.formatTime(now)
+    let day = now.getDay()
+    day = day === 0 ? 7 : day
 
-    return rows.map(row => {
+    const list = rows.map(row => {
       const currentShowTimes = []
-
       if (row.schedules && row.schedules.length > 0) {
         row.schedules.forEach(schedule => {
           if (schedule.weekDay == day) {
@@ -146,11 +118,10 @@ Page({
           }
         })
       }
-
       currentShowTimes.sort()
-
-      const validTimes = currentShowTimes.filter(time => time > currentTimeStr) 
-
+      const validTimes = currentShowTimes.filter(time => {
+        return this.timeToMinutes(time) > this.timeToMinutes(currentTimeStr)
+      })
       return {
         ...row,
         csThere: validTimes.length > 0,
@@ -158,21 +129,25 @@ Page({
         programTime: currentShowTimes
       }
     })
+
+    list.sort((a, b) => {
+      if (a.csThere === b.csThere) return 0
+      return a.csThere ? -1 : 1
+    })
+
+    return list
   },
 
   // 按时间展示的数据处理
   buildTimelineData(rows) {
     const now = new Date()
-    const currentHour = now.getHours().toString().padStart(2, '0')
-    const currentMinute = now.getMinutes().toString().padStart(2, '0')
-    const currentTimeStr = `${currentHour}:${currentMinute}`
+    const currentTimeStr = this.formatTime(now)
+    const currentTimeMinutes = this.timeToMinutes(currentTimeStr)
 
-    // 1. 先拍平成「场次」
     const scheduleList = []
 
     rows.forEach(row => {
       const times = row.programTime || []
-
       times.forEach((time, index) => {
         scheduleList.push({
           time,
@@ -182,15 +157,13 @@ Page({
       })
     })
 
-    // 2. 全部展示，已开始的场次标记 isPast
-    // 3. 按时间排序
+    // 按时间排序
     scheduleList.sort((a, b) => {
       if (a.time < b.time) return -1
       if (a.time > b.time) return 1
       return a.performance.id - b.performance.id
     })
 
-    // 4. 按时间分组
     const timelineData = []
 
     scheduleList.forEach(item => {
@@ -208,7 +181,8 @@ Page({
         ...item.performance,
         showTime: item.time,
         scheduleIndex: item.scheduleIndex,
-        isPast: item.time < currentTimeStr
+        // 判断是否已过时间
+        isPast: this.timeToMinutes(item.time) < currentTimeMinutes
       })
     })
 
@@ -216,25 +190,29 @@ Page({
   },
 
 
+  // 格式化时间为 HH:mm
+  formatTime(date) {
+    const h = date.getHours().toString().padStart(2, '0')
+    const m = date.getMinutes().toString().padStart(2, '0')
+    return `${h}:${m}`
+  },
+
+  // 将时间字符串 HH:mm 转为分钟数（用于精准比较）
+  timeToMinutes(timeStr) {
+    if (!timeStr) return 0;
+    const [h, m] = timeStr.split(':');
+    return parseInt(h, 10) * 60 + parseInt(m, 10);
+  },
+
+
   // 底部按钮点击事件
   goDetail(e) {
     const id = e.currentTarget.dataset.id;
-    wx.showToast({
-      title: '查看详情 ' + id,
-      icon: 'none'
-    });
     wx.navigateTo({
       url: `/subpackages/performanceDetails/performanceDetails?id=${id}`
     })
   },
 
-  setReminder(e) {
-    const id = e.currentTarget.dataset.id;
-    wx.showToast({
-      title: '设置提醒成功',
-      icon: 'success'
-    });
-  },
 
   goNavigation(e) {
     const id = e.currentTarget.dataset.id;
@@ -244,7 +222,6 @@ Page({
     });
   },
 
-
   // 展示切换
   displayCategory(e) {
     let {
@@ -252,7 +229,14 @@ Page({
     } = e.currentTarget.dataset
 
     this.setData({
-      category: id == 1 ? 1 : 2
+      category: id == 1 ? 1 : 2,
+      page: 1,
+      hasMore: true,
+      performanceList: [],
+      timelineData: [],
+      programTime: [],
     })
+
+    this.getPerformanceList()
   }
 })

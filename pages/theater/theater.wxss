@@ -79,7 +79,7 @@
 }
 
 .sidebar-panel-item.active {
-  background-color: #007bff;
+  background-color: #21774A;
   color: white;
 }
 
@@ -176,6 +176,6 @@
   text-align: center;
   line-height: 80rpx;
   color: #fff;
-  background: #0caf14;
+  background: #21774A;
   border-radius: 15rpx;
 }

@@ -1,32 +1,85 @@
 /* subpackages/performanceList/performanceList.wxss */
 
-
-.category {
+.page {
   display: flex;
-  border: 1px solid;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+/* .category {
+  display: flex;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
   height: 80rpx;
   position: fixed;
-  top: 0rpx;
-  left: 0rpx;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+} */
+
+
+.category {
+  position: fixed;       /* 固定定位 */
+  top: 0;                /* 距顶部 0 */
+  left: 0;
+  width: 100%;           /* 占满全宽 */
+  z-index: 99;           /* 层级调高，防止被列表盖住 */
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
 }
+
+.type {
+  position: relative;
+  flex: 1;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #666;
+  transition: color 0.2s;
+}
+
+/* 选中态文字 */
+.type.active {
+  color: #1a73e8;          /* 主题蓝，按你项目主色改 */
+  font-weight: 600;
+}
+
+/* 底部指示条 */
+.type.active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 48rpx;            /* 指示条宽度，比文字短更精致 */
+  height: 6rpx;
+  background: #1a73e8;     /* 主题色 */
+  border-radius: 6rpx;
+  transform: translateX(-50%);
+}
+
+
 
 .performance-list {
-  margin-top: 100rpx;
-  padding: 0rpx 20rpx;
-  border: 1px solid;
+  margin-top: 80rpx;
+  padding: 20rpx;
+  flex: 1;
 }
-
 
 
 .performance-card {
-  border: 1px solid;
+  background: #fff;
   margin-bottom: 25rpx;
   height: 460rpx;
   border-radius: 20rpx;
   position: relative;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
 }
 
 .performance-card_img {
@@ -75,9 +128,7 @@
 
 .performance-card_tag view {
   margin-right: 15rpx;
-  border: 1px solid;
-  padding: 5rpx;
-  width: 70rpx;
+  padding: 8rpx;
   height: 25rpx;
   text-align: center;
   line-height: 25rpx;
@@ -113,9 +164,13 @@
 }
 
 
+/* 时间轴外层 */
 .timeline-container {
-  margin-top: 95rpx;
-
+  margin-top: 80rpx;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .timeline-item {
@@ -132,6 +187,8 @@
 .show-card {
   display: flex;
   padding: 20rpx;
+  max-width: 580rpx;
+  border: 1px solid;
   min-height: 300rpx;
   align-items: center;
   font-size: 24rpx;
@@ -163,7 +220,6 @@
   padding: 0 30rpx 0 10rpx;
 }
 
-/* ========== 时间轴每一条 ========== */
 .timeline-item {
   display: flex;
   position: relative;
@@ -279,8 +335,7 @@
 }
 
 .show-card_time,
-.show-card_capacity,
-.show-card_notice {
+.show-card_capacity {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -289,8 +344,15 @@
 .show-card_notice {
   color: #e74c3c;
   margin-top: 4rpx;
-}
+  
+  white-space: normal; 
+  word-break: break-all; 
 
+  /* display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden; */
+}
 .show-card_footer {
   display: flex;
   justify-content: space-between;
@@ -307,6 +369,27 @@
   align-items: center;
 }
 
+.gps {
+  width: 150rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .text-blue {
   color: #1a73e8;
+}
+
+.timeline-scroll {
+  flex: 1;
+  height: 0;
+  /* 加上 height: 0，flex: 1 才会在 scroll-view 中正确计算剩余高度 */
+}
+
+.bottomDisplay {
+  text-align: center;
+  padding: 20rpx 0 40rpx 0;
+  font-size: 24rpx;
+  color: #999;
 }

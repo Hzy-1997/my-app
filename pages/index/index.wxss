@@ -6,63 +6,6 @@ page {
   background: #F3F3F3;
 }
 
-/* .scrollarea {
-  flex: 1;
-  overflow-y: hidden;
-}
-
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
-  width: 80%;
-}
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
-.avatar-wrapper {
-  padding: 0;
-  width: 56px !important;
-  border-radius: 8px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.avatar {
-  display: block;
-  width: 56px;
-  height: 56px;
-}
-
-.nickname-wrapper {
-  display: flex;
-  width: 100%;
-  padding: 16px;
-  box-sizing: border-box;
-  border-top: .5px solid rgba(0, 0, 0, 0.1);
-  border-bottom: .5px solid rgba(0, 0, 0, 0.1);
-  color: black;
-}
-
-.nickname-label {
-  width: 105px;
-}
-
-.nickname-input {
-  flex: 1;
-} */
-
 .top-bar {
   position: fixed;
   top: 0;
@@ -91,13 +34,32 @@ page {
   background: coral;
 }
 
+
+.page-header .swiper {
+  height: 500rpx;
+}
+
+.page-header .custom-indicator {
+  position: absolute;
+  bottom: -75rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 198rpx;
+  display: flex;
+  justify-content: center;
+  gap: 10rpx;
+  margin-top: 20rpx;
+  background: #999999;
+}
+
+
+
 .top-bar {
   width: 100%;
   height: 180rpx;
 }
 
 .nav-tabs {
-  /* width: 100%; */
   height: 200rpx;
   padding: 0rpx 20rpx;
   background: #ffff;
@@ -128,12 +90,13 @@ page {
 }
 
 .item-icon {
-  width: 80rpx;
-  height: 80rpx;
+  width: 60rpx;
+  height: 60rpx;
   font-size: 70rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10rpx;
 }
 
 .item-icon image {

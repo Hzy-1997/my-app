@@ -52,6 +52,53 @@ page {
   min-height: 450rpx;
 }
 
+/* 适合人群 tag */
+.section-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+}
+
+.section-tag {
+  padding: 8rpx;
+  font-size: 26rpx;
+  color: #1a73e8;              /* 主题蓝 */
+  line-height: 1.4;
+}
+
+/* 注意事项 醒目块 */
+.section-notice {
+  display: flex;
+  align-items: flex-start;
+  padding: 20rpx 24rpx;
+  background: #fff7e6;         /* 浅橙底，警示但不刺眼 */
+  border-left: 6rpx solid #fa8c16; /* 左侧橙色竖条 */
+  border-radius: 8rpx;
+}
+
+.section-notice-icon {
+  flex-shrink: 0;
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  font-weight: bold;
+  color: #fff;
+  background: #fa8c16;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 32rpx;
+}
+
+.section-notice-text {
+  flex: 1;
+  font-size: 28rpx;
+  color: #d46b08;              /* 深橙文字，对比够 */
+  line-height: 1.6;
+  word-break: break-all;
+}
+
 .section-title {
   font-size: 30rpx;
   font-weight: 700;

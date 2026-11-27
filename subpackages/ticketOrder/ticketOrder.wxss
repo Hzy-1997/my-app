@@ -169,9 +169,9 @@
   margin-right: 50rpx;
   height: 80rpx;
   width: 180rpx;
-  border-radius: 30rpx;
+  border-radius: 10rpx;
   text-align: center;
   line-height: 80rpx;
-  background-color: #07c160;
+  background-color: #21774A;
 
 }

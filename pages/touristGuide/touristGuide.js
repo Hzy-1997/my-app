@@ -16,7 +16,7 @@ Page({
   data: {
     type: "",
     title: [{
-      id: 1,
+      id: 3,
       title: "运动"
     }, {
       id: 6,
@@ -106,13 +106,16 @@ Page({
    * 获取详情
    */
   getDataInfo() {
-
+    Toast.loading({
+      message: '加载中...',
+      forbidClick: true,
+    });
     const type = Number(this.data.type)
     const apiMap = {
-      1: serviceApi.getSportsList,
-      6: serviceApi.leisureList,
-      7: serviceApi.shoppingList,
-      8: serviceApi.cateringList
+      3: serviceApi.getSportsList, // 1 - 体育运动
+      6: serviceApi.leisureList, // 6 - 休闲娱乐
+      7: serviceApi.shoppingList, // 7 - 购物消费
+      8: serviceApi.cateringList // 8 - 餐饮美食
     }
     console.log(type)
     const apiMethod = apiMap[type]
@@ -123,10 +126,7 @@ Page({
 
   // 运动详情
   async fetchDetail(apiMethod) {
-    Toast.loading({
-      message: '加载中...',
-      forbidClick: true,
-    });
+
     let res = await apiMethod({
       page: this.data.page,
       pageSize: this.data.pageSize

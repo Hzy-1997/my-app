@@ -21,6 +21,7 @@ Page({
     categoryMenu,
     background: 5,
     currentIndex: 0,
+    headerCurrentIndex: 0,
     headerBgColor: 'rgba(255, 255, 255, 0)', // 初始透明
     textColor: "#fff",
     navBarHeight: 0,
@@ -115,6 +116,8 @@ Page({
       });
     }
   },
+
+
   onPageScroll(e) {
     // e.scrollTop 是页面滚动距离
     const scrollTop = e.scrollTop;
@@ -142,6 +145,7 @@ Page({
       hotelList: data
     })
   },
+
   // 攻略列表
   async getStrategyList() {
     let res = await serviceApi.strategyListApi()
@@ -150,6 +154,7 @@ Page({
       strategyList: data
     })
   },
+
   // 产品列表
   async getTicketList() {
     let res = await ticketingApi.ticketingListApi({
@@ -186,7 +191,7 @@ Page({
         break;
       case '4':
         wx.navigateTo({
-          url: '/pages/performance/performance',
+          url: "/subpackages/sightseeingBus/sightseeingBus"
         })
         break;
       case '5':
@@ -211,7 +216,7 @@ Page({
     switch (num) {
       case "1":
         wx.navigateTo({
-          url: `/pages/touristGuide/touristGuide?type=${num}`,
+          url: '/pages/performance/performance',
         })
         break;
       case "2":
@@ -225,13 +230,12 @@ Page({
         //   icon: 'none'
         // })
         wx.navigateTo({
-          url: "/pages/campsitePage/campsitePage"
+          url: `/pages/touristGuide/touristGuide?type=${num}`,
         })
-
         break;
       case "4":
         wx.navigateTo({
-          url: "/subpackages/sightseeingBus/sightseeingBus"
+          url: "/pages/campsitePage/campsitePage"
         })
         break;
       case "5":
@@ -276,6 +280,7 @@ Page({
       url: '/pages/hotel/hotel',
     })
   },
+
   // 酒店详情
   goRoomType(row) {
     let {
@@ -293,6 +298,7 @@ Page({
       url: '/pages/strategy/strategy',
     })
   },
+
   // 攻略详情
   goDetails(row) {
     console.log(row)
@@ -310,6 +316,7 @@ Page({
       url: "/pages/theater/theater"
     })
   },
+
   // 票务详情
   purchase(row) {
     let {
@@ -327,6 +334,12 @@ Page({
       currentIndex: e.detail.current
     })
   },
+
+  headerSwiperChange(e) {
+    this.setData({
+      headerCurrentIndex: e.detail.current
+    })
+  }
 
   // 截图
 })

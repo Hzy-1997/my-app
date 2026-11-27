@@ -98,7 +98,7 @@
 .location-link {
   padding-left: 150rpx;
   font-size: 26rpx;
-  color: #008833;
+  color: #21774A;
 }
 
 .text-icon {
@@ -168,7 +168,7 @@
   justify-content: center;
   align-items: center;
   font-size: 30rpx;
-  background: #008833;
+  background: #21774A;
   border-radius: 20rpx;
   color: #fff;
   font-weight: 600;
@@ -207,7 +207,7 @@
 
 /* 可选：绿  */
 .free {
-  background: #008833;
+  background: #21774A;
   color: #e8f7e8;
 }
 

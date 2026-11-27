@@ -65,6 +65,10 @@
   margin-bottom: 15rpx;
 }
 
+.icon-nav-text {
+  margin-bottom: 15rpx;
+}
+
 .tabs-line {
   position: absolute;
   left: 0;
