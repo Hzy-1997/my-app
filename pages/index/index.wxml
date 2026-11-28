@@ -7,7 +7,7 @@
     </view>
 
     <view class="swiper-guide">
-      <swiper class="swiper" bindchange="headerSwiperChange" circular  duration="{{1000}}">
+      <swiper class="swiper" bindchange="headerSwiperChange" circular   autoplay="{{true}}" interval="{{6000}}" duration="{{1000}}">
         <block wx:for="{{hotelList}}" wx:key="item">
           <swiper-item>
             <view class="swiper-item" bindtap="headerSwiper" data-id="{{item.id}}">

@@ -8,7 +8,8 @@ import {
 import {
   hotelApi,
   serviceApi,
-  ticketingApi
+  ticketingApi,
+  performanceApi
 } from "../../api/index"
 
 Page({
@@ -53,6 +54,8 @@ Page({
     this.getHotelList()
     this.getStrategyList()
     this.getTicketList()
+    this.getActivePopup()
+    this.getBannerList()
   },
 
   /**
@@ -339,7 +342,20 @@ Page({
     this.setData({
       headerCurrentIndex: e.detail.current
     })
-  }
+  },
 
-  // 截图
+  // 首页轮播图列表
+  async getBannerList() {
+    let res = await performanceApi.bannerImageList()
+    console.log("轮播", res)
+
+  },
+
+
+  // 首页弹窗获取
+  async getActivePopup() {
+    let res = await performanceApi.popupImage()
+    console.log("弹窗", res)
+
+  },
 })
